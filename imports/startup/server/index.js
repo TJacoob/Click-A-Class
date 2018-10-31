@@ -3,4 +3,5 @@
 import './fixtures.js';
 import './register-api.js';
 //import './flicsConnection.js';
-import './api.js';
+//import './api.js';
+import './apiv2.js';

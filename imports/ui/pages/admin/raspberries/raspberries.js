@@ -10,7 +10,9 @@ Template.test_raspberries.onRendered(function(){
 });
 
 Template.test_raspberries.helpers({
-	
+	raspberry(){
+		return Raspberries.find({});
+	},
 });
 
 Template.test_raspberries.events({

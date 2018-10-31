@@ -33,8 +33,11 @@ mizzao:jquery-ui
 session
 meteortoys:allthings
 
+simple:rest
+
 # User Accounts
 useraccounts:core
 useraccounts:unstyled
 useraccounts:flow-routing
 accounts-password
+

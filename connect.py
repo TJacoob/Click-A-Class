@@ -4,7 +4,7 @@ def getserial():
 	try:
 		f = open('/proc/cpuinfo','r')
 		for line in f:
-			print(line);
+			#print(line);
 			if line[0:6]=='Serial':
 				cpuserial = line[10:26]
 		f.close()
@@ -16,6 +16,7 @@ def getserial():
 
 if __name__ == '__main__':
 	import requests
-	r = requests.post("http://194.210.222.170:3000/test/connect", json={'serial': getserial(), 'ip': '123.123.123.123'})
+	#r = requests.post("http://193.136.167.55:3000/methods/connect", json={'serial': getserial(), 'ip': '123.123.123.123'})
+	r = requests.post("http://clickaclass.herokuapp.com/methods/connect", json={'serial': getserial(), 'ip': '123.123.123.123'})
 	print(r.status_code, r.reason)
 	print(r.text[:300] + '...')

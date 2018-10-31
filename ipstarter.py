@@ -10,7 +10,7 @@ def getserial():
     try:
         f = open('/proc/cpuinfo','r')
         for line in f:
-            print(line);
+            #print(line);
             if line[0:6]=='Serial':
                 cpuserial = line[10:26]
         f.close()
@@ -80,6 +80,9 @@ smtpserver.sendmail(gmail_user, [to], msg.as_string())
 # Closes the smtp server.
 smtpserver.quit()
 
-r = requests.post("http://194.210.222.170:3000/test/connect", json={'serial': getserial(), 'ip': ipaddr_a})
+r = requests.post("http://193.136.167.55:3000/methods/connect", json={'serial': getserial(), 'ip': ipaddr_a})
 print(r.status_code, r.reason)
-print(r.text[:300] + '...')
+#print(r.text[:300] + '...')
+
+
+

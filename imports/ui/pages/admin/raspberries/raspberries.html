@@ -1,5 +1,7 @@
 <template name="test_raspberries">
- 	
-	<p>Raspberries</p>
 
+	{{#each raspberry}} 	
+		<p>Raspberry: {{this.serial}} with IP {{this.ipAddress}}.</p>
+	{{/each}}
+	
 </template>
