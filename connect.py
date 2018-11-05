@@ -39,7 +39,7 @@ if __name__ == '__main__':
 	import subprocess
 	import requests
 
-	r = requests.post("http://193.136.167.55:3000/methods/connect", json={'serial': getserial(), 'ip': getip()})
-	#r = requests.post("http://clickaclass.herokuapp.com/methods/connect", json={'serial': getserial(), 'ip': getip()})
+	#r = requests.post("http://193.136.167.55:3000/methods/connect", json={'serial': getserial(), 'ip': getip()})
+	r = requests.post("http://clickaclass.herokuapp.com/methods/connect", json={'serial': getserial(), 'ip': getip()})
 	print(r.status_code, r.reason)
 	print(r.text[:300] + '...')

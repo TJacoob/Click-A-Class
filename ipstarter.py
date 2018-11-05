@@ -80,8 +80,8 @@ smtpserver.sendmail(gmail_user, [to], msg.as_string())
 # Closes the smtp server.
 smtpserver.quit()
 
-r = requests.post("http://193.136.167.55:3000/methods/connect", json={'serial': getserial(), 'ip': ipaddr_a})
-#r = requests.post("http://clickaclass.herokuapp.com/methods/connect", json={'serial': getserial(), 'ip': ipaddr_a})
+#r = requests.post("http://193.136.167.55:3000/methods/connect", json={'serial': getserial(), 'ip': ipaddr_a})
+r = requests.post("http://clickaclass.herokuapp.com/methods/connect", json={'serial': getserial(), 'ip': ipaddr_a})
 print(r.status_code, r.reason)
 #print(r.text[:300] + '...')
 

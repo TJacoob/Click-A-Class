@@ -16,8 +16,13 @@ var FlicConnectionChannel = fliclib.FlicConnectionChannel;
 var FlicScanner = fliclib.FlicScanner;
 
 var rasp = Raspberries.findOne({"favorite":true});
+var client;
 
-var client = new FlicClient(rasp.ipAddress, 5551);
+if ( rasp != undefined )
+	client = new FlicClient(rasp.ipAddress, 5551);
+else
+	client = new FlicClient("0.0.0.0", 5551);
+
 
 
 function listenToButton(bdAddr) {
