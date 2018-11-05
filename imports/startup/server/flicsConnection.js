@@ -7,6 +7,7 @@
  * This example program connects to already paired buttons and register event listeners on button events.
  * Run the newscanwizard.js program to add buttons.
  */
+import { Raspberries } from '/imports/api/raspberries/raspberries.js';
 
 
 var fliclib = require("./fliclibNodeJs.js");
@@ -14,7 +15,9 @@ var FlicClient = fliclib.FlicClient;
 var FlicConnectionChannel = fliclib.FlicConnectionChannel;
 var FlicScanner = fliclib.FlicScanner;
 
-var client = new FlicClient("193.136.167.233", 5551);
+var rasp = Raspberries.findOne({"favorite":true});
+
+var client = new FlicClient(rasp.ipAddress, 5551);
 
 
 function listenToButton(bdAddr) {

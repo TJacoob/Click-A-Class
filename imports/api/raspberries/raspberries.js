@@ -5,6 +5,10 @@ SimpleSchema.extendOptions(['autoform']);
 export const Raspberries = new Mongo.Collection( 'raspberries' );
 
 RaspberriesSchema = new SimpleSchema({
+	number: {
+		type: Number,
+		label: "Number",
+	},
 	serial: {
 		type: String,
 		label: "Serial Number",
@@ -16,5 +20,13 @@ RaspberriesSchema = new SimpleSchema({
 	connected: {
 		type: Boolean,
 		label: "Connected",
+	},
+	accessCode:{
+		type: String,
+		label: "Access Code",
+	},
+	favorite: {
+		type: Boolean,
+		label: "Favorite",
 	}
 });
