@@ -52,46 +52,61 @@ Meteor.methods({
 	checkAliveAll: function(){
 		let r = Raspberries.find({'connected':true});
 		r.forEach(function(rasp){
-			console.log(rasp);
+			//console.log(rasp);
 			//pingv2(rasp.ipAddress);
+			/*
 			Meteor.call("pingHost", rasp.ipAddress, function (err, data) {
 	            if(err){
 	                console.log("Error: " + err);
 	            }else{
-	                console.log(data.status);
-	                if ( data.status != 'online')
+	            	console.log(data);
+	                //console.log(data.status);
+	                if ( data.status == 'online')
+	                	console.log("It's alive");
+	                else
 	                	Raspberries.update(rasp._id,{$set:{"connected":false}});
 	            }
         	});
+        	*/
+        	HTTP.call( 'get', 'http://'+rasp.ipAddress+':8090', function( error, response ) {
+				if ( error ) {
+					console.log( error );
+					Raspberries.update(rasp._id,{$set:{"connected":false}});
+				} else {
+					//console.log( response.content );
+					if ( response.content == 'online' )
+						console.log("It's alive");
+					else
+						Raspberries.update(rasp._id,{$set:{"connected":false}});
+				};
+			});
 		});
 	},
 
+	/*
 	pingHost: function (ip) {
 	    var pingSend = function (options, callback) {
-	      var exec = Npm.require('child_process').exec;
-	      var result = {};
-
-	      child = exec('ping -c 1 ' + options, function(error, stdout, stderr) {
-	        if (error !== null) {
-	          result.latency = 0;
-	          result.status = "offline";
-	          callback(null, result);
-	        } else {
-	          var str = stdout.toString(), lines = str.split('\n');
-	          var latency =  Math.round(lines[1].split('time=')[1].split(' ')[0]);
-	          var status = lines[4].slice(23,24);
-	          result.status = "online";
-	          result.latency = latency;
-	          callback(null, result)
-	        }
-	      })
+	      	//var exec = Npm.require('child_process').exec;
+	      	var result = {};
+	      	HTTP.call( 'GET', 'http://'+ip+':8090/', {},
+				function( error, response ) {
+					if (error) {
+					  console.log(error);
+					  return error
+					} else {
+					  console.log(response.content);
+					  return response.content
+					}
+			});
 	    }
 
+	    console.log("Started");
 	    var pingSendSync = Meteor.wrapAsync(pingSend);
 	    var r = pingSendSync(ip);
+	    console.log("Finished");
 	    return r;
   	}
-
+	*/
 });
 
 
