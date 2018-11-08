@@ -2,16 +2,49 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 // Import needed templates
-import '../../ui/layouts/body/body.js';
-import '../../ui/pages/home/home.js';
-import '../../ui/pages/not-found/not-found.js';
+import '../../ui/pages/index/index.js';
 import '../../ui/pages/admin/raspberries/raspberries.js';
+import '../../ui/pages/login/login.js';
+import '../../ui/pages/signup/signup.js';
+import '../../ui/pages/dashboard/dashboard.js';
+import '../../ui/pages/not_found/not_found.js';
 
 // Set up all routes in the app
 FlowRouter.route('/', {
-	name: 'App.home',
+	name: 'Index',
 	action() {
-		BlazeLayout.render('App_body', { main: 'App_home' });
+		BlazeLayout.render('index');
+	},
+});
+
+// Accounts Routes
+FlowRouter.route('/login', {
+	name: 'Login',
+	action() {
+		BlazeLayout.render('login');
+	},
+});
+
+FlowRouter.route('/signup', {
+	name: 'Signup',
+	action() {
+		BlazeLayout.render('signup');
+	},
+});
+
+FlowRouter.route('/logout',{
+	name: 'Logout',
+	action(){
+		AccountsTemplates.logout();
+		FlowRouter.redirect('/login');
+	},
+});
+
+// Dashboard
+FlowRouter.route('/dashboard',{
+	name: 'Dashboard',
+	action(){
+		BlazeLayout.render('dashboard');
 	},
 });
 
@@ -25,6 +58,6 @@ FlowRouter.route('/tests/raspberries', {
 
 FlowRouter.notFound = {
 	action() {
-		BlazeLayout.render('App_body', { main: 'App_notFound' });
+		BlazeLayout.render('not_found');
 	},
 };
