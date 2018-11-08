@@ -1,11 +1,12 @@
-// Methods related to links
-
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Links } from './links.js';
+import { Student } from './student.js';
+
 
 Meteor.methods({
 
-	
+	newStudent: function(){		
+
+	},
 
 });

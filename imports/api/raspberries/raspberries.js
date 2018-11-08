@@ -30,3 +30,5 @@ RaspberriesSchema = new SimpleSchema({
 		label: "Favorite",
 	}
 });
+
+Raspberries.attachSchema( RaspberriesSchema ); 
