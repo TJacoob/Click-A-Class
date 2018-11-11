@@ -5,23 +5,36 @@ SimpleSchema.extendOptions(['autoform']);
 export const Teacher = new Mongo.Collection( 'teacher' );
 
 TeacherSchema = new SimpleSchema({
+    user: {
+        type: String,
+        label: "User",
+    },
 	name: {
 		type: String,
-		label: "Name"
+		label: "Name",
+        optional: true,
 	},
-	nicknames:{
-        type: Array,
-        label:"Nicknames",
-    },
-    "nicknames.$": {
-        type: Object,
-    },
-    "nicknames.$.nick": {
+    school: {
         type: String,
+        label: "School",
+        optional: true,
     },
-    "nicknames.$.room": {
-       type: String,
-    }, 
+    subject: {
+        type: String,
+        label: "Subject",
+        optional: true,
+    },
+	nicknames: {
+        type: Array,
+    },
+    'nicknames.$': Object,
+    'nicknames.$.nick': String,
+    'nicknames.$.room': String,
+    classes: {
+        type: Array,
+    },
+    'classes.$': { type: Number },
+    
 });
 
 Teacher.attachSchema( TeacherSchema ); 

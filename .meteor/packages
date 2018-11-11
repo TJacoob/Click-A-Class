@@ -28,10 +28,12 @@ aldeed:collection2@3.0.0
 http@1.4.1
 check@1.3.1
 fourseven:scss
+matb33:collection-hooks
 
 mizzao:jquery-ui
 session@1.1.8
 meteortoys:allthings
+aldeed:autoform
 
 simple:rest
 
@@ -41,3 +43,5 @@ useraccounts:unstyled
 useraccounts:flow-routing
 accounts-password@1.5.1
 
+# Translations
+# gwendall:autoform-i18n

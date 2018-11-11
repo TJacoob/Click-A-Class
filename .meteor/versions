@@ -1,5 +1,6 @@
 accounts-base@1.4.3
 accounts-password@1.5.1
+aldeed:autoform@6.3.0
 aldeed:collection2@3.0.0
 allow-deny@1.1.0
 autoupdate@1.5.0
@@ -50,6 +51,7 @@ livedata@1.0.18
 lmieulet:meteor-coverage@1.1.4
 localstorage@1.2.0
 logging@1.1.20
+matb33:collection-hooks@0.8.4
 meteor@1.9.2
 meteor-base@1.4.0
 meteorhacks:picker@1.0.3
@@ -83,6 +85,7 @@ mobile-status-bar@1.0.14
 modern-browsers@0.1.2
 modules@0.13.0
 modules-runtime@0.10.3
+momentjs:moment@2.10.6
 mongo@1.6.0
 mongo-decimal@0.1.0
 mongo-dev-server@1.1.0

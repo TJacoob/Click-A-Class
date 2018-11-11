@@ -1,0 +1,10 @@
+<template name="showClass">
+	<p>Show Class</p>
+	{{#with currentClass}}
+		<p>(#{{number}}) {{name}}</p>
+		<p>{{notes}}</p>
+		{{#each students}}
+			<span>{{this}}, </span>
+		{{/each}}
+	{{/with}}
+</template>
