@@ -1,0 +1,12 @@
+<template name="showClassroom">
+	<p>Show Classroom</p>
+	{{#with currentClassroom}}
+		<p>(#{{number}}) {{raspberrySerial}} - Pass: {{password}}</p>
+		<p>{{name}}</p>
+		<p>{{school}} - {{location}}</p>
+		{{#each teachers}}
+			<p>{{this}}</p>
+		{{/each}}
+	{{/with}}
+	<button type="button" id="associateClassroom">Associate a classroom with current teacher</button>
+</template>

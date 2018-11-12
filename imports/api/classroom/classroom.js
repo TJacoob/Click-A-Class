@@ -8,21 +8,37 @@ ClassroomSchema = new SimpleSchema({
 	raspberrySerial:{
 		type: String,
 		label: "Raspberry Connected",
-		//autoform: { omit:true },
+		autoform: { omit:true },
+	},
+	number: {
+		type: Number,
+		autoform: { omit:true },
+	},
+	password:{		// Should be unique so a classroom can be identified by it
+		type: String,
+		label: "Access Password",
+		autoform: { omit:true },
 	},
 	name: {
 		type: String,
-		label: "Name"
+		label: "Name",
+		optional: true,
 	},
 	location: {
 		type: String,
 		label: "Location",
+		optional: true,
+	},
+	school: {
+		type: String,
+		label: "School",
+		optional: true,
 	},
 	/*
-	students: {
-		type: Array,
+	class: {
+		type: String,
+		label: "Class",
 	},
-	'students.$': { type: String },
 	*/
 	teachers: {
 		type: Array,

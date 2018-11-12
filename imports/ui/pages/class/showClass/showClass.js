@@ -6,7 +6,7 @@ Template.showClass.onRendered(function(){
 	var self = this;
 	self.autorun(function(){
 		var number = parseInt(FlowRouter.getParam('number'));
-		self.subscribe('class.single', number);
+		self.subscribe('class.own.single', number);
 	});
 });
 
