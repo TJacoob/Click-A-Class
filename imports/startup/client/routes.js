@@ -9,6 +9,7 @@ import '../../ui/pages/admin/raspberries/raspberries.js';
 import '../../ui/pages/admin/teachers/teachers.js';
 import '../../ui/pages/admin/classes/classes.js';
 import '../../ui/pages/admin/classrooms/classrooms.js';
+import '../../ui/pages/admin/lessons/lessons.js';
 import '../../ui/pages/login/login.js';
 import '../../ui/pages/signup/signup.js';
 import '../../ui/pages/dashboard/dashboard.js';
@@ -20,6 +21,8 @@ import '../../ui/pages/teacher/editTeacher/editTeacher.js';
 import '../../ui/pages/teacher/showTeacher/showTeacher.js';
 import '../../ui/pages/classroom/editClassroom/editClassroom.js';
 import '../../ui/pages/classroom/showClassroom/showClassroom.js';
+import '../../ui/pages/lesson/newLesson/newLesson.js';
+import '../../ui/pages/lesson/showLesson/showLesson.js';
 
 // Set up all routes in the app
 FlowRouter.route('/', {
@@ -112,6 +115,21 @@ FlowRouter.route('/classroom/edit/:number',{
 	},
 });
 
+// Lessons
+FlowRouter.route('/lesson/show/:number',{
+	name: 'ShowLesson',
+	action(){
+		BlazeLayout.render('showLesson');
+	},
+});
+
+FlowRouter.route('/lesson/new',{
+	name: 'NewLesson',
+	action(){
+		BlazeLayout.render('newLesson');
+	},
+});
+
 // Tests Routes
 FlowRouter.route('/tests/raspberries', {
 	name: 'TestsRaspberries',
@@ -138,6 +156,13 @@ FlowRouter.route('/tests/classrooms', {
 	name: 'TestsClassrooms',
 	action() {
 		BlazeLayout.render('test_classrooms');
+	},
+});
+
+FlowRouter.route('/tests/lessons', {
+	name: 'TestsLessons',
+	action() {
+		BlazeLayout.render('test_lessons');
 	},
 });
 

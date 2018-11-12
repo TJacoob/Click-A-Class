@@ -1,0 +1,14 @@
+<template name="newLesson">
+	<p>New Lesson</p>
+	{{#if Template.subscriptionsReady}}
+		{{#autoForm collection=Lesson id="addLesson" type="method" template="nothing" meteormethod="newLesson" validation="browser"}}
+			<fieldset>
+				{{> afQuickField name="classroom" class="form-input" autocomplete="off"}}
+				{{> afQuickField name="class" class="form-input" autocomplete="off"}}
+			</fieldset>
+			<button type="submit" style="float:right">Submit</button>
+		{{/autoForm}}
+	{{else}}
+		<p>Loading</p>
+	{{/if}}
+</template>
