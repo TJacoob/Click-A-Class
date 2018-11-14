@@ -1,0 +1,11 @@
+<template name="currentLesson">
+	<p>Current Lesson</p>
+	{{#if Template.subscriptionsReady}}
+		{{#with currentLesson}}
+			<p>(# {{number}}) - {{state}}</p>
+			<p>{{classroom}}, {{teacher}}, {{class}}</p>
+		{{/with}}
+	{{else}}
+		<p>Loading</p>
+	{{/if}}
+</template>

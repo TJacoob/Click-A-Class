@@ -18,3 +18,5 @@ import '../../api/student/server/publications.js';
 import '../../api/teacher/methods.js';
 import '../../api/teacher/server/publications.js';
 
+import '../../api/click/methods.js';
+import '../../api/click/server/publications.js';

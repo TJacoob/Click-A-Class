@@ -1,0 +1,33 @@
+<template name="test_clicks">
+	<p>Clicks</p>
+	<div class="row justify-content-center align-items-center">
+		<div class="col-4 text-center">
+			{{#each click}}
+				{{#if singleClick this}}
+					<div class="alert alert-success" role="alert">
+		  				Button has been clicked.
+		  				<i class="fas fa-times mx-2 cp" title="Dismiss" id="dismiss-alert"></i>
+					</div>
+				{{/if}}
+				{{#if doubleClick this}}
+					<div class="alert alert-warning" role="alert">
+		  				Button has been double clicked.
+		  				<i class="fas fa-times mx-2 cp" title="Dismiss" id="dismiss-alert"></i>
+					</div>
+				{{/if}}
+				{{#if holdClick this}}
+					<div class="alert alert-danger" role="alert">
+		  				Button was hold.
+		  				<i class="fas fa-times mx-2 cp" title="Dismiss" id="dismiss-alert"></i>
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
+	</div>
+</template>
+
+<!--
+<div class="alert alert-secondary" role="alert">
+  This is a secondary alert—check it out!
+</div>
+-->

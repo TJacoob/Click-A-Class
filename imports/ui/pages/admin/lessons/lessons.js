@@ -11,7 +11,7 @@ Template.test_lessons.onRendered(function(){
 
 Template.test_lessons.helpers({
 	Lesson(){
-		return lesson.find({});
+		return Lesson.find({});
 	},
 });
 

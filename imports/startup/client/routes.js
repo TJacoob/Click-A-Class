@@ -10,6 +10,7 @@ import '../../ui/pages/admin/teachers/teachers.js';
 import '../../ui/pages/admin/classes/classes.js';
 import '../../ui/pages/admin/classrooms/classrooms.js';
 import '../../ui/pages/admin/lessons/lessons.js';
+import '../../ui/pages/admin/clicks/clicks.js';
 import '../../ui/pages/login/login.js';
 import '../../ui/pages/signup/signup.js';
 import '../../ui/pages/dashboard/dashboard.js';
@@ -23,6 +24,7 @@ import '../../ui/pages/classroom/editClassroom/editClassroom.js';
 import '../../ui/pages/classroom/showClassroom/showClassroom.js';
 import '../../ui/pages/lesson/newLesson/newLesson.js';
 import '../../ui/pages/lesson/showLesson/showLesson.js';
+import '../../ui/pages/lesson/currentLesson/currentLesson.js';
 
 // Set up all routes in the app
 FlowRouter.route('/', {
@@ -116,6 +118,13 @@ FlowRouter.route('/classroom/edit/:number',{
 });
 
 // Lessons
+FlowRouter.route('/lesson/current',{
+	name: 'CurrentLesson',
+	action(){
+		BlazeLayout.render('currentLesson');
+	},
+});
+
 FlowRouter.route('/lesson/show/:number',{
 	name: 'ShowLesson',
 	action(){
@@ -163,6 +172,13 @@ FlowRouter.route('/tests/lessons', {
 	name: 'TestsLessons',
 	action() {
 		BlazeLayout.render('test_lessons');
+	},
+});
+
+FlowRouter.route('/tests/clicks', {
+	name: 'TestsClicks',
+	action() {
+		BlazeLayout.render('test_clicks');
 	},
 });
 

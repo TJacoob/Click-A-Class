@@ -1,16 +1,11 @@
-//import Flic from 'node-flic-buttons';
-//var flic = require('node-flic-buttons');
-
-//var flic = new Flic("193.136.167.88","5551");
-
 /*
  * This example program connects to already paired buttons and register event listeners on button events.
  * Run the newscanwizard.js program to add buttons.
  */
 import { Raspberries } from '/imports/api/raspberries/raspberries.js';
+import { Click } from '/imports/api/click/click.js';
 
-
-var fliclib = require("./fliclibNodeJs.js");
+var fliclib = require("/imports/startup/server/fliclibNodeJs.js");
 var FlicClient = fliclib.FlicClient;
 var FlicConnectionChannel = fliclib.FlicConnectionChannel;
 var FlicScanner = fliclib.FlicScanner;
@@ -24,7 +19,6 @@ else
 	client = new FlicClient("0.0.0.0", 5551);
 
 
-
 function listenToButton(bdAddr) {
 	var cc = new FlicConnectionChannel(bdAddr);
 	client.addConnectionChannel(cc);
@@ -35,6 +29,14 @@ function listenToButton(bdAddr) {
 	*/
 	cc.on("buttonSingleOrDoubleClickOrHold", function(clickType, wasQueued, timeDiff) {
 		console.log(bdAddr + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago");
+		let c = {
+			"raspberry": rasp.serial,
+			"mac":bdAddr,
+			"type":clickType,
+			"time": Date.now(),
+		};
+		console.log(c);
+		Click.rawCollection().insert(c);
 	});
 	cc.on("connectionStatusChanged", function(connectionStatus, disconnectReason) {
 		console.log(bdAddr + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""));
