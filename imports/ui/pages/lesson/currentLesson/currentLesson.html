@@ -4,8 +4,29 @@
 		{{#with currentLesson}}
 			<p>(# {{number}}) - {{state}}</p>
 			<p>{{classroom}}, {{teacher}}, {{class}}</p>
+			{{> flicAssociation class=classObject lesson=this.number}}
 		{{/with}}
 	{{else}}
 		<p>Loading</p>
+	{{/if}}
+</template>
+
+
+<template name="flicAssociation">
+	<p>Class: {{class.number}}</p>
+	{{#if hasStudents}}
+		<div class="row justify-content-start align-items-center">
+			<div class="col-3 text-left">
+				<p>{{student}}</p>
+			</div>
+			<div class="col-3 text-left">
+				{{#each click}}
+					<span>click</span>
+					<i id="next" class="fas fa-check"></i>
+				{{/each}}
+			</div>
+		</div>
+	{{else}}
+		<i id="finish" class="fas fa-check-double"></i>
 	{{/if}}
 </template>

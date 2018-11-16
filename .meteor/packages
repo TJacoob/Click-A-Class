@@ -25,10 +25,12 @@ meteortesting:mocha               # A package for writing and running your meteo
 johanbrook:publication-collector  # Test a Meteor publication by collecting its output
 
 aldeed:collection2@3.0.0
+aldeed:template-extension
 http@1.4.1
 check@1.3.1
 fourseven:scss
 matb33:collection-hooks
+reactive-dict
 
 mizzao:jquery-ui
 session@1.1.8

@@ -1,6 +1,6 @@
 /* VARIABLES! */
-$primary-red: #cc2e30;
-$dark-red: #a52729;
+$primary: #cc2e30;
+$secondary: #a52729;
 $black: #1c1c1c;
 
 /* Fonts */
@@ -78,16 +78,16 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 /* Background Colors */
 .black { background-color: #1c1c1c };
 .white { background-color: #ffffff };
-.red { background-color: $primary-red };
-.dark-red { background-color: $dark-red };
+.red { background-color: $primary };
+.dark-red { background-color: $secondary };
 .dark-grey { background-color: #515151 };
 .light-grey { background-color: #c9c9c9 };
 
 /* Font Colors */
 .f-black { color: #1c1c1c };
 .f-white { color: #ffffff };
-.f-red { color: $primary-red };
-.f-dark-red { color: $dark-red };
+.f-red { color: $primary };
+.f-dark-red { color: $secondary };
 .f-dark-grey { color: #515151 };
 .f-light-grey { color: #c9c9c9 };
 

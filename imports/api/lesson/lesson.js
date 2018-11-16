@@ -20,12 +20,12 @@ LessonSchema = new SimpleSchema({
 	state: {			// State of class, "on", "off", "quiz", "questions", "break", ...
 		type: String,
 		label: "State",
-		allowedValues: ['on', 'idle', 'quiz', 'finished'],
+		allowedValues: ['on', 'idle', 'quiz', 'finished', 'association'],
 		optional: true,
 	},
 	// Display Only The Classrooms the User has access
 	classroom: {
-		type: String,
+		type: Number,
 		label: "Classroom",
 		autoform:
 		{
@@ -34,7 +34,7 @@ LessonSchema = new SimpleSchema({
 				let cr = Classroom.find({"teachers":t._id});
 				return cr.map((doc) => ({
 					label: doc.number,
-					value: doc._id
+					value: doc.number
 				}))
 			},
 		},
@@ -47,7 +47,7 @@ LessonSchema = new SimpleSchema({
 	},
 	// Display Only the User's classes
 	class: {
-		type: String,
+		type: Number,
 		label: "Class",
 		autoform:
 		{
@@ -56,11 +56,18 @@ LessonSchema = new SimpleSchema({
 				let c = Class.find({"number":{"$in":t.classes}});
 				return c.map((doc) => ({
 					label: doc.number,
-					value: doc._id
+					value: doc.number
 				}));
 			},
 		},
 	},
+	association: {
+        type: Array,
+        optional: true,
+    },
+    'association.$': Object,
+    'association.$.mac': String,
+    'association.$.student': String,
 	/* 	Future:
 		- Quizzes / Activities
 	*/

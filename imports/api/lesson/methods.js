@@ -20,17 +20,42 @@ Meteor.methods({
 			throw new Meteor.Error('still-in-lesson',"This teacher didn't finish his previous lesson, can't start a new one.")
 		else
 		{
+			let teacher = Teacher.findOne({"user":this.userId});
 			let ls = {
 				"number": Lesson.find({}).count(),
 				"state": "on",
-				"classroom": doc.classroom,
-				"teacher": this.userId,
-				"class": doc.class,
+				"classroom": parseInt(doc.classroom),
+				"teacher": teacher._id,
+				"class": parseInt(doc.class),
+				"association": null,
 			};
 			Lesson.insert(ls);
 			console.log("Started class "+ls.number+" in classroom "+ls.classroom+" with theacher "+ls.teacher+" and class "+ls.class);
 		}
 			
 	},
+
+	updateAssociation: function(number, array){
+		// Can't be updated by someone that not the owner
+		let teacher = Teacher.findOne({"user":this.userId});
+		let lesson = Lesson.findOne({"$and":[{"number":number},{"teacher":teacher._id},{"state":"association"}]});
+		if ( lesson == undefined )
+			throw new Meteor.Error('not-in-lesson',"You don't have a class to associate flics right now");
+		else
+		{
+			Lesson.update({"_id":lesson._id},{"association":array});
+			Lesson.update({"_id":lesson._id},{"state":"idle"});
+		}
+	},
+
+	startAssociation: function(number){
+		// Can't be updated by someone that not the owner
+		let teacher = Teacher.findOne({"user":this.userId});
+		let lesson = Lesson.findOne({"$and":[{"number":number},{"teacher":teacher._id},{"state":"on"}]});
+		if ( lesson == undefined )
+			throw new Meteor.Error('not-in-lesson',"You don't have a class to associate flics right now");
+		else
+			Lesson.update({"_id":lesson._id},{"state":"association"});
+	}
 
 });
