@@ -1,4 +1,9 @@
 <template name="index">
+	{{> navbar}}
+	{{> UI.dynamic template=content}}
+</template>
+
+<template name="home">
 	<div class="row justify-content-center align-items-center m-0 p-0 vh-100">
 		<div class="col-12 text-center">
 			<span class="fs-6 f-red">Click-A-Class </span>

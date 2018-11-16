@@ -25,12 +25,14 @@ import '../../ui/pages/classroom/showClassroom/showClassroom.js';
 import '../../ui/pages/lesson/newLesson/newLesson.js';
 import '../../ui/pages/lesson/showLesson/showLesson.js';
 import '../../ui/pages/lesson/currentLesson/currentLesson.js';
+import '../../ui/pages/navbar/navbar.js';
 
 // Set up all routes in the app
 FlowRouter.route('/', {
 	name: 'Index',
 	action() {
-		BlazeLayout.render('index');
+		//BlazeLayout.render('index');
+		BlazeLayout.render('index', {content:"home"});
 	},
 });
 
@@ -38,14 +40,14 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
 	name: 'Login',
 	action() {
-		BlazeLayout.render('login');
+		BlazeLayout.render('index', {content:"login"});
 	},
 });
 
 FlowRouter.route('/signup', {
 	name: 'Signup',
 	action() {
-		BlazeLayout.render('signup');
+		BlazeLayout.render('index', {content:"signup"});
 	},
 });
 
@@ -61,7 +63,7 @@ FlowRouter.route('/logout',{
 FlowRouter.route('/dashboard',{
 	name: 'Dashboard',
 	action(){
-		BlazeLayout.render('dashboard');
+		BlazeLayout.render('index', {content:"dashboard"});
 	},
 });
 
@@ -69,21 +71,21 @@ FlowRouter.route('/dashboard',{
 FlowRouter.route('/class/show/:number',{
 	name: 'ShowClass',
 	action(){
-		BlazeLayout.render('showClass');
+		BlazeLayout.render('index', {content:"showClass"});
 	},
 });
 
 FlowRouter.route('/class/edit/:number',{
 	name: 'EditClass',
 	action(){
-		BlazeLayout.render('editClass');
+		BlazeLayout.render('index', {content:"editClass"});
 	},
 });
 
 FlowRouter.route('/class/add/',{
 	name: 'AddClass',
 	action(){
-		BlazeLayout.render('addClass');
+		BlazeLayout.render('index', {content:"addClass"});
 	},
 });
 
@@ -91,14 +93,14 @@ FlowRouter.route('/class/add/',{
 FlowRouter.route('/teacher/',{
 	name: 'ShowTeacher',
 	action(){
-		BlazeLayout.render('showTeacher');
+		BlazeLayout.render('index', {content:"showTeacher"});
 	},
 });
 
 FlowRouter.route('/teacher/edit',{
 	name: 'EditTeacher',
 	action(){
-		BlazeLayout.render('editTeacher');
+		BlazeLayout.render('index', {content:"editTeacher"});
 	},
 });
 
@@ -106,14 +108,14 @@ FlowRouter.route('/teacher/edit',{
 FlowRouter.route('/classroom/show/:number',{
 	name: 'ShowClass',
 	action(){
-		BlazeLayout.render('showClassroom');
+		BlazeLayout.render('index', {content:"showClassroom"});
 	},
 });
 
 FlowRouter.route('/classroom/edit/:number',{
 	name: 'EditClass',
 	action(){
-		BlazeLayout.render('editClassroom');
+		BlazeLayout.render('index', {content:"editClassroom"});
 	},
 });
 
@@ -121,21 +123,21 @@ FlowRouter.route('/classroom/edit/:number',{
 FlowRouter.route('/lesson/current',{
 	name: 'CurrentLesson',
 	action(){
-		BlazeLayout.render('currentLesson');
+		BlazeLayout.render('index', {content:"currentLesson"});
 	},
 });
 
 FlowRouter.route('/lesson/show/:number',{
 	name: 'ShowLesson',
 	action(){
-		BlazeLayout.render('showLesson');
+		BlazeLayout.render('index', {content:"showLesson"});
 	},
 });
 
 FlowRouter.route('/lesson/new',{
 	name: 'NewLesson',
 	action(){
-		BlazeLayout.render('newLesson');
+		BlazeLayout.render('index', {content:"newLesson"});
 	},
 });
 
