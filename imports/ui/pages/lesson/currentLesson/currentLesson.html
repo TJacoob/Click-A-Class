@@ -14,6 +14,7 @@
 
 <template name="flicAssociation">
 	<p>Class: {{class.number}}</p>
+	<!--
 	{{#if hasStudents}}
 		<div class="row justify-content-start align-items-center">
 			<div class="col-3 text-left">
@@ -29,4 +30,20 @@
 	{{else}}
 		<i id="finish" class="fas fa-check-double"></i>
 	{{/if}}
+	-->
+	<div class="row justify-content-start align-items-center">
+		<div class="col-4 text-left">
+			<p>{{student}}</p>
+			{{#if waitingClick}}
+				<i class="fas fa-circle-notch fa-2x fa-spin"></i>
+			{{/if}}
+		</div>
+		<div class="col-4 text-left">
+			{{#each association}}
+				<p>Student</p>
+				<p>{{this.student}}</p>
+			{{/each}}
+		</div>
+	</div>
+	
 </template>

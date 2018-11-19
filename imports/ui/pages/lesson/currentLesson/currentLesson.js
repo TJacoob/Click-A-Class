@@ -44,6 +44,8 @@ Template.currentLesson.events({
 Template.flicAssociation.onCreated(function(){
 	this.lessonAssociation = new ReactiveDict();
 	this.lessonAssociation.set('counter', 0 );
+    this.waitingClick = new ReactiveVar(true);
+    
 });
 
 Template.flicAssociation.helpers({
@@ -65,6 +67,39 @@ Template.flicAssociation.helpers({
 	click(){
 		return Click.find({},{limit:1});
 	},
+	waitingClick(){
+		let c = Template.instance().waitingClick.get();
+		let click = Click.findOne({});
+		if ( c )
+		{
+			if ( click != undefined )
+				Template.instance().waitingClick.set(false);
+			else 
+				return true;
+		}
+		else
+		{
+			//console.log(click.mac);
+			Template.instance().lessonAssociation.set(click.mac,Session.get('student'));
+			//console.log(Template.instance().lessonAssociation);
+			let count = Template.instance().lessonAssociation.get('counter');
+			Template.instance().lessonAssociation.set('counter',count+1);
+			Meteor.call('associateMac', Session.get('student'), click.mac, function (err, asyncValue) {
+			    if (err)
+			        console.log(err);
+			    else 
+			    	console.log("Associated");
+			        //self.myAsyncValue.set(asyncValue);
+			});
+			Click.remove({"_id":click._id});
+			Template.instance().waitingClick.set(true);
+		}
+	},
+	association(){
+		let t = Teacher.findOne({"user":Meteor.userId()});
+		if ( t != undefined )
+			return Lesson.findOne({"$and":[{"teacher":t._id},{"state":{"$ne":"off"}}]}).association;
+	},
 });
 
 Template.flicAssociation.events({
@@ -83,9 +118,7 @@ Template.flicAssociation.events({
 		Meteor.call("updateAssociation", association, function (err, data) {
             if(err){
                 //alert("Error: " + err);
-                //future.return( error );
             }else{
-                //future.return( response );
                 console.log("Success, associated!");
                 //console.log("THIS:" + data["serial"]);
             }

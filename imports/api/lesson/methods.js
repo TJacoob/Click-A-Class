@@ -27,7 +27,7 @@ Meteor.methods({
 				"classroom": parseInt(doc.classroom),
 				"teacher": teacher._id,
 				"class": parseInt(doc.class),
-				"association": null,
+				"association": [],
 			};
 			Lesson.insert(ls);
 			console.log("Started class "+ls.number+" in classroom "+ls.classroom+" with theacher "+ls.teacher+" and class "+ls.class);
@@ -56,6 +56,27 @@ Meteor.methods({
 			throw new Meteor.Error('not-in-lesson',"You don't have a class to associate flics right now");
 		else
 			Lesson.update({"_id":lesson._id},{"state":"association"});
-	}
+	},
+
+	associateMac: function(student, mac){
+		// Can't be updated by someone that not the owner
+		let teacher = Teacher.findOne({"user":this.userId});
+		let lesson = Lesson.findOne({"$and":[{"teacher":teacher._id},{"state":{"$ne":"off"}}]});
+		if ( lesson == undefined )
+			throw new Meteor.Error('not-in-lesson',"You don't have a class to associate flics right now");
+		else
+		{
+			let association = lesson.association;
+			association.forEach(function(pair){
+				if(pair["mac"] == mac )
+					throw new Meteor.Error('already-associated',"Flic already associated");
+			})
+			association.push({
+				"mac": mac,
+				"student": student
+			});
+			Lesson.update({"_id":lesson._id},{"$set":{"association":association}});
+		}	
+	},
 
 });
