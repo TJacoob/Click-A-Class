@@ -34,6 +34,12 @@ Template.currentLesson.helpers({
 				return Class.findOne({"number":l.class});
 		}
 	},
+	teacherName(){
+		return Teacher.findOne({"_id":this.teacher}).name;
+	},
+	className(){
+		return Class.findOne({"number":this.class}).name;
+	},
 });
 
 Template.currentLesson.events({
@@ -45,7 +51,7 @@ Template.flicAssociation.onCreated(function(){
 	this.lessonAssociation = new ReactiveDict();
 	this.lessonAssociation.set('counter', 0 );
     this.waitingClick = new ReactiveVar(true);
-    
+    this.redoStudent = new ReactiveVar(false);
 });
 
 Template.flicAssociation.helpers({
@@ -68,7 +74,9 @@ Template.flicAssociation.helpers({
 		return Click.find({},{limit:1});
 	},
 	waitingClick(){
+		let lesson = Lesson.findOne({"number": this.lesson})
 		let c = Template.instance().waitingClick.get();
+		let action = true;
 		let click = Click.findOne({});
 		if ( c )
 		{
@@ -78,21 +86,31 @@ Template.flicAssociation.helpers({
 				return true;
 		}
 		else
-		{
-			//console.log(click.mac);
-			Template.instance().lessonAssociation.set(click.mac,Session.get('student'));
-			//console.log(Template.instance().lessonAssociation);
-			let count = Template.instance().lessonAssociation.get('counter');
-			Template.instance().lessonAssociation.set('counter',count+1);
-			Meteor.call('associateMac', Session.get('student'), click.mac, function (err, asyncValue) {
-			    if (err)
-			        console.log(err);
-			    else 
-			    	console.log("Associated");
-			        //self.myAsyncValue.set(asyncValue);
-			});
-			Click.remove({"_id":click._id});
-			Template.instance().waitingClick.set(true);
+		{	
+			let association = lesson.association;
+			association.forEach(function(pair){
+				if(pair["mac"] == click.mac )
+				{
+					console.log("Same Mac");
+					action = false;
+				}
+			})
+			if ( action )
+			{
+				Meteor.call('associateMac', Session.get('student'), click.mac, function (err, asyncValue) {
+				    if (err)
+				        console.log(err);
+				    else 
+				    	console.log("Associated");
+				        //self.myAsyncValue.set(asyncValue);
+				});
+				Click.remove({"_id":click._id});
+				Template.instance().waitingClick.set(true);
+				Template.instance().redoStudent.set(false);
+				let count = Template.instance().lessonAssociation.get('counter');
+				Template.instance().lessonAssociation.set('counter',count+1);
+				Template.instance().lessonAssociation.set(click.mac,Session.get('student'));
+			}
 		}
 	},
 	association(){
@@ -100,29 +118,36 @@ Template.flicAssociation.helpers({
 		if ( t != undefined )
 			return Lesson.findOne({"$and":[{"teacher":t._id},{"state":{"$ne":"off"}}]}).association;
 	},
+	redoStudent(){
+		return Template.instance().redoStudent.get() != false;
+	},
+	redo(){
+		return Session.get('redoStudent');
+	},
 });
 
 Template.flicAssociation.events({
-	'click #next': function( event, template ) {
-		//console.log(this.mac);
-		//console.log(Session.get('student'));
-		Template.instance().lessonAssociation.set('asdas',Session.get('student'));
-		//console.log(Template.instance().lessonAssociation);
-		Click.remove({"_id":this._id});
+	'click #mark-absent': function(event,template){
+		/*
+		let studentList = this.class.students;
+		let student = Session.get('student');
+		studentList = studentList.filter(e => e !== student );	// Remove string from array
+		console.log(this);
+		//this.class.students = studentList;
+		*/
 		let count = Template.instance().lessonAssociation.get('counter');
 		Template.instance().lessonAssociation.set('counter',count+1);
 	},
-
-	'click #finish': function(){
-		let association = Template.instance().lessonAssociation.keys;
-		Meteor.call("updateAssociation", association, function (err, data) {
-            if(err){
-                //alert("Error: " + err);
-            }else{
-                console.log("Success, associated!");
-                //console.log("THIS:" + data["serial"]);
-            }
-        });
+	'click #redo-student': function(event,template){
+		Session.set("redoStudent", this.student);
+		Template.instance().redoStudent.set(true);
+		Meteor.call('removeMac', this.mac, function (err, asyncValue) {
+		    if (err)
+		        console.log(err);
+		    else 
+		    	console.log("Removed");
+		        //self.myAsyncValue.set(asyncValue);
+		});
 	},
 });
 

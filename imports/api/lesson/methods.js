@@ -79,4 +79,27 @@ Meteor.methods({
 		}	
 	},
 
+	removeMac: function(mac){
+		// Can't be updated by someone that not the owner
+		let teacher = Teacher.findOne({"user":this.userId});
+		let lesson = Lesson.findOne({"$and":[{"teacher":teacher._id},{"state":{"$ne":"off"}}]});
+		if ( lesson == undefined )
+			throw new Meteor.Error('not-in-lesson',"You don't have a class to associate flics right now");
+		else
+		{
+			let association = lesson.association;
+			let newAssociation = [];
+			association.forEach(function(pair){
+				if(pair["mac"] != mac )
+				{
+					newAssociation.push({
+						"mac": pair.mac,
+						"student": pair.student
+					});
+				}
+			})
+			Lesson.update({"_id":lesson._id},{"$set":{"association":newAssociation}});
+		}	
+	},
+
 });
