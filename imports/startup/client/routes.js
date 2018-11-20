@@ -16,6 +16,7 @@ import '../../ui/pages/signup/signup.js';
 import '../../ui/pages/dashboard/dashboard.js';
 import '../../ui/pages/not_found/not_found.js';
 import '../../ui/pages/class/addClass/addClass.js';
+import '../../ui/pages/class/allClass/allClass.js';
 import '../../ui/pages/class/editClass/editClass.js';
 import '../../ui/pages/class/showClass/showClass.js';
 import '../../ui/pages/teacher/editTeacher/editTeacher.js';
@@ -28,6 +29,7 @@ import '../../ui/pages/lesson/currentLesson/currentLesson.js';
 import '../../ui/pages/navbar/navbar.js';
 import '../../ui/pages/question/addQuestion/addQuestion.js';
 import '../../ui/pages/question/editQuestion/editQuestion.js';
+
 
 // Set up all routes in the app
 FlowRouter.route('/', {
@@ -70,6 +72,13 @@ FlowRouter.route('/dashboard',{
 });
 
 // Class
+FlowRouter.route('/class/show/',{
+	name: 'ShowClass',
+	action(){
+		BlazeLayout.render('index', {content:"allClass"});
+	},
+});
+
 FlowRouter.route('/class/show/:number',{
 	name: 'ShowClass',
 	action(){

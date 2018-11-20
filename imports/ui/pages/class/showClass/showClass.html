@@ -1,10 +1,15 @@
 <template name="showClass">
 	<p>Show Class</p>
-	{{#with currentClass}}
-		<p>(#{{number}}) {{name}}</p>
-		<p>{{notes}}</p>
-		{{#each students}}
-			<span>{{this}}, </span>
-		{{/each}}
-	{{/with}}
+	
+	{{#if noClass}}
+		<p>Buton</p>
+	{{else}}
+		{{#with currentClass}}
+			<p>(#{{number}}) {{name}}</p>
+			<p>{{notes}}</p>
+			{{#each students}}
+				<span>{{this}}, </span>
+			{{/each}}
+		{{/with}}
+	{{/if}}
 </template>
