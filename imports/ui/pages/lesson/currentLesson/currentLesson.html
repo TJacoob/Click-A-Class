@@ -14,7 +14,18 @@
 							<p class="fs-3 fw-4">{{classroom}}</p>
 						</div>
 					</div>
-					{{> flicAssociation class=classObject lesson=this.number}}
+					{{#if isOn}}
+						<button id="start-association" type="button">Pair Flics With Students</button>
+					{{/if}}
+					{{#if isAssociation}}
+						{{> flicAssociation class=classObject lesson=this.number}}
+					{{/if}}
+					{{#if isIdle}}
+						{{> idle lesson=this.number}}
+					{{/if}}
+					{{#if isQuiz}}
+						{{> quiz lesson=this.number}}
+					{{/if}}
 					<!--
 					<p>(# {{number}}) - {{state}}</p>
 					<p>{{classroom}}, {{teacher}}, {{class}}</p>
@@ -29,26 +40,3 @@
 	</div>
 </template>
 
-
-<template name="flicAssociation">
-	<div class="row justify-content-center align-items-center vh-80">
-		<div class="col-3">
-			{{#with emptyAssociation}}
-				<p class="fs-6 fw-6 mb-0">{{this}}</p>
-				{{#if waitingClick}}
-					<p class="fs-3 fw-4">Waiting for click</p>
-					<button id="mark-absent" type="button">Mark Absent</button>
-				{{/if}}
-			{{/with}}
-		</div>
-		<div class="col-3"></div>
-		<div class="col-3">
-			<p class="fs-4 fw-4 mb-1">Students Present:</p>
-			{{#each associated}}
-				<span class="fs-3 fw-4 mb-1">{{this}}</span>
-				<i id="redo-student" class="fas fa-times cp ml-2"></i>
-				<br>
-			{{/each}}
-		</div>
-	</div>
-</template>

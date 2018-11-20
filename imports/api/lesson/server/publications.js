@@ -9,5 +9,5 @@ Meteor.publish('lesson.all', function () {
 
 Meteor.publish('lesson.own.current', function () {
 	let t = Teacher.findOne({"user":this.userId});
-	return Lesson.find({"$and":[{"teacher":t._id},{"state":"on"}]});
+	return Lesson.find({"$and":[{"teacher":t._id},{"state":{"$ne":"finished"}}]});
 });
