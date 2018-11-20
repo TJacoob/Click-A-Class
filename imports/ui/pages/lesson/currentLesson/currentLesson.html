@@ -1,32 +1,42 @@
 <template name="currentLesson">
-	<p>Current Lesson</p>
-	{{#if Template.subscriptionsReady}}
-		{{#with currentLesson}}
-			<p>(# {{number}}) - {{state}}</p>
-			<p>{{classroom}}, {{teacher}}, {{class}}</p>
-			{{> flicAssociation class=classObject lesson=this.number}}
-		{{/with}}
-	{{else}}
-		<p>Loading</p>
-	{{/if}}
-</template>
-
-
-<template name="flicAssociation">
-	<p>Class: {{class.number}}</p>
-	{{#if hasStudents}}
-		<div class="row justify-content-start align-items-center">
-			<div class="col-3 text-left">
-				<p>{{student}}</p>
-			</div>
-			<div class="col-3 text-left">
-				{{#each click}}
-					<span>click</span>
-					<i id="next" class="fas fa-check"></i>
-				{{/each}}
-			</div>
+	<div class="row justify-content-center align-items-start vh-90">
+		<div class="col-12 text-center">
+			{{#if Template.subscriptionsReady}}
+				{{#with currentLesson}}
+					<div class="row justify-content-center align-items-center vh-10">
+						<div class="col-3 text-center">
+							<p class="fs-3 fw-4">{{teacherName}}</p>
+						</div>
+						<div class="col-3 text-center">
+							<p class="fs-3 fw-4">{{className}}</p>
+						</div>
+						<div class="col-3 text-center">
+							<p class="fs-3 fw-4">{{classroom}}</p>
+						</div>
+					</div>
+					{{#if isOn}}
+						<button id="start-association" type="button">Pair Flics With Students</button>
+					{{/if}}
+					{{#if isAssociation}}
+						{{> flicAssociation class=classObject lesson=this.number}}
+					{{/if}}
+					{{#if isIdle}}
+						{{> idle lesson=this.number}}
+					{{/if}}
+					{{#if isQuiz}}
+						{{> quiz lesson=this.number}}
+					{{/if}}
+					<!--
+					<p>(# {{number}}) - {{state}}</p>
+					<p>{{classroom}}, {{teacher}}, {{class}}</p>
+					-->
+					
+					
+				{{/with}}
+			{{else}}
+				<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+			{{/if}}
 		</div>
-	{{else}}
-		<i id="finish" class="fas fa-check-double"></i>
-	{{/if}}
+	</div>
 </template>
+

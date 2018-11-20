@@ -24,6 +24,7 @@ Template.newLesson.events({
 
 AutoForm.addHooks(['newLesson'],{
 	onSuccess: function(formType, result) {
+		FlowRouter.go("CurrentLesson");
 		alert("Lesson added successfuly");
 	}
 });

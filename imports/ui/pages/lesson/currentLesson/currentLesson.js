@@ -1,4 +1,7 @@
 import './currentLesson.html';
+import './association/association.js';
+import './idle/idle.js';
+import './quiz/quiz.js';
 
 import { Teacher } from '/imports/api/teacher/teacher.js';
 import { Lesson } from '/imports/api/lesson/lesson.js';
@@ -34,64 +37,29 @@ Template.currentLesson.helpers({
 				return Class.findOne({"number":l.class});
 		}
 	},
+	teacherName(){
+		return Teacher.findOne({"_id":this.teacher}).name;
+	},
+	className(){
+		return Class.findOne({"number":this.class}).name;
+	},
+	isOn(){
+		return this.state == "on";
+	},
+	isAssociation(){
+		return this.state == "association";
+	},
+	isIdle(){
+		return this.state == "idle";	
+	},
+	isQuiz(){
+		return this.state == "quiz";	
+	},
 });
 
 Template.currentLesson.events({
-	
-});
-
-// Flic Association
-Template.flicAssociation.onCreated(function(){
-	this.lessonAssociation = new ReactiveDict();
-	this.lessonAssociation.set('counter', 0 );
-});
-
-Template.flicAssociation.helpers({
-	student(){
-		let studentList = this.class.students;
-		let count = Template.instance().lessonAssociation.get('counter');
-		if ( count < studentList.length)
-		{
-			Session.set("student",studentList[count]);
-			return studentList[count];
-		}
-	},
-	hasStudents()
-	{
-		let studentList = this.class.students;
-		let count = Template.instance().lessonAssociation.get('counter');
-		return ( count < studentList.length )
-	},
-	click(){
-		return Click.find({},{limit:1});
+	'click #start-association ': function(){
+		Lesson.update({"_id":this._id},{"$set":{"state":"association"}});
 	},
 });
 
-Template.flicAssociation.events({
-	'click #next': function( event, template ) {
-		//console.log(this.mac);
-		//console.log(Session.get('student'));
-		Template.instance().lessonAssociation.set('asdas',Session.get('student'));
-		//console.log(Template.instance().lessonAssociation);
-		Click.remove({"_id":this._id});
-		let count = Template.instance().lessonAssociation.get('counter');
-		Template.instance().lessonAssociation.set('counter',count+1);
-	},
-
-	'click #finish': function(){
-		let association = Template.instance().lessonAssociation.keys;
-		Meteor.call("updateAssociation", association, function (err, data) {
-            if(err){
-                //alert("Error: " + err);
-                //future.return( error );
-            }else{
-                //future.return( response );
-                console.log("Success, associated!");
-                //console.log("THIS:" + data["serial"]);
-            }
-        });
-	},
-});
-
-//var x = Template.instance().templateDictionary.get('showExtraFields');
-//console.log(x);

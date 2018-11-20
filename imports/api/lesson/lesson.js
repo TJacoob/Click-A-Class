@@ -11,6 +11,12 @@ export const Lesson = new Mongo.Collection( 'lesson' );
 // The goal of this object is to isolate a lesson ("class") form the remaining objects
 // It requires the room it's taking place, the teacher and the students in it
 
+Lesson.allow({
+  insert() { return false; },
+  update() { return true; },
+  remove() { return false; },
+});
+
 LessonSchema = new SimpleSchema({
 	number: {
 		type: Number,
@@ -66,7 +72,7 @@ LessonSchema = new SimpleSchema({
         optional: true,
     },
     'association.$': Object,
-    'association.$.mac': String,
+    'association.$.mac': { type:String, optional:true},
     'association.$.student': String,
 	/* 	Future:
 		- Quizzes / Activities
