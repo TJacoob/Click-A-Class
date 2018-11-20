@@ -108,7 +108,7 @@ FlowRouter.route('/teacher/edit',{
 
 // Classroom
 FlowRouter.route('/classroom/show/:number',{
-	name: 'ShowClass',
+	name: 'ShowClassroom',
 	action(){
 		BlazeLayout.render('index', {content:"showClassroom"});
 	},

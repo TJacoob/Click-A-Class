@@ -18,3 +18,31 @@ Template.navbar.onRendered(function() {
 		}
 	}
 });
+
+Template.navbar.events({
+	'click #home': function( event, template ) {
+		FlowRouter.go("Dashboard")
+	},
+	
+});
+
+Template.navbar.events({
+	'click #turmas': function( event, template ) {
+		FlowRouter.go("ShowClass")
+	},
+	
+});
+
+Template.navbar.events({
+	'click #salas': function( event, template ) {
+		FlowRouter.go("ShowClassroom")
+	},
+	
+});
+
+Template.navbar.events({
+	'click #perfil': function( event, template ) {
+		FlowRouter.go("ShowTeacher")
+	},
+	
+});
