@@ -2,7 +2,7 @@
 
 /* NAVBAR */
 .landing{
-  background: url("../../../public/img/background.jpg") no-repeat center;
+  background: url(/img/background.jpg) no-repeat center;
   padding: 5%;
   text-align: center;
   color: $black;
@@ -13,6 +13,14 @@
   background: $header;
   width: 100%;
   height: 55px;
+  z-index:0;
+}
+
+.sticky {
+  position: fixed;
+  background-color: $header;
+  width: device-width;
+  top:0;
 }
 
 /* INDEX */
@@ -21,29 +29,12 @@
   color: $black;
 }
 
-.sticky {
-  position: fixed;
-  background: $header;
-  top: 0;
-  width: 100%;
-}
-
 .block {
-  width:20%;
+  width:25%;
   float: left;
   font-size: 20px;
-}
-
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-    color: $black;
-}
-
-a:hover {
-    color: $grey;
+  color: $black;
+  text-decoration:none;
 }
 
 .flex {
@@ -51,19 +42,8 @@ a:hover {
   display:flex;
   align-items:center;
   justify-content:center;
-}
-
-a.bttn {
-  color:$primary;
-  text-decoration:none;
-  -webkit-transition:0.3s all ease;
-  transition:0.3s ease all;
-  &:hover {
-    color:#FFF;
-  }
-  &:focus {
-    color:#FFF;
-  }
+  color:$black;
+  z-index: -2;
 }
 
 .bttn {
@@ -75,12 +55,11 @@ a.bttn {
   width:270px;
   font-weight:bold;
   padding:14px 0px;
-  border:3px solid $primary;
+  border:3px solid $header;
   border-radius:2px;
   position:relative;
   box-shadow: 0 2px 10px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.1);
   &:before {
-    -webkit-transition:0.5s all ease;
     transition:0.5s all ease;
     position:absolute;
     top:0;
@@ -89,12 +68,12 @@ a.bttn {
     bottom:0;
     opacity:0;
     content:'';
-    background-color:$primary;
+    background-color:$header;
     z-index:-2;
   }
   &:hover {
     &:before {
-      -webkit-transition:0.5s all ease;
+      
       transition:0.5s all ease;
       left:0;
       right:0;
