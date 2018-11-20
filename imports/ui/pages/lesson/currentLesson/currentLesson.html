@@ -32,56 +32,23 @@
 
 <template name="flicAssociation">
 	<div class="row justify-content-center align-items-center vh-80">
-		<div class="col-3 text-center">
-			{{#if redoStudent}}
-				<p class="fs-6 fw-6 flh-1 mb-1">{{redo}}</p>
+		<div class="col-3">
+			{{#with emptyAssociation}}
+				<p class="fs-6 fw-6 mb-0">{{this}}</p>
 				{{#if waitingClick}}
-					<p class="fs-2 fw-4">
-						Press your Flic (again)!
-						<i class="fas fa-circle-notch fa-1x fa-spin"></i>
-					</p>
-				{{/if}}
-			{{else}}
-				{{#if hasStudents}}
-					<p class="fs-6 fw-6 flh-1 mb-1">{{student}}</p>
-					{{#if waitingClick}}
-						<p class="fs-2 fw-4">
-							Press your Flic!
-							<i class="fas fa-circle-notch fa-1x fa-spin"></i>
-						</p>
-					{{/if}}
+					<p class="fs-3 fw-4">Waiting for click</p>
 					<button id="mark-absent" type="button">Mark Absent</button>
-				{{else}}
-					<button id="start-class" type="button">Start Class</button>
-				{{/if}}		
-			{{/if}}
+				{{/if}}
+			{{/with}}
 		</div>
-		<div class="col-3 text-center">
-		</div>
-		<div class="col-3 text-center">
-			<p class="fs-2 fw-4 mb-2">Students Present:</p>
-			{{#each association}}
-				<p class="fs-1 fw-4 mb-1">
-					{{this.student}}
-					<i id="redo-student" class="fas fa-redo cp ml-2"></i>
-				</p>
+		<div class="col-3"></div>
+		<div class="col-3">
+			<p class="fs-4 fw-4 mb-1">Students Present:</p>
+			{{#each associated}}
+				<span class="fs-3 fw-4 mb-1">{{this}}</span>
+				<i id="redo-student" class="fas fa-times cp ml-2"></i>
+				<br>
 			{{/each}}
 		</div>
 	</div>
-	<!--
-	<div class="row justify-content-start align-items-center">
-		<div class="col-4 text-left">
-			<p>{{student}}</p>
-			{{#if waitingClick}}
-				<i class="fas fa-circle-notch fa-2x fa-spin"></i>
-			{{/if}}
-		</div>
-		<div class="col-4 text-left">
-			{{#each association}}
-				<p>Student</p>
-				<p>{{this.student}}</p>
-			{{/each}}
-		</div>
-	</div>
-	-->
 </template>

@@ -48,32 +48,100 @@ Template.currentLesson.events({
 
 // Flic Association
 Template.flicAssociation.onCreated(function(){
-	this.lessonAssociation = new ReactiveDict();
-	this.lessonAssociation.set('counter', 0 );
-    this.waitingClick = new ReactiveVar(true);
-    this.redoStudent = new ReactiveVar(false);
+	this.waitingClick = new ReactiveVar(true);
+	this.lessonNumber = new ReactiveVar(this.data.lesson);
 });
 
 Template.flicAssociation.helpers({
-	student(){
-		let studentList = this.class.students;
-		let count = Template.instance().lessonAssociation.get('counter');
-		if ( count < studentList.length)
-		{
-			Session.set("student",studentList[count]);
-			return studentList[count];
-		}
-	},
-	hasStudents()
-	{
-		let studentList = this.class.students;
-		let count = Template.instance().lessonAssociation.get('counter');
-		return ( count < studentList.length )
-	},
-	click(){
-		return Click.find({},{limit:1});
+	emptyAssociation(){
+		let list = Lesson.findOne({"number":this.lesson}).association;
+		let empty = [];
+		list.forEach(function(student){
+			if ( student.mac == null )
+				empty.push(student.student);
+		})
+		return empty[0];
 	},
 	waitingClick(){
+		let student = String(this);
+		let c = Template.instance().waitingClick.get();
+		let click = Click.findOne({});
+		let macUsed = false;
+		if ( c )
+		{
+			if ( click != undefined )
+				Template.instance().waitingClick.set(false);
+			else 
+				return true;
+		}
+		else
+		{
+			// Must check if mac has not been used yet
+			let l = Lesson.findOne({"number":Template.instance().lessonNumber.get()});
+			let a = l.association;
+			a.forEach(function(as){
+				if ( as.mac == click.mac )
+					macUsed = true;
+			})
+			if ( ! macUsed )
+			{
+				a.forEach(function(as, index){
+					if ( as.student == student )
+					{
+						as.mac = click.mac;
+						a[index] = as ;
+					}
+				})
+				Lesson.update({"_id":l._id},{"$set":{"association":a}});
+			}
+			Click.remove({"_id":click._id});
+			Template.instance().waitingClick.set(true);
+		}
+	},
+	associated(){
+		let list = Lesson.findOne({"number":this.lesson}).association;
+		let associated = [];
+		list.forEach(function(student){
+			if ( student.mac != null )
+				associated.push(student.student);
+		})
+		return associated;
+	},
+});
+
+Template.flicAssociation.events({
+	'click #mark-absent': function(){
+		let student = this;
+		let l = Lesson.findOne({"number":Template.instance().lessonNumber.get()});
+		let a = l.association;
+		a.forEach(function(as, index){
+			if ( as.student == student )
+			{
+				a.splice(index, 1);
+			}
+		})
+		Lesson.update({"_id":l._id},{"$set":{"association":a}});
+	},
+	'click #redo-student': function(){
+		let student = this;
+		let l = Lesson.findOne({"number":Template.instance().lessonNumber.get()});
+		let a = l.association;
+		a.forEach(function(as, index){
+			if ( as.student == student )
+			{
+				as.mac = null;
+				a[index] = as ;
+			}
+		})
+		Lesson.update({"_id":l._id},{"$set":{"association":a}});	
+	},
+});
+
+//var x = Template.instance().templateDictionary.get('showExtraFields');
+//console.log(x);
+
+/*
+waitingClick(){
 		let lesson = Lesson.findOne({"number": this.lesson})
 		let c = Template.instance().waitingClick.get();
 		let action = true;
@@ -113,43 +181,4 @@ Template.flicAssociation.helpers({
 			}
 		}
 	},
-	association(){
-		let t = Teacher.findOne({"user":Meteor.userId()});
-		if ( t != undefined )
-			return Lesson.findOne({"$and":[{"teacher":t._id},{"state":{"$ne":"off"}}]}).association;
-	},
-	redoStudent(){
-		return Template.instance().redoStudent.get() != false;
-	},
-	redo(){
-		return Session.get('redoStudent');
-	},
-});
-
-Template.flicAssociation.events({
-	'click #mark-absent': function(event,template){
-		/*
-		let studentList = this.class.students;
-		let student = Session.get('student');
-		studentList = studentList.filter(e => e !== student );	// Remove string from array
-		console.log(this);
-		//this.class.students = studentList;
-		*/
-		let count = Template.instance().lessonAssociation.get('counter');
-		Template.instance().lessonAssociation.set('counter',count+1);
-	},
-	'click #redo-student': function(event,template){
-		Session.set("redoStudent", this.student);
-		Template.instance().redoStudent.set(true);
-		Meteor.call('removeMac', this.mac, function (err, asyncValue) {
-		    if (err)
-		        console.log(err);
-		    else 
-		    	console.log("Removed");
-		        //self.myAsyncValue.set(asyncValue);
-		});
-	},
-});
-
-//var x = Template.instance().templateDictionary.get('showExtraFields');
-//console.log(x);
+	*/
