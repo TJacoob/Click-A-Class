@@ -7,14 +7,15 @@ Meteor.methods({
 	newQuestion: function(doc){		
 
 		let number = Question.find({}).count();
-		//let subject = doc.subject.split(" ");
+		//console.log(doc.subject);
+		//let subject = doc.subject[0].split(",");
 		let question = {
 			"number": parseInt(number),
+			//"subject": doc.subject,
 			"subject": doc.subject,
 			"question": doc.question,
-			"answerSingle": doc.answerSingle,
-			"answerDouble": doc.answerDouble,
-			"answerHold": doc.answerHold,
+			"answers": doc.answers,
+			"correct": doc.correct,
 		};
 		
 		Question.insert(question);
