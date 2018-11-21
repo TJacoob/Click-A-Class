@@ -1,12 +1,12 @@
 import './currentLesson.html';
 import './association/association.js';
-import './idle/idle.js';
 import './quiz/quiz.js';
 
 import { Teacher } from '/imports/api/teacher/teacher.js';
 import { Lesson } from '/imports/api/lesson/lesson.js';
 import { Class } from '/imports/api/class/class.js';
 import { Click } from '/imports/api/click/click.js';
+import { Quiz } from '/imports/api/quiz/quiz.js';
 
 Template.currentLesson.onRendered(function(){
 	var self = this;
@@ -16,7 +16,13 @@ Template.currentLesson.onRendered(function(){
 		self.subscribe("classroom.own");
 		self.subscribe("class.own");
 		self.subscribe("click.all");
+		self.subscribe("quiz.own");
 	});
+});
+
+Template.currentLesson.onCreated(function(){
+	// QUAL É O QUIZ A DECORRER PRECISA DE SER UMA CENA DE SESSÃO TAMBEM, E A PERGUNTA EM QUE VAI TAMBEM
+	this.quizToStart = new ReactiveVar( null );
 });
 
 Template.currentLesson.helpers({
@@ -55,11 +61,40 @@ Template.currentLesson.helpers({
 	isQuiz(){
 		return this.state == "quiz";	
 	},
+	// Idle State Helpers
+	associated(){
+		let list = this.association;
+		let associated = [];
+		list.forEach(function(student){
+			if ( student.mac != null )
+				associated.push(student);
+		})
+		return associated;
+	},
+	isClicked(){
+		let click = Click.findOne({"mac":this.mac});
+		if ( click != undefined)
+		{
+			setTimeout(function() { Click.remove({"_id":click._id}); }, 2000);
+			return "f-red";
+		}
+	},
+	quizes(){
+		return Quiz.find({});
+	},
+	quizNumber(){
+		return Template.instance().quizToStart.get();
+	},
 });
 
 Template.currentLesson.events({
 	'click #start-association ': function(){
 		Lesson.update({"_id":this._id},{"$set":{"state":"association"}});
+	},
+	'click .quiz-option': function(){
+		Template.instance().quizToStart.set(this.number);
+		let l = Lesson.findOne({});
+		Lesson.update({"_id":l._id},{"$set":{"state":"quiz"}});
 	},
 });
 

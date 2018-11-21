@@ -1,4 +1,7 @@
 <template name="quiz">
-	<p>Quiz</p>
+	{{#with currentQuiz}}
+		<p>Quiz</p>
+		<p>{{getQuestion}}</p>
+	{{/with}}
 	<button id="finish-quiz" type="button">Finish Quiz</button>
 </template>
