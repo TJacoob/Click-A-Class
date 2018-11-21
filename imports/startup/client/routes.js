@@ -44,7 +44,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
 	name: 'Login',
 	action() {
-		BlazeLayout.render('index', {content:"login"});
+		BlazeLayout.render("login");
 	},
 });
 
