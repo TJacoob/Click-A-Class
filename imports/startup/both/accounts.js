@@ -111,7 +111,7 @@ Accounts.emailTemplates.resetPassword = {
 Accounts.onLogin(function(){
 	//console.log("Here");
 	// For some reason this redirects all the time, instead of just on Login
-	FlowRouter.go("Dashboard");
+	//FlowRouter.go("Dashboard");
 })
 
 Accounts.onLogout(function(){

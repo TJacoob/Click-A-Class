@@ -1,12 +1,41 @@
 <template name="allClass">
 
-<div class="flex">
-	<p align="center" >
-		You do not have classes.
-	</p>
-	<div>
-    	<a class="bttn" id="allClass">Create class</a>
+	<!--
+	<div class="row justify-content-center align-items-center vh-10">
+		<div class="col-5 text-left">		
+		</div>
+		<div class="col-1"></div>
+		<div class="col-5 text-right">
+			
+			<span class="fs-2 fw-4 mb-0">Editar Perguntas</span>
+			<i class="fas fa-chevron-right ml-2"></i>
+			
+		</div>
 	</div>
-</div>
+-->
+	<div class="row justify-content-center align-items-start vh-80 m-0">
+		<div class="col-11 text-left">
+			<div class="spacer-3"></div>
+			<p class="fs-4 fw-4 mb-0">As suas Turmas :</p>
+			<hr>
+			<div class="row justify-content-center align-items-center m-0">
+				{{#each allClass}}
+					<div class="col-6 classHolder">
+						<div class="row">
+							<div class="col-11">
+								<p class="fs-3 fw-6 mb-0">{{name}}</p>
+							</div>
+							<div class="col-1">
+							</div>
+						</div>
+						
+					</div>
+				{{/each}}
+			</div>
+			<!--
+			<a class="bttn" id="allClass">Create class</a>
+			-->
+		</div>
+	</div>
 
 </template>

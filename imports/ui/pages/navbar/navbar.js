@@ -11,7 +11,10 @@ Template.navbar.onRendered(function() {
 
 	function myFunction() {
 
-	if (window.pageYOffset > sticky) {
+	//console.log(window.pageYOffset);
+	//console.log(sticky);
+
+	if (window.pageYOffset >= (sticky-1)) {
 	    header.classList.add("fixed-top");
 	    $("#headerReplacer").show();
 	}	else {
