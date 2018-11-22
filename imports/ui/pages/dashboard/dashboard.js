@@ -21,8 +21,37 @@ Template.dashboard.helpers({
 });
 
 Template.dashboard.events({
-	'click #next': function( event, template ) {
+	'click #start-lesson': function( event, template ) {
+		FlowRouter.go("NewLesson")
+	},
+	
+});
+
+Template.dashboard.events({
+	'click #add-class': function( event, template ) {
 		FlowRouter.go("AddClass")
+	},
+	
+});
+
+
+Template.dashboard.events({
+	'click #start-lesson': function( event, template ) {
+		FlowRouter.go("NewLesson")
+	},
+	
+});
+
+Template.dashboard.events({
+	'click #edit-quiz': function( event, template ) {
+		FlowRouter.go("EditQuiz")
+	},
+	
+});
+
+Template.dashboard.events({
+	'click #add-room': function( event, template ) {
+		FlowRouter.go("EditClass")
 	},
 	
 });
