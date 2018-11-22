@@ -12,23 +12,43 @@ QuestionSchema = new SimpleSchema({
 	},
 	subject: {
 		type: String,
-		/*
-		type: Array,
-		autoform:{
-			minCount:1,
-			maxCount:1,
-			initialCount:1,
-		},
-		*/
+		allowedValues: ['history', 'maths', 'science', 'literature'],
 		label: "Subject",
+		autoform: {
+			options: [
+				{label: "História", value: "history"},
+				{label: "Matemática", value: "maths"},
+				{label: "Ciências", value: "science"},
+				{label: "Letras", value: "literature"},
+			]
+		},
 	},
-	/*
-	'subject.$': { type: String },
-	*/
 	question: {
 		type: String,
 		label: "Question",
 	},
+	answers: {
+		type: Array,
+		label: "Answers",
+		optional: true,
+		minCount: 3,
+		maxCount: 3,
+	},
+	'answers.$': { type: String },
+	correct: {
+		type: String,
+		allowedValues: [0,1,2],
+		label: "Correct Answer",
+		autoform: {
+			options: [
+				{label: "A", value: "ButtonSingleClick"},
+				{label: "B", value: "ButtonDoubleClick"},
+				{label: "C", value: "ButtonHold"},
+			]
+		},
+	}
+	/*
+
 	answerSingle: {
 		type: String,
 		label: "Answer 1",
@@ -41,6 +61,7 @@ QuestionSchema = new SimpleSchema({
 		type: String,
 		label: "Answer 3",
 	},
+	*/
 });
 
 Question.attachSchema( QuestionSchema ); 

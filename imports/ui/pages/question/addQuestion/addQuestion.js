@@ -7,6 +7,7 @@ Template.addQuestion.onRendered(function(){
 	self.autorun(function(){
 		
 	});
+	//$(".tags").attr('data-role', 'tagsinput');
 });
 
 Template.addQuestion.helpers({

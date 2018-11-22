@@ -29,6 +29,9 @@ import '../../ui/pages/lesson/currentLesson/currentLesson.js';
 import '../../ui/pages/navbar/navbar.js';
 import '../../ui/pages/question/addQuestion/addQuestion.js';
 import '../../ui/pages/question/editQuestion/editQuestion.js';
+import '../../ui/pages/quiz/addQuiz/addQuiz.js';
+import '../../ui/pages/quiz/editQuiz/editQuiz.js';
+import '../../ui/pages/quiz/editQuiz/editQuizQuestions.js';
 
 
 // Set up all routes in the app
@@ -152,7 +155,7 @@ FlowRouter.route('/lesson/new',{
 	},
 });
 
-// Classroom
+// Questions
 FlowRouter.route('/question/add',{
 	name: 'AddQuestion',
 	action(){
@@ -164,6 +167,28 @@ FlowRouter.route('/question/edit/:number',{
 	name: 'EditQuestion',
 	action(){
 		BlazeLayout.render('index', {content:"editQuestion"});
+	},
+});
+
+// Questions
+FlowRouter.route('/quiz/add',{
+	name: 'AddQuiz',
+	action(){
+		BlazeLayout.render('index', {content:"addQuiz"});
+	},
+});
+
+FlowRouter.route('/quiz/edit/:number',{
+	name: 'EditQuiz',
+	action(){
+		BlazeLayout.render('index', {content:"editQuiz"});
+	},
+});
+
+FlowRouter.route('/quiz/edit/:number/questions',{
+	name: 'EditQuiz',
+	action(){
+		BlazeLayout.render('index', {content:"editQuizQuestions"});
 	},
 });
 

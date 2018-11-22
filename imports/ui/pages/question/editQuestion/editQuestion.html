@@ -2,11 +2,10 @@
 	<p>Edit Question</p>
 	{{#autoForm collection=Question id="editQuestion" doc=currentQuestion type="method-update" template="nothing" meteormethod="editQuestion" validation="browser"}}
 		<fieldset>
-			{{> afQuickField name="subject" class="form-input" autocomplete="off"}}
+			{{> afQuickField name="subject" class="tags"}}
 			{{> afQuickField name="question" class="form-input" autocomplete="off"}}
-			{{> afQuickField name="answerSingle" class="form-input" autocomplete="off"}}
-			{{> afQuickField name="answerDouble" class="form-input" autocomplete="off"}}
-			{{> afQuickField name="answerHold" class="form-input" autocomplete="off"}}
+			{{> afQuickField name="answers" class="form-input" autocomplete="off"}}
+			{{> afQuickField name="correct" class="form-input" autocomplete="off"}}
 		</fieldset>
 		<button type="submit" style="float:right">Submit</button>
 	{{/autoForm}}

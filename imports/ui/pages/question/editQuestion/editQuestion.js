@@ -8,6 +8,7 @@ Template.editQuestion.onRendered(function(){
 		var number = parseInt(FlowRouter.getParam('number'));
 		self.subscribe('question.single', number);
 	});
+	//$(".tags").attr('data-role', 'tagsinput');
 });
 
 Template.editQuestion.helpers({

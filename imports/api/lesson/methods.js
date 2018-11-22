@@ -25,6 +25,7 @@ Meteor.methods({
 				associations.push({
 					"student":student,
 					"mac": null,
+					"score": 0,
 				});
 			})
 			let ls = {
@@ -34,6 +35,9 @@ Meteor.methods({
 				"teacher": teacher._id,
 				"class": parseInt(doc.class),
 				"association": associations,
+				"quiz":null,
+				"quizCount":null,
+				"quickQuestion":null,
 			};
 			Lesson.insert(ls);
 			console.log("Started class "+ls.number+" in classroom "+ls.classroom+" with theacher "+ls.teacher+" and class "+ls.class);

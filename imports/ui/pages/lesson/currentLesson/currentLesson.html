@@ -20,18 +20,44 @@
 					{{#if isAssociation}}
 						{{> flicAssociation class=classObject lesson=this.number}}
 					{{/if}}
-					{{#if isIdle}}
-						{{> idle lesson=this.number}}
-					{{/if}}
 					{{#if isQuiz}}
 						{{> quiz lesson=this.number}}
 					{{/if}}
-					<!--
-					<p>(# {{number}}) - {{state}}</p>
-					<p>{{classroom}}, {{teacher}}, {{class}}</p>
-					-->
-					
-					
+					{{#if isIdle}}
+						<!-- Idle State aka Main Page -->
+						<div class="row justify-content-center align-items-center vh-80">
+							<div class="col-5">
+								<div class="row justify-content-center align-items-center vh-10">
+									<div class="col-12 text-left">
+										<p class="fs-3 fw-6 mb-0">Começar um quiz:</p>
+										<p class="fs-1 fw-4">(clique para iniciar)</p>
+										<div class="row justify-content-center align-items-center">
+											{{#each quizes}}
+												<div class="col-5 m-1 quiz-option cp text-center">
+													<p class="fs-2 fw-4 mb-0">{{title}}</p>
+												</div>
+											{{/each}}
+										</div>
+									</div>
+								</div>
+								<hr>
+								<!--
+								<button id="start-quiz" type="button">Start Quiz</button>
+								-->
+							</div>
+							<div class="col-1"></div>
+							<div class="col-5">
+								<p class="fs-4 fw-4 mb-1">Students Present:</p>
+								{{#each associated}}
+									<span class="fs-3 fw-4 mb-1 {{isClicked}}">{{this.student}}</span>
+									<!--
+									<i id="redo-student" class="fas fa-times cp ml-2"></i>
+									-->
+									<br>
+								{{/each}}
+							</div>
+						</div>
+					{{/if}}					
 				{{/with}}
 			{{else}}
 				<i class="fas fa-circle-notch fa-4x fa-spin"></i>
