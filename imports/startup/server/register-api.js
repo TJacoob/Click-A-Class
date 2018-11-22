@@ -20,3 +20,9 @@ import '../../api/teacher/server/publications.js';
 
 import '../../api/click/methods.js';
 import '../../api/click/server/publications.js';
+
+import '../../api/question/methods.js';
+import '../../api/question/server/publications.js';
+
+import '../../api/quiz/methods.js';
+import '../../api/quiz/server/publications.js';

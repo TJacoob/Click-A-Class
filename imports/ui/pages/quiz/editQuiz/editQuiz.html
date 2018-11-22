@@ -1,0 +1,18 @@
+<template name="editQuiz">
+	<div class="row justify-content-center align-items-start vh-10">
+		<div class="col-5 text-left">		
+		</div>
+		<div class="col-1"></div>
+		<div class="col-5 text-right cp" id="edit-questions">
+			<span class="fs-2 fw-4 mb-0">Editar Perguntas</span>
+			<i class="fas fa-chevron-right ml-2"></i>
+		</div>
+	</div>
+	{{#autoForm collection=Quiz id="editQuiz" doc=currentQuiz type="method-update" template="nothing" meteormethod="editQuiz" validation="browser"}}
+		<fieldset>
+			{{> afQuickField name="title" class="form-input" autocomplete="off"}}
+			{{> afQuickField name="desc" class="form-input" autocomplete="off"}}
+		</fieldset>
+		<button type="submit" style="float:right">Submit</button>
+	{{/autoForm}}
+</template>

@@ -36,6 +36,9 @@ mizzao:jquery-ui
 session@1.1.8
 meteortoys:allthings
 aldeed:autoform
+#ajduke:bootstrap-tagsinput
+#yogiben:autoform-tags
+#valedaemon:autoform-materialize-tags
 
 simple:rest
 

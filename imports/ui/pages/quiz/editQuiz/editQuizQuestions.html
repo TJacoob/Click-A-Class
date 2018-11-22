@@ -1,0 +1,80 @@
+<template name="editQuizQuestions">
+	<div class="row justify-content-center align-items-start vh-10">
+		<div class="col-5 text-left cp" id="return-edit">
+			<i class="fas fa-chevron-left mr-2"></i>
+			<span class="fs-2 fw-4 mb-0">Voltar atrás</span>
+		</div>
+		<div class="col-1"></div>
+		<div class="col-5 text-right cp" id="finish">
+			<span class="fs-2 fw-4 mb-0">Terminar</span>
+			<i class="fas fa-check ml-2"></i>
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-70">
+		{{#if Template.subscriptionsReady}}
+			<div class="col-5 text-left">
+				{{#with currentQuiz}}
+					<p class="fs-4 fw-6 mb-0">{{title}}</p>
+					<p class="fs-1 fw-4">{{desc}}</p>
+					<hr>
+					<p class="fs-2 fw-4">Perguntas:</p>
+					{{#each questions}}
+						{{#with questionInfo this}}
+							<div class="row justify-content-center align-items-center questionHolder my-2 cp m-0">
+								<div class="col-2 text-center iconHolder back-{{subject}}">
+									<a class="icon-prep" href="#">
+										<i class="{{subjectIcon this.subject}} f-white"></i>
+									</a>
+								</div>
+								<div class="col-10 text-left">
+									<p class="fs-2 fw-4 mb-0">{{question}}</p>
+								</div>
+								<!--
+								<div class="col-1 text-center">
+									<p class="fs-1 fw-4 mb-0">({{@index}})</p>
+								</div>
+								-->
+							</div>
+						{{/with}}
+					{{else}}
+						<p class="fs-2 fw-4 text-center mb-1">Questionário Vazio</p>
+						<p class="fs-1 fw-4 text-center">Escolha perguntas do menu à direita</p>
+					{{/each}}
+				{{/with}}
+			</div>
+			<div class="col-1"></div>
+			<div class="col-5 text-right">
+				<p class="fs-4 fw-6 mb-0">Questões Disponíveis</p>
+				<p class="fs-1 fw-4">Clique para adicionar ao seu questionário</p>
+				<hr>
+				<div class="row justify-content-center align-items-center vh-5 m-0">
+					<div class="col-2 text-center">
+						<!-- <i class="fas fa-filter"></i> -->
+						<span class="fs-1 fw-4">Filtrar:</span> 
+					</div>
+					{{#each subjectAvailable}}
+						<div class="col-2 mx-1 subjectOption text-center cp back-{{this}} {{isActiveFilter}}">
+							<i class="{{subjectIcon this}} f-white"></i>
+						</div>
+					{{/each}}
+				</div>
+				<hr>
+				{{#each questionsAvailable}}
+					<div class="row justify-content-center align-items-center questionHolder my-2 cp m-0 vh-5">
+						<div class="col-2 text-center iconHolder back-{{subject}}">
+							<i class="{{subjectIcon this.subject}} f-white"></i>
+						</div>
+						<div class="col-10 text-left">
+							<p class="fs-2 fw-4 mb-0">{{question}}</p>
+						</div>
+					</div>
+				{{else}}
+					<p class="fs-1 fw-4 text-center">Sem mais perguntas deste tópico</p>
+				{{/each}}
+			</div>
+		{{else}}
+			<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+		{{/if}}
+	</div>
+</template>
+

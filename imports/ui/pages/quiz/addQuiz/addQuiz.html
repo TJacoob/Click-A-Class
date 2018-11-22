@@ -1,0 +1,13 @@
+<template name="addQuiz">
+	<div class="row justify-content-center align-items-center vh-50">
+		<div class="col-12">			
+			{{#autoForm collection=Quiz id="addQuiz" type="method" template="nothing" meteormethod="newQuiz" validation="browser"}}
+				<fieldset>
+					{{> afQuickField name="title" class="form-input" autocomplete="off"}}
+					{{> afQuickField name="desc" class="form-input" autocomplete="off"}}
+				</fieldset>
+				<button type="submit" style="float:right">Submit</button>
+			{{/autoForm}}
+		</div>
+	</div>
+</template>
