@@ -22,7 +22,6 @@ Template.currentLesson.onRendered(function(){
 
 Template.currentLesson.onCreated(function(){
 	// QUAL É O QUIZ A DECORRER PRECISA DE SER UMA CENA DE SESSÃO TAMBEM, E A PERGUNTA EM QUE VAI TAMBEM
-	this.quizToStart = new ReactiveVar( null );
 });
 
 Template.currentLesson.helpers({
@@ -82,9 +81,6 @@ Template.currentLesson.helpers({
 	quizes(){
 		return Quiz.find({});
 	},
-	quizNumber(){
-		return Template.instance().quizToStart.get();
-	},
 });
 
 Template.currentLesson.events({
@@ -92,8 +88,9 @@ Template.currentLesson.events({
 		Lesson.update({"_id":this._id},{"$set":{"state":"association"}});
 	},
 	'click .quiz-option': function(){
-		Template.instance().quizToStart.set(this.number);
 		let l = Lesson.findOne({});
+		Lesson.update({"_id":l._id},{"$set":{"quizCount":0}});
+		Lesson.update({"_id":l._id},{"$set":{"quiz":this.number}});
 		Lesson.update({"_id":l._id},{"$set":{"state":"quiz"}});
 	},
 });

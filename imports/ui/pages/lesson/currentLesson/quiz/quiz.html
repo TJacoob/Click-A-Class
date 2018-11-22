@@ -1,7 +1,67 @@
 <template name="quiz">
-	{{#with currentQuiz}}
+	<div class="row justify-content-center align-items-center vh-10 m-0">
+		<div class="col-11 text-center">
+			<p class="fs-3 fw-4">{{quizTitle}}</p>
+			<hr>
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-80 m-0">
+		<div class="col-7 text-center">
+			{{#with currentQuiz}}
+				{{#if hasMoreQuestions}}
+					{{#with getQuestion}}
+						<p class="fs-4 fw-6">{{question}}</p>
+						<div class="row justify-content-center align-items-center m-0">
+							<div class="col-4 text-center">
+								<p class="fs-3 fw-4 mb-0">{{single}}</p>
+								<p class="fs-1 fw-4">Um Click</p>
+							</div>
+							<div class="col-4 text-center">
+								<p class="fs-3 fw-4 mb-0">{{double}}</p>
+								<p class="fs-1 fw-4">Dois Clicks</p>
+							</div>
+							<div class="col-4 text-center">
+								<p class="fs-3 fw-4 mb-0">{{hold}}</p>
+								<p class="fs-1 fw-4">Click Longo</p>
+							</div>
+						</div>
+						<button id="next-question" type="button">Next Question</button>
+					{{/with}}
+				{{else}}
+					<p class="fs-4 fw-6">Quiz Finished</p>
+					<p class="fs-3 fw-4">Scoreboard:</p>
+					{{#each scoreboard}}
+						<p class="fs-2">{{incremented @index}}º: {{student}}</p>
+					{{/each}}
+					<button id="finish-quiz" type="button">Finish Quiz</button>
+				{{/if}}
+			{{/with}}
+		</div>
+		<div class="col-1"></div>
+		<div class="col-3 text-center">
+			{{#each associated}}
+				<span class="fs-3 fw-4 mb-1 {{guess}}">{{this.student}}</span>
+				<!--
+				<i id="redo-student" class="fas fa-times cp ml-2"></i>
+				-->
+				<br>
+			{{/each}}
+		</div>
+	</div>
+	
+</template>
+
+<!--
+
+{{#with currentQuiz}}
 		<p>Quiz</p>
-		<p>{{getQuestion}}</p>
+		{{#with getQuestion}}
+			<p>{{question}}</p>
+			<p>{{single}}</p>
+			<p>{{double}}</p>
+			<p>{{hold}}</p>
+		{{/with}}
 	{{/with}}
 	<button id="finish-quiz" type="button">Finish Quiz</button>
-</template>
+
+	-->

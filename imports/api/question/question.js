@@ -36,14 +36,14 @@ QuestionSchema = new SimpleSchema({
 	},
 	'answers.$': { type: String },
 	correct: {
-		type: Number,
+		type: String,
 		allowedValues: [0,1,2],
 		label: "Correct Answer",
 		autoform: {
 			options: [
-				{label: "A", value: 0},
-				{label: "B", value: 1},
-				{label: "C", value: 2},
+				{label: "A", value: "ButtonSingleClick"},
+				{label: "B", value: "ButtonDoubleClick"},
+				{label: "C", value: "ButtonHold"},
 			]
 		},
 	}

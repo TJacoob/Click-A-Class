@@ -74,9 +74,22 @@ LessonSchema = new SimpleSchema({
     'association.$': Object,
     'association.$.mac': { type:String, optional:true},
     'association.$.student': String,
+    'association.$.score': Number,
 	/* 	Future:
 		- Quizzes / Activities
 	*/
+	quiz:{
+		type: Number,
+		optional: true,
+	},
+	quizCount:{
+		type: Number,
+		optional: true,
+	},
+	quickQuestion: {
+		type: Number,
+		optional: true,
+	},
 
 });
 
