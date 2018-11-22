@@ -1,0 +1,29 @@
+/* NAVBAR */
+.landing{
+    background: url(/img/background5.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 0% 80%;
+}
+
+.header {
+    //padding: 1% 5%;
+    background: $header;
+    //width: 100%;
+    z-index:0;
+}
+
+/*
+.sticky {
+    position: fixed;
+    //background-color: $header;
+    //width: device-width;
+    top:0;
+}
+*/
+
+.link:hover {
+    background-color: darken($header,5%);
+}

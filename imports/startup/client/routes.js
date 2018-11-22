@@ -39,7 +39,7 @@ FlowRouter.route('/', {
 	name: 'Index',
 	action() {
 		//BlazeLayout.render('index');
-		BlazeLayout.render('index', {content:"home"});
+		BlazeLayout.render('home');
 	},
 });
 

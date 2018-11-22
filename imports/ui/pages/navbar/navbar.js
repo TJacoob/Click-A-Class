@@ -12,9 +12,11 @@ Template.navbar.onRendered(function() {
 	function myFunction() {
 
 	if (window.pageYOffset > sticky) {
-	    header.classList.add("sticky");
+	    header.classList.add("fixed-top");
+	    $("#headerReplacer").show();
 	}	else {
-		header.classList.remove("sticky");
+		header.classList.remove("fixed-top");
+		$("#headerReplacer").hide();
 		}
 	}
 });
