@@ -1,15 +1,52 @@
 <template name="showClass">
-	<p>Show Class</p>
-	
-	{{#if noClass}}
-		<p>Buton</p>
-	{{else}}
-		{{#with currentClass}}
-			<p>(#{{number}}) {{name}}</p>
-			<p>{{notes}}</p>
-			{{#each students}}
-				<span>{{this}}, </span>
-			{{/each}}
-		{{/with}}
-	{{/if}}
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-5 text-left cp hvr-clickable" id="go-back">		
+			<i class="fas fa-chevron-left mr-2"></i>
+			<span class="fs-2 fw-4 mb-0">Voltar a Turmas</span>
+		</div>
+		<div class="col-1"></div>
+		<div class="col-5 text-right cp hvr-clickable" id="edit-class">
+			<span class="fs-2 fw-4 mb-0">Editar Turma</span>
+			<i class="fas fa-edit ml-2"></i>
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11">
+			<hr class="m-0">
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-80 m-0 py-3">
+		{{#if Template.subscriptionsReady}}		
+			{{#with currentClass}}
+			<div class="col-5 p-0 text-left">				
+				<p class="fs-5 fw-6">
+					<span class="fw-4">(#{{number}}) </span>
+					{{name}}
+				</p>
+				<p class="fs-3 fw-4">{{notes}}</p>				
+				<!--
+				<a class="bttn" id="allClass">Create class</a>
+				-->
+			</div>
+			<div class="col-1"></div>
+			<div class="col-5 p-0 text-right">				
+				<p class="fs-5 fw-4">Lista de Alunos</p>
+				{{#each students}}
+					<p class="fs-3 fw-4 mb-1">{{this}}
+						<span class="fs-1">(#{{@index}})</span>
+					</p>
+				{{/each}}
+				<!--
+				<a class="bttn" id="allClass">Create class</a>
+				-->
+			</div>
+			{{/with}}
+		{{else}}
+			<div class="col-12 text-center py-3">
+				<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+				<br>
+				<p class="fs-3 fw-4 mt-2 mb-0">A carregar, aguarde</p>
+			</div>
+		{{/if}}
+	</div>
 </template>

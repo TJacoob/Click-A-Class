@@ -19,5 +19,7 @@ Template.allClass.helpers({
 });
 
 Template.allClass.events({
-	
+	'click #see-class': function(){
+		FlowRouter.go("/class/show/"+this.number);
+	}
 });

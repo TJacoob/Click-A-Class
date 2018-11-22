@@ -13,22 +13,24 @@
 		</div>
 	</div>
 -->
-	<div class="row justify-content-center align-items-start vh-80 m-0">
-		<div class="col-11 text-left">
+	<div class="row justify-content-center align-items-start vh-90 m-0">
+		<div class="col-11 p-0 text-left">
 			<div class="spacer-3"></div>
 			<p class="fs-4 fw-4 mb-0">As suas Turmas :</p>
 			<hr>
-			<div class="row justify-content-center align-items-center m-0">
+			<div class="row justify-content-center align-items-start m-0">
 				{{#each allClass}}
-					<div class="col-6 classHolder">
-						<div class="row">
+					<div class="col-6 p-0">
+						<div class="row justify-content-center align-items-center m-0 py-2 px-1 mx-2 my-2 classHolder">
 							<div class="col-11">
-								<p class="fs-3 fw-6 mb-0">{{name}}</p>
+								<p class="fs-3 fw-6 flh-1 mb-0">{{name}}</p>
+								<p class="fs-1 fw-4 flh-1 mb-0">{{notes}}</p>
 							</div>
-							<div class="col-1">
+							<div class="col-1 text-center px-1">
+								<i class="far fa-eye cp fa-fw hvr-clickable" id="see-class"></i>
+								<i class="fas fa-edit cp fa-fw hvr-clickable" id="edit-class"></i>
 							</div>
 						</div>
-						
 					</div>
 				{{/each}}
 			</div>

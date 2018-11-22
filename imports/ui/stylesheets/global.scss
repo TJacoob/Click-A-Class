@@ -62,7 +62,9 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .vh-20 { min-height: 20vh ; }
 .vh-15 { min-height: 15vh ; }
 .vh-10 { min-height: 10vh ; }
+.vh-9 { min-height: 9vh ; }
 .vh-5 { min-height: 5vh ; }
+.vh-1 { min-height: 1vh ; }
 
 .vw-100 { min-width: 100vw ; }
 .vw-75 { min-width: 75vw ; }
@@ -102,3 +104,13 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 
 /* Images */
 .round { border-radius: 3em; }
+
+/* Hovers */
+.hvr-clickable{
+	transition: 0.2s;
+}
+
+.hvr-clickable:hover{
+	color: $header;
+	transition: 0.2s;
+}
