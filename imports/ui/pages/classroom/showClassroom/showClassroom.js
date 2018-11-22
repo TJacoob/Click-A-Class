@@ -30,4 +30,12 @@ Template.showClassroom.events({
             }
     	});
 	},
+
+	'click #go-back-2': function(){
+		FlowRouter.go("/classroom/show");
+	},
+
+	'click #edit-class': function(){
+		FlowRouter.go("/classroom/edit/"+parseInt(FlowRouter.getParam('number')));
+	},
 });

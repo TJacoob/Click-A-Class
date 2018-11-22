@@ -32,7 +32,7 @@ Template.navbar.events({
 		FlowRouter.go("ShowClass")
 	},
 	'click #salas': function( event, template ) {
-		FlowRouter.go("ShowClassroom")
+		FlowRouter.go("AllClassroom")
 	},
 	'click #perfil': function( event, template ) {
 		FlowRouter.go("ShowTeacher")
