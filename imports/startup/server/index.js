@@ -2,4 +2,5 @@
 
 import './register-api.js';
 import './flicsConnection.js';
+import './populate.js';
 //import './api.js';
