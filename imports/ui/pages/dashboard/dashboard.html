@@ -1,11 +1,21 @@
 <template name="dashboard">
 	<div class="row justify-content-center align-items-center m-0 p-0 vh-100">
-		<table style="width:100%"> 
-		<tr> <th> Class </th> 	<th> Classroom </th> 	<th> Questions </th> 	<th> Quizes </th> </tr>
-		<tr> <td> SHOW </td> 	<td> SHOW </td> 		<td> SHOW </td> 		<td> SHOW </td> </tr>
-		<tr> <td> EDIT </td> 	<td> EDIT </td> 		<td> EDIT </td> 		<td> EDIT </td> </tr>
-		<tr> <td> ADD </td> 	<td>  </td> 			<td> ADD </td>			<td> SHOW </td> </tr>
-		</table>
+
+		<div class="col-12 m-12 p-1 text-center">
+			<button class="back fs-3 fw-3 align-middle p-2 f-white" id="start-lesson"> Começar Aula </button>
 		
+			<button class="back fs-3 fw-3 align-middle p-2 f-white" id="add-class"> Criar Turma </button>
+
+			<button class="back fs-3 fw-3 align-middle p-2 f-white" id="edit-quiz"> Adicionar Pergunta </button>
+
+			<button class="back fs-3 fw-3 align-middle p-2 f-white" id="add-room"> Adicionar Sala </button>
+		</div>
 	</div>
+
+		<!--
+		    Class   Classroom   	  Questions   	  Quizes    
+		    SHOW   	  SHOW   		  SHOW   		  SHOW    
+		    EDIT   	  EDIT   		  EDIT   		  EDIT    
+		    ADD   	     			  ADD  			  SHOW
+		-->
 </template>
