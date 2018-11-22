@@ -94,8 +94,9 @@ Template.flicAssociation.events({
 		let l = Lesson.findOne({"number":Template.instance().lessonNumber.get()});
 		let a = l.association;
 		a.forEach(function(as, index){
-			if ( as.student == student )
+			if ( as.student == student.student )
 			{
+
 				as.mac = null;
 				a[index] = as ;
 			}
