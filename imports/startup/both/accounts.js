@@ -14,7 +14,7 @@ AccountsTemplates.configure({
 	// Appearance
 	showAddRemoveServices: false,
 	showForgotPasswordLink: false,
-	showLabels: true,
+	showLabels: false,
 	showPlaceholders: true,
 	showResendVerificationEmailLink: false,
 	hideSignInLink: true,
@@ -57,16 +57,20 @@ AccountsTemplates.addFields([
 
 AccountsTemplates.configure({
 	onSubmitHook: ( error, state ) => {
+		console.log("HERE");
+		console.log(state === 'signIn');
+		console.log(!error);
 		if ( !error && (state === 'signIn') ) {
 			// login successful, route to index
-			FlowRouter.go("Dashboard");
+			FlowRouter.redirect("/dashboard");
 		}
 		else if ( !error && ( state === 'signUp') ) {
 			// signup successful, route to roles
-			FlowRouter.go("Dashboard");
+			FlowRouter.redirect("/dashboard");
 		}
 	},
 	onLogoutHook: ( error, state ) => {
+		console.log("LOGIN");
 		FlowRouter.go("Login");
 	},
 });
@@ -107,11 +111,11 @@ Accounts.emailTemplates.resetPassword = {
 Accounts.onLogin(function(){
 	//console.log("Here");
 	// For some reason this redirects all the time, instead of just on Login
-	//FlowRouter.go("Dashboard");
+	FlowRouter.go("Dashboard");
 })
 
 Accounts.onLogout(function(){
-	//FlowRouter.go("Index");	
+	FlowRouter.go("Login");	
 })
 
 Meteor.users.after.insert(function (userId, doc) {
