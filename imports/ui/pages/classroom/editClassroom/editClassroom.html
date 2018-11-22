@@ -1,11 +1,17 @@
 <template name="editClassroom">
-	<p>Edit Classroom</p>
-	{{#autoForm collection=Classroom id="editClassroom" doc=currentClassroom type="method-update" template="nothing" meteormethod="editClassroom" validation="browser"}}
-		<fieldset>
-			{{> afQuickField name="name" class="form-input" autocomplete="off"}}
-			{{> afQuickField name="location" class="form-input" autocomplete="off"}}
-			{{> afQuickField name="school" class="form-input" autocomplete="off"}}
-		</fieldset>
-		<button type="submit" style="float:right">Submit</button>
-	{{/autoForm}}
+	<div class="row justify-content-center align-items-center m-0 p-0 vh-90">
+		<div class="col-3 text-left m-0 p-0">
+
+			<p>Edit Classroom</p>
+			{{#autoForm collection=Classroom id="editClassroom" doc=currentClassroom type="method-update" template="nothing" meteormethod="editClassroom" validation="browser"}}
+				<fieldset>
+					{{> afQuickField name="name" label=false placeholder="Nome" class="form-input" autocomplete="off"}}
+					{{> afQuickField name="location" label=false placeholder="Local" class="form-input" autocomplete="off"}}
+					{{> afQuickField name="school" label=false placeholder="Escola" class="form-input" autocomplete="off"}}
+				</fieldset>
+				<button class="submit_bttn mr-2" type="submit" style="float:right">Submit</button>
+			{{/autoForm}}
+
+		</div>
+	</div>
 </template>
