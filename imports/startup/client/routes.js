@@ -24,6 +24,7 @@ import '../../ui/pages/teacher/showTeacher/showTeacher.js';
 import '../../ui/pages/classroom/editClassroom/editClassroom.js';
 import '../../ui/pages/classroom/showClassroom/showClassroom.js';
 import '../../ui/pages/classroom/allClassroom/allClassroom.js';
+import '../../ui/pages/classroom/addClassroom/addClassroom.js';
 import '../../ui/pages/lesson/newLesson/newLesson.js';
 import '../../ui/pages/lesson/showLesson/showLesson.js';
 import '../../ui/pages/lesson/currentLesson/currentLesson.js';
@@ -77,7 +78,7 @@ FlowRouter.route('/dashboard',{
 
 // Class
 FlowRouter.route('/class/show/',{
-	name: 'ShowClass',
+	name: 'AllClass',
 	action(){
 		BlazeLayout.render('index', {content:"allClass"});
 	},
@@ -138,6 +139,13 @@ FlowRouter.route('/classroom/show',{
 	name: 'AllClassroom',
 	action(){
 		BlazeLayout.render('index', {content:"allClassroom"});
+	},
+});
+
+FlowRouter.route('/classroom/add',{
+	name: 'AddClassroom',
+	action(){
+		BlazeLayout.render('index', {content:"addClassroom"});
 	},
 });
 

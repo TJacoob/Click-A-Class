@@ -1,0 +1,38 @@
+<template name="addClassroom">
+
+        <div class="row justify-content-center align-items-center vh-9">
+            <div class="col-3 text-left cp hvr-clickable" id="go-back-2">		
+                <i class="fas fa-chevron-left mr-2"></i>
+                <span class="fs-2 fw-4 mb-0">Voltar </span>
+            </div>
+            <div class="col-5 text-center">
+                <p class="fs-3 fw-4 mb-0">Adicionar Sala</p>
+            </div>
+            <div class="col-3 text-center">
+                <p class="fs-3 fw-4 mb-0"> </p>
+            </div>
+    
+        </div>
+    
+        <div class="row justify-content-center align-items-start vh-1 m-0">
+            <div class="col-11">
+                <hr class="m-0">
+            </div>
+        </div>
+    
+        <div class="row justify-content-center align-items-center m-0 p-0 vh-50">
+            <div class="col-4 text-left m-0 p-0">
+    
+                {{#autoForm collection=Classroom id="editClassroom" doc=currentClassroom type="method-update" template="nothing" meteormethod="editClassroom" validation="browser"}}
+                    <fieldset>
+                        {{> afQuickField name="name" label=false placeholder="Nome" class="form-input" autocomplete="off"}}
+                        {{> afQuickField name="location" label=false placeholder="Local" class="form-input" autocomplete="off"}}
+                        {{> afQuickField name="school" label=false placeholder="Escola" class="form-input" autocomplete="off"}}
+                    </fieldset>
+                    <button class="submit_bttn mr-2" type="button" id="associateClassroom">Associar RaspberryPi</button>
+                    <button class="submit_bttn mr-2" type="submit" style="float:right">Submeter</button>
+                {{/autoForm}}
+    
+            </div>
+        </div>
+</template>

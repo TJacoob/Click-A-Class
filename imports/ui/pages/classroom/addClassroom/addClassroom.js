@@ -1,30 +1,27 @@
-import './editClassroom.html';
+import './addClassroom.html';
 
 import { Classroom } from '/imports/api/classroom/classroom.js';
 
-Template.editClassroom.onRendered(function(){
+Template.addClassroom.onRendered(function(){
 	var self = this;
 	self.autorun(function(){
-		var number = parseInt(FlowRouter.getParam('number'));
-		self.subscribe('classroom.single', number);
+		
 	});
 });
 
-Template.editClassroom.helpers({
+Template.addClassroom.helpers({
 	Classroom(){
 		return Classroom;
 	},
-	currentClassroom(){
-		return Classroom.findOne({"number":parseInt(FlowRouter.getParam('number'))});
-	},
+	
 });
 
-Template.editClassroom.events({
+Template.addClassroom.events({
 	'click #go-back-2': function(){
-		FlowRouter.go("/classroom/show/"+parseInt(FlowRouter.getParam('number')));
-	},
-
-	'click #associateClassroom': function(){
+		FlowRouter.go("/classroom/show/");
+    },
+    
+    'click #associateClassroom': function(){
 		var password = prompt("Insert the password displayed on your raspberry");
 		Meteor.call("associateTeacher", password, function (err, data) {
             if(err){
@@ -37,8 +34,8 @@ Template.editClassroom.events({
 });
 
 
-AutoForm.addHooks(['editClassroom'],{
+AutoForm.addHooks(['addClassroom'],{
 	onSuccess: function(formType, result) {
-		alert("Classroom edited successfuly");
+		alert("Classroom added successfuly");
 	}
 });
