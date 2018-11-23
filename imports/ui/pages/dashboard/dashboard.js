@@ -4,6 +4,7 @@ import { Class } from '/imports/api/class/class.js';
 import { Classroom } from '/imports/api/classroom/classroom.js';
 import { Quiz } from '/imports/api/quiz/quiz.js';
 import { Teacher } from '/imports/api/teacher/teacher.js';
+import { Lesson } from '/imports/api/lesson/lesson.js';
 
 
 Template.dashboard.onRendered(function(){
@@ -13,6 +14,7 @@ Template.dashboard.onRendered(function(){
 		self.subscribe('class.own');
 		self.subscribe('classroom.own');
 		self.subscribe('quiz.own');
+		self.subscribe('lesson.own.current');
 	});
 });
 
@@ -39,6 +41,9 @@ Template.dashboard.helpers({
 	isReady(){
 		return ( Class.findOne() != undefined && Classroom.findOne() != undefined )
 	},
+	lessonGoingOn(){
+		return ( Lesson.find({"state":{"$ne":"finished"}}).count() > 0);
+	},
 });
 
 Template.dashboard.events({
@@ -62,6 +67,9 @@ Template.dashboard.events({
 	},
 	'click #see-quiz': function(){
 		FlowRouter.go("/quiz/show");
+	},
+	'click #retake-lesson': function(){
+		FlowRouter.go("/lesson/current");
 	},
 	
 });

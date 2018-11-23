@@ -38,11 +38,9 @@ Template.navbar.events({
 		FlowRouter.go("ShowTeacher")
 	},
 	'click #perguntas': function( event, template ) {
-		//FlowRouter.go("Question")
-		alert("not ready");
+		FlowRouter.go("AllQuestion");
 	},
 	'click #quizes': function( event, template ) {
-		alert("not ready");
-		//FlowRouter.go("ShowTeacher")
+		FlowRouter.go("AllQuiz");
 	},
 });

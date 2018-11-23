@@ -21,7 +21,9 @@ Template.editQuestion.helpers({
 });
 
 Template.editQuestion.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("/question/all");
+	},
 });
 
 

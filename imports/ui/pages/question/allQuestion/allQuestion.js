@@ -1,36 +1,37 @@
-import './editQuizQuestions.html';
+import './allQuestion.html';
 
+import { Question } from '/imports/api/question/question.js';
 import { Quiz } from '/imports/api/quiz/quiz.js';
 import { Teacher } from '/imports/api/teacher/teacher.js';
-import { Question } from '/imports/api/question/question.js';
 
-Template.editQuizQuestions.onRendered(function(){
+Template.allQuestion.onRendered(function(){
 	var self = this;
 	self.autorun(function(){
-		var number = parseInt(FlowRouter.getParam('number'));
-		self.subscribe('quiz.own.single', number);
 		self.subscribe('question.all');
 	});
 });
 
-Template.editQuizQuestions.onCreated(function(){
+Template.allQuestion.onCreated(function(){
 	this.subjectFilter = new ReactiveVar( null );
 });
-
-Template.editQuizQuestions.helpers({
-	Quiz(){
-		return Quiz;
+	
+Template.allQuestion.helpers({
+	Question(){
+		return Question;
 	},
-	currentQuiz(){
-		return Quiz.findOne({"number":parseInt(FlowRouter.getParam('number'))});
+	allQuestion(){
+		return Question.find();
 	},
 	questionsAvailable(){
+		/*
 		let selected = Quiz.findOne({"number":parseInt(FlowRouter.getParam('number'))}).questions;
+		*/
 		let filter = Template.instance().subjectFilter.get();
+		
 		if ( filter != null )
-			return Question.find({"$and":[{"subject":filter},{"number":{"$nin":selected}}]});
+			return Question.find({"subject":filter});
 		else
-			return Question.find({"number":{"$nin":selected}},{sort:{"subject":1}});
+			return Question.find({},{sort:{"subject":1}});
 	},
 	questionInfo(number)
 	{
@@ -60,17 +61,15 @@ Template.editQuizQuestions.helpers({
 	}
 });
 
-Template.editQuizQuestions.events({
-	'click #return-edit': function(){
-		var number = parseInt(FlowRouter.getParam('number'));
-		FlowRouter.go("/quiz/edit/"+number);
+Template.allQuestion.events({
+	'click #see-question': function(){
+		FlowRouter.go("/question/show/"+this.number);
 	},
-	'click .questionHolder': function(){
-		let q = Quiz.findOne({"number":parseInt(FlowRouter.getParam('number'))});
-		if ( q.questions.indexOf(this.number) > -1 )
-			Quiz.update({"_id":q._id},{"$pull":{"questions":this.number}});
-		else
-			Quiz.update({"_id":q._id},{"$push":{"questions":this.number}});
+	'click #add-question': function(){
+		FlowRouter.go("/question/add");
+	},
+	'click #edit-question': function(){
+		FlowRouter.go("/question/edit/"+this.number);
 	},
 	'click .subjectOption': function(){
 		let subject = String(this);
@@ -80,18 +79,4 @@ Template.editQuizQuestions.events({
 		else
 			Template.instance().subjectFilter.set(subject);
 	},
-	'click #go-back': function(){
-		FlowRouter.go("/quiz/edit/"+parseInt(FlowRouter.getParam('number')));
-	},
-	'click #finish-quiz': function(){
-		FlowRouter.go("/quiz/all");
-	},
 });
-
-/*
-AutoForm.addHooks(['editQuiz'],{
-	onSuccess: function(formType, result) {
-		alert("Quiz edited successfuly");
-	}
-});
-*/

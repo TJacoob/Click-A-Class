@@ -18,13 +18,14 @@ Template.newLesson.helpers({
 });
 
 Template.newLesson.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("Dashboard");
+	}
 });
 
 
-AutoForm.addHooks(['newLesson'],{
+AutoForm.addHooks(['addLesson'],{
 	onSuccess: function(formType, result) {
 		FlowRouter.go("CurrentLesson");
-		alert("Lesson added successfuly");
 	}
 });

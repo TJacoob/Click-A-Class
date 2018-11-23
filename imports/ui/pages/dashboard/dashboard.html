@@ -32,10 +32,17 @@
 		            <div class="spacer-4"></div>
 				{{/if}}
 				{{#if isReady}}
-					<button type="submit" class="btn btn-header mt-2" id="start-lesson">
-						<i class="fas fa-book fs-6 ml-3"></i>
-		                <span class="fs-6 fw-4 p-3">Começar Aula</span>
-		            </button>
+					{{#if lessonGoingOn}}
+						<button type="submit" class="btn btn-header mt-2" id="retake-lesson">
+							<i class="fas fa-book fs-6 ml-3"></i>
+			                <span class="fs-6 fw-4 p-3">Retomar Aula</span>
+			            </button>
+					{{else}}
+						<button type="submit" class="btn btn-header mt-2" id="start-lesson">
+							<i class="fas fa-book fs-6 ml-3"></i>
+			                <span class="fs-6 fw-4 p-3">Começar Aula</span>
+			            </button>
+			        {{/if}}
 		            <div class="spacer-4"></div>
 		        {{else}}
 		        	<p class="fs-1 fw-4 flh-2 mb-0">Antes de poder começar uma aula, tem de se ligar a uma sala de aula e criar uma turma.</p>

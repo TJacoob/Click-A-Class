@@ -17,7 +17,9 @@ Template.addQuestion.helpers({
 });
 
 Template.addQuestion.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("/question/all");
+	},
 });
 
 

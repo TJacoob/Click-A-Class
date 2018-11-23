@@ -30,8 +30,10 @@ import '../../ui/pages/lesson/showLesson/showLesson.js';
 import '../../ui/pages/lesson/currentLesson/currentLesson.js';
 import '../../ui/pages/navbar/navbar.js';
 import '../../ui/pages/question/addQuestion/addQuestion.js';
+import '../../ui/pages/question/allQuestion/allQuestion.js';
 import '../../ui/pages/question/editQuestion/editQuestion.js';
 import '../../ui/pages/quiz/addQuiz/addQuiz.js';
+import '../../ui/pages/quiz/allQuiz/allQuiz.js';
 import '../../ui/pages/quiz/editQuiz/editQuiz.js';
 import '../../ui/pages/quiz/editQuiz/editQuizQuestions.js';
 
@@ -186,11 +188,25 @@ FlowRouter.route('/question/edit/:number',{
 	},
 });
 
+FlowRouter.route('/question/all',{
+	name: 'AllQuestion',
+	action(){
+		BlazeLayout.render('index', {content:"allQuestion"});
+	},
+});
+
 // Questions
 FlowRouter.route('/quiz/add',{
 	name: 'AddQuiz',
 	action(){
 		BlazeLayout.render('index', {content:"addQuiz"});
+	},
+});
+
+FlowRouter.route('/quiz/all',{
+	name: 'AllQuiz',
+	action(){
+		BlazeLayout.render('index', {content:"allQuiz"});
 	},
 });
 

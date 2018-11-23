@@ -16,7 +16,9 @@ Template.addQuiz.helpers({
 });
 
 Template.addQuiz.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("/quiz/all");
+	},
 });
 
 

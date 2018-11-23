@@ -5,17 +5,19 @@
 				{{#with currentLesson}}
 					<div class="row justify-content-center align-items-center vh-10">
 						<div class="col-3 text-center">
-							<p class="fs-3 fw-4">{{teacherName}}</p>
+							<p class="fs-3 fw-4 mb-0">{{teacherName}}</p>
 						</div>
 						<div class="col-3 text-center">
-							<p class="fs-3 fw-4">{{className}}</p>
+							<p class="fs-3 fw-4 mb-0">{{className}}</p>
 						</div>
 						<div class="col-3 text-center">
-							<p class="fs-3 fw-4">{{classroom}}</p>
+							<p class="fs-3 fw-4 mb-0">{{classroom}}</p>
 						</div>
 					</div>
 					{{#if isOn}}
-						<button id="start-association" type="button">Pair Flics With Students</button>
+						<button class="btn btn-header mt-2" id="start-association">
+							<span class="fs-3 fw-4 p-3">Iniciar Emparelhamento</span>
+						</button>
 					{{/if}}
 					{{#if isAssociation}}
 						{{> flicAssociation class=classObject lesson=this.number}}
@@ -41,18 +43,12 @@
 									</div>
 								</div>
 								<hr>
-								<!--
-								<button id="start-quiz" type="button">Start Quiz</button>
-								-->
 							</div>
 							<div class="col-1"></div>
 							<div class="col-5">
 								<p class="fs-4 fw-4 mb-1">Students Present:</p>
 								{{#each associated}}
 									<span class="fs-3 fw-4 mb-1 {{isClicked}}">{{this.student}}</span>
-									<!--
-									<i id="redo-student" class="fas fa-times cp ml-2"></i>
-									-->
 									<br>
 								{{/each}}
 							</div>
