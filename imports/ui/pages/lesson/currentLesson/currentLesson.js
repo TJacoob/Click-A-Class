@@ -100,5 +100,8 @@ Template.currentLesson.events({
 		Lesson.update({"_id":l._id},{"$set":{"quiz":this.number}});
 		Lesson.update({"_id":l._id},{"$set":{"state":"quiz"}});
 	},
+	'click #finish-lesson': function(){
+		Lesson.update({"_id":this._id},{"$set":{"state":"off"}});
+	},
 });
 
