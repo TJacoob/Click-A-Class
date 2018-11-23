@@ -9,7 +9,8 @@ Meteor.publish('classroom.all', function () {
 
 Meteor.publish('classroom.own', function(){
 	let t = Teacher.findOne({"user":this.userId});
-	return Classroom.find({"teachers":t._id});
+	if ( t != undefined )
+		return Classroom.find({"teachers":t._id});
 })
 
 Meteor.publish('classroom.single', function (number) {

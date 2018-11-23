@@ -1,11 +1,35 @@
 <template name="addClass">
-	<p>Add Class</p>
-	{{#autoForm collection=Class id="addClass" type="method" template="nothing" meteormethod="newClass" validation="browser"}}
-		<fieldset>
-			{{> afQuickField name="name" class="form-input" autocomplete="off"}}
-			{{> afQuickField name="notes" class="form-input" autocomplete="off"}}
-			{{> afQuickField name="students" class="form-input" autocomplete="off"}}
-		</fieldset>
-		<button type="submit" style="float:right">Submit</button>
-	{{/autoForm}}
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-3 text-left cp hvr-clickable" id="go-back">		
+			<i class="fas fa-chevron-left mr-2"></i>
+			<span class="fs-2 fw-4 mb-0">Voltar a Turmas</span>
+		</div>
+		<div class="col-5 text-center">
+			<p class="fs-3 fw-4 mb-0">Criar Turma</p>
+		</div>
+		<div class="col-3 text-right cp">
+			
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11 px-0">
+			<hr class="m-0">
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-80 m-0 py-3">
+		<div class="col-6 px-0">
+			{{#autoForm collection=Class id="addClass" type="method" template="nothing" meteormethod="newClass" validation="browser" class="forms"}}
+				<fieldset>
+					{{> afQuickField name="name" class="form-input" autocomplete="off" label=false placeholder="Nome"}}
+					{{> afQuickField name="notes" class="form-input" autocomplete="off" label=false placeholder="Descrição"}}
+					<hr>
+					<p class="fs-1 fw-4 mb-0">Alunos:</p>
+					{{> afQuickField name="students" class="form-input-alt" autocomplete="off"}}
+					<button type="submit" class="btn btn-header mt-2" style="float:right" id="add-class">
+						<span class="fs-3 fw-4 p-3">Criar Turma</span>
+					</button>
+				</fieldset>
+			{{/autoForm}}
+		</div>
+	</div>
 </template>

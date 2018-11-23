@@ -15,15 +15,12 @@ ClassSchema = new SimpleSchema({
 	},
 	students: {
 		type: Array,
+		minCount:1,
 	},
-	'students.$': { type: String },
+	'students.$': { type: String, autoform:{placeholder:"Nome do aluno"} },
 	notes: {
 		type: String,
 		optional:true,
-		autoform:
-		{
-			rows:4,
-		},
 	},
 });
 

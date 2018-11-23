@@ -16,7 +16,7 @@ h1 {
 	box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
 }
 
-form {
+.at-form {
 	//box-sizing: border-box;
 	//width: 260px;
 	//margin: 100px auto 0;
@@ -36,6 +36,7 @@ form {
 	margin: 0.5em 0 1em 0;
 }
 
+
 input {
 	width: 100%;
 	//display: block;
@@ -48,7 +49,7 @@ input {
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	color: darken($color, 20%);
-	&:focus, &:valid {
+	&:focus {
 		box-shadow: none;
 		outline: none;
 		background-position: 0 0;

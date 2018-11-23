@@ -1,42 +1,59 @@
 <template name="allClass">
 
-	<!--
-	<div class="row justify-content-center align-items-center vh-10">
-		<div class="col-5 text-left">		
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-3 text-left">		
+			<!--
+			<i class="fas fa-chevron-left mr-2"></i>
+			<span class="fs-2 fw-4 mb-0">Ver turma</span>
+			-->
 		</div>
-		<div class="col-1"></div>
-		<div class="col-5 text-right">
-			
-			<span class="fs-2 fw-4 mb-0">Editar Perguntas</span>
-			<i class="fas fa-chevron-right ml-2"></i>
-			
+		<div class="col-5 text-center">
+			<p class="fs-3 fw-4 mb-0">Todas as turmas</p>
+		</div>
+		<div class="col-3 text-right cp hvr-clickable" id="add-class">
+			<span class="fs-2 fw-4 mb-0">Criar Turma</span>
+			<i class="fas fa-plus ml-2"></i>
 		</div>
 	</div>
--->
-	<div class="row justify-content-center align-items-start vh-90 m-0">
-		<div class="col-11 p-0 text-left">
-			<div class="spacer-3"></div>
-			<p class="fs-4 fw-4 mb-0">As suas Turmas :</p>
-			<hr>
-			<div class="row justify-content-center align-items-start m-0">
-				{{#each allClass}}
-					<div class="col-6 p-0">
-						<div class="row justify-content-center align-items-center m-0 py-2 px-1 mx-2 my-2 classHolder">
-							<div class="col-11">
-								<p class="fs-3 fw-6 flh-1 mb-0">{{name}}</p>
-								<p class="fs-1 fw-4 flh-1 mb-0">{{notes}}</p>
-							</div>
-							<div class="col-1 text-center px-1">
-								<i class="far fa-eye cp fa-fw hvr-clickable" id="see-class"></i>
-								<i class="fas fa-edit cp fa-fw hvr-clickable" id="edit-class"></i>
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11 px-0">
+			<hr class="m-0">
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-80 m-0 py-3">
+		<div class="col-11 p-0">
+			<div class="row justify-content-center align-items-start m-0"> 
+				{{#if Template.subscriptionsReady}}
+					{{#each allClass}}
+						<div class="col-6 p-0">
+							<div class="row justify-content-center align-items-center m-0 py-2 px-1 mx-2 my-2 classHolder">
+								<div class="col-11">
+									<p class="fs-3 fw-6 flh-1 mb-0">{{name}}</p>
+									<p class="fs-1 fw-4 flh-1 mb-0">{{notes}}</p>
+								</div>
+								<div class="col-1 text-center px-1">
+									<i class="far fa-eye cp fa-fw hvr-clickable" id="see-class"></i>
+									<i class="fas fa-edit cp fa-fw hvr-clickable" id="edit-class"></i>
+								</div>
 							</div>
 						</div>
-					</div>
-				{{/each}}
+					{{else}}
+						<div class="col-11 p-0 text-center align-self-start">
+							<p class="fs-3 fw-4">Ainda não criou nenhuma turma.</p>
+							<button type="button" class="btn btn-header mt-2" id="add-class">
+								<span class="fs-4 fw-4 p-3">Criar Turma</span>
+							</button>
+						</div>
+					{{/each}}
+					
+				{{else}}
+					<div class="col-11 text-center py-3">
+						<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+						<br>
+						<p class="fs-3 fw-4 mt-2 mb-0">A carregar, aguarde</p>
+					</div>		
+				{{/if}}
 			</div>
-			
-			<a class="bttn" id="allClass">Create class</a>
-			
 		</div>
 	</div>
 

@@ -21,5 +21,11 @@ Template.allClass.helpers({
 Template.allClass.events({
 	'click #see-class': function(){
 		FlowRouter.go("/class/show/"+this.number);
-	}
+	},
+	'click #add-class': function(){
+		FlowRouter.go("/class/add");
+	},
+	'click #edit-class': function(){
+		FlowRouter.go("/class/edit/"+this.number);
+	},
 });

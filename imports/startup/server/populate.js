@@ -26,7 +26,7 @@ if ( Meteor.users.find().count() == 0 )
 
 }
 
-console.log(id);
+//console.log(id);
 
 if ( Teacher.find().count() == 0)
 {
@@ -47,8 +47,12 @@ if ( Raspberries.find().count() == 0)
 if ( Classroom.find().count() == 0)
 {
 	Meteor.call("newClassroom", "0000000001c514cb", function (err, data) {
-        if(!err) console.log("Created Classroom"); else console.log(err); });
+        if(!err) {console.log("Created Classroom");} else console.log(err); });
+	let cr = Classroom.findOne();
+	let t = Teacher.findOne({"user":id});
+	Classroom.update(cr._id,{$push:{"teachers":t._id}});
 }
+
 
 /*
 if ( Class.find().count() == 0)

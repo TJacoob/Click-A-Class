@@ -114,3 +114,23 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 	color: $header;
 	transition: 0.2s;
 }
+
+/* Some Buttons */
+.btn-header
+{
+    background-color: $header;
+    border: 1px solid darken($header,10%);
+    border-radius: 0.25em;
+    color: white;
+    transition: 0.2s;
+}
+
+.btn-header:hover
+{
+    background-color: darken($header,5%);
+    border: 1px solid darken($header,15%);
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    transition: 0.2s;
+}
