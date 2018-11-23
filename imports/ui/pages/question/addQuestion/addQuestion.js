@@ -25,6 +25,6 @@ Template.addQuestion.events({
 
 AutoForm.addHooks(['addQuestion'],{
 	onSuccess: function(formType, result) {
-		alert("Question added successfuly");
+		FlowRouter.go("/question/all/");
 	}
 });

@@ -92,6 +92,11 @@ Template.currentLesson.helpers({
 
 Template.currentLesson.events({
 	'click #start-association ': function(){
+		let clicks = Click.find({});
+		clicks.forEach(function(c)
+		{
+			Click.remove({"_id":c._id});
+		});
 		Lesson.update({"_id":this._id},{"$set":{"state":"association"}});
 	},
 	'click .quiz-option': function(){
@@ -101,7 +106,8 @@ Template.currentLesson.events({
 		Lesson.update({"_id":l._id},{"$set":{"state":"quiz"}});
 	},
 	'click #finish-lesson': function(){
-		Lesson.update({"_id":this._id},{"$set":{"state":"off"}});
+		Lesson.update({"_id":this._id},{"$set":{"state":"finished"}});
+		FlowRouter.go("Dashboard")
 	},
 });
 

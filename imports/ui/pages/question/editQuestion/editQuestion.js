@@ -29,6 +29,7 @@ Template.editQuestion.events({
 
 AutoForm.addHooks(['editQuestion'],{
 	onSuccess: function(formType, result) {
-		alert("Question edited successfuly");
+		//alert("Question edited successfuly");
+		FlowRouter.go("/question/edit/"+parseInt(FlowRouter.getParam('number')));
 	}
 });

@@ -26,6 +26,13 @@ Template.newLesson.events({
 
 AutoForm.addHooks(['addLesson'],{
 	onSuccess: function(formType, result) {
+		Meteor.call("startDaemon", function (err, data) {
+	            if(err){
+	                console.log("Error: " + err);
+	            }else{
+	                console.log("Ligado com Sucesso");
+	            }
+        	});
 		FlowRouter.go("CurrentLesson");
 	}
 });
