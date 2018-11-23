@@ -1,5 +1,24 @@
 <template name="showTeacher">
-	<p>Show Teacher:</p>
+	
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-3 text-left">		
+			<span class="fs-2 fw-4 mb-0"> </span>
+		</div>
+		<div class="col-5 text-center">
+			<p class="fs-3 fw-4 mb-0">Ver Perfil</p>
+		</div>
+		<div class="col-3 text-right cp hvr-clickable" id="edit-teacher">
+			<span class="fs-2 fw-4 mb-0">Editar Perfil</span>
+			<i class="fas fa-edit ml-2"></i>
+		</div>
+	</div>
+
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11">
+			<hr class="m-0">
+		</div>
+	</div>
+
 	{{#with teacher}}
 		<p>{{username}}</p>
 		<p>{{name}}</p>

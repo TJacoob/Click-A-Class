@@ -19,5 +19,7 @@ Template.showTeacher.helpers({
 });
 
 Template.showTeacher.events({
-	
+	'click #edit-teacher': function(){
+		FlowRouter.go("/teacher/edit");
+	},
 });
