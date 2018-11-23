@@ -8,6 +8,8 @@ import { Quiz } from '/imports/api/quiz/quiz.js';
 import { Raspberries } from '/imports/api/raspberries/raspberries.js';
 import { Classroom } from '/imports/api/classroom/classroom.js';
 
+var id = "";
+
 // Create Users	
 if ( Meteor.users.find().count() == 0 )
 {
@@ -17,12 +19,14 @@ if ( Meteor.users.find().count() == 0 )
 		"email": "john@teacher.com",
 		"password": "123456",
 	};
-	var id = Accounts.createUser(u1);
+	id = Accounts.createUser(u1);
 	console.log("Created user with username: "+u1.username+" and id "+id);	
 	//Meteor.loginWithPassword(u1.username, u1.password);
 	//console.log("Logged user with username: "+u1.username);
 
 }
+
+console.log(id);
 
 if ( Teacher.find().count() == 0)
 {
