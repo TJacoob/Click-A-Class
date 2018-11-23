@@ -52,7 +52,8 @@ Template.addClassroom.events({
                 	$("#error-code").show();
                 }
             }else{
-                alert("A ligação foi efetuada com sucesso.");
+                //alert("A ligação foi efetuada com sucesso.");
+                FlowRouter.go("/classroom/show");
             }
     	}); 
 	
