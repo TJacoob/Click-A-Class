@@ -29,7 +29,7 @@ Meteor.methods({
 
 	editQuiz: function(doc){
 		let teacher = Teacher.findOne({"user":this.userId});
-		let q = Quiz.findOne({"$and":[{"_id":doc._id},{"owner":teacher}]});
+		let q = Quiz.findOne({"$and":[{"_id":doc._id},{"owner":teacher._id}]});
 		// User must own the class it's updating
 		if ( q != undefined )
 			Quiz.update(doc._id,doc.modifier);

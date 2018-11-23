@@ -39,9 +39,10 @@ LessonSchema = new SimpleSchema({
 				let t = Teacher.findOne({"user":Meteor.userId()});
 				let cr = Classroom.find({"teachers":t._id});
 				return cr.map((doc) => ({
-					label: doc.number,
+					label: doc.name,
 					value: doc.number
-				}))
+				}))	
+				
 			},
 		},
 	},
@@ -61,7 +62,7 @@ LessonSchema = new SimpleSchema({
 				let t = Teacher.findOne({"user":Meteor.userId()});
 				let c = Class.find({"number":{"$in":t.classes}});
 				return c.map((doc) => ({
-					label: doc.number,
+					label: doc.name,
 					value: doc.number
 				}));
 			},

@@ -17,6 +17,7 @@ Template.quiz.onRendered(function(){
 Template.quiz.onCreated(function(){
 	//this.waitingClick = new ReactiveVar(true);
 	this.lessonNumber = new ReactiveVar(this.data.lesson);
+	this.showAnswer = new ReactiveVar(false);
 });
 
 
@@ -63,11 +64,16 @@ Template.quiz.helpers({
 			// Check if Click type is correct answer
 			//console.log( click.type );
 			//console.log( question.correct );
-			if ( click.type == question.correct )
-				//console.log("correct Answer");
-				color = 'f-green';
+			if ( !Template.instance().showAnswer.get() )
+				return 'fa-circle-notch fa-spin';	
 			else
-				color = 'f-red';
+			{
+				if ( click.type == question.correct )
+					//console.log("correct Answer");
+					color = 'fa-check f-green';
+				else
+					color = 'fa-times f-red';
+			}
 			//setTimeout(function() { Click.remove({"_id":click._id}); }, 2000);
 			return color;
 		}
@@ -79,6 +85,11 @@ Template.quiz.helpers({
 		return association;
 	},
 	incremented(number){return number+1;},
+	showAnswer(){ return Template.instance().showAnswer.get(); },
+	isCorrect(click){
+		if ( click == this.correct && Template.instance().showAnswer.get() )
+			return 'answerCorrect';
+	},
 });
 
 Template.quiz.events({
@@ -107,7 +118,12 @@ Template.quiz.events({
 			}
 		})
 		Lesson.update({"_id":lesson._id},{"$set":{"association":association}});
+		// Reset Show Answer
+		Template.instance().showAnswer.set(false);
 		// Move to next Question
 		Lesson.update({"_id":lesson._id},{"$set":{"quizCount":lesson.quizCount+1}});
+	},
+	'click #show-answer':function(){
+		Template.instance().showAnswer.set(true);
 	},
 });

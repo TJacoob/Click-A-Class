@@ -1,12 +1,37 @@
 <template name="showClassroom">
-	<p>Show Classroom</p>
-	{{#with currentClassroom}}
-		<p>(#{{number}}) {{raspberrySerial}} - Pass: {{password}}</p>
-		<p>{{name}}</p>
-		<p>{{school}} - {{location}}</p>
-		{{#each teachers}}
-			<p>{{this}}</p>
-		{{/each}}
-	{{/with}}
-	<button type="button" id="associateClassroom">Associate a classroom with current teacher</button>
+
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-3 text-left cp hvr-clickable" id="go-back-2">		
+			<i class="fas fa-chevron-left mr-2"></i>
+			<span class="fs-2 fw-4 mb-0">Voltar a Salas</span>
+		</div>
+		<div class="col-5 text-center">
+			<p class="fs-3 fw-4 mb-0">Ver Sala</p>
+		</div>
+		<div class="col-3 text-right cp hvr-clickable" id="edit-class">
+			<span class="fs-2 fw-4 mb-0">Editar Sala</span>
+			<i class="fas fa-edit ml-2"></i>
+		</div>
+	</div>
+
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11">
+			<hr class="m-0">
+		</div>
+	</div>
+
+	<div class="row justify-content-center align-items-center m-0 p-0 vh-100">
+		<div class="col-3 text-left m-0 p-0">
+			{{#with currentClassroom}}
+			<p>(#{{number}}) {{raspberrySerial}} - Pass: {{password}}</p>
+			<p>{{name}}</p>
+			<p>{{school}} - {{location}}</p>
+			{{#each teachers}}
+				<p>{{this}}</p>
+			{{/each}}
+		{{/with}}
+		<!--<button class="submit_bttn mr-2" type="button" id="associateClassroom">Add a classroom</button>
+		--></div>
+	</div>
+
 </template>

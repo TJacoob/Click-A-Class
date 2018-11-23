@@ -18,13 +18,21 @@ Template.newLesson.helpers({
 });
 
 Template.newLesson.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("Dashboard");
+	}
 });
 
 
-AutoForm.addHooks(['newLesson'],{
+AutoForm.addHooks(['addLesson'],{
 	onSuccess: function(formType, result) {
+		Meteor.call("startDaemon", function (err, data) {
+	            if(err){
+	                console.log("Error: " + err);
+	            }else{
+	                console.log("Ligado com Sucesso");
+	            }
+        	});
 		FlowRouter.go("CurrentLesson");
-		alert("Lesson added successfuly");
 	}
 });

@@ -80,6 +80,12 @@ Template.editQuizQuestions.events({
 		else
 			Template.instance().subjectFilter.set(subject);
 	},
+	'click #go-back': function(){
+		FlowRouter.go("/quiz/edit/"+parseInt(FlowRouter.getParam('number')));
+	},
+	'click #finish-quiz': function(){
+		FlowRouter.go("/quiz/all");
+	},
 });
 
 /*

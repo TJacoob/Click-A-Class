@@ -12,3 +12,69 @@
 	box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
 	transition: 0.2s;
 }
+
+.f-numb
+{
+	color: #dbdbdb
+}
+
+.f-question
+{
+	color: $header;
+}
+
+.student
+{
+	transition: 2s !important;
+}
+
+.studentDoubt
+{
+	transition: 10s !important;
+}
+
+.studentClicked
+{
+	color: $header !important;
+	//color: white;
+	//background-color: rgba(33, 178, 166, 0.25);
+	//border-radius: 0.2em;
+	transition: 0.2s !important;
+	animation: shake 1s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+.answerHolder {
+	background-color: #F3F3F3;
+	border: 1px solid #999999;
+	border-radius: 0.5em;
+	transition: 0.2s;
+}
+
+.answerHolder:hover {
+	
+}
+
+.answerCorrect
+{
+	//color: white;
+	background-color: rgba(44, 142, 41, 0.5);
+	border: 1px solid #2c8e29;
+}

@@ -19,11 +19,14 @@ Template.editTeacher.helpers({
 });
 
 Template.editTeacher.events({
-	
+	'click #go-back-2': function(){
+		FlowRouter.go("/teacher");
+	},
 });
 
 AutoForm.addHooks(['editTeacher'],{
 	onSuccess: function(formType, result) {
-		alert("Teacher edited successfuly");
+		FlowRouter.go("/teacher/");
+		//alert("Teacher edited successfuly");
 	}
 });

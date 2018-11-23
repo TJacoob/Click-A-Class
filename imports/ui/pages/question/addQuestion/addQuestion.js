@@ -17,12 +17,14 @@ Template.addQuestion.helpers({
 });
 
 Template.addQuestion.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("/question/all");
+	},
 });
 
 
 AutoForm.addHooks(['addQuestion'],{
 	onSuccess: function(formType, result) {
-		alert("Question added successfuly");
+		FlowRouter.go("/question/all/");
 	}
 });

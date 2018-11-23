@@ -2,6 +2,8 @@
 $primary: #cc2e30;
 $secondary: #a52729;
 $black: #1c1c1c;
+$header: #21b2a6;
+$grey: #A7A5A5;
 
 /* Fonts */
 html,body
@@ -19,6 +21,7 @@ body {
 }
 .fw-6 { font-weight: 600; }
 .fw-4 { font-weight: 400; }
+.fw-3 { font-weight: 300; }
 .f-it { font-style: italic; }
 .f-black { color:#1c1c1c; }
 .f-white { color:#ffffff; }
@@ -60,7 +63,9 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .vh-20 { min-height: 20vh ; }
 .vh-15 { min-height: 15vh ; }
 .vh-10 { min-height: 10vh ; }
+.vh-9 { min-height: 9vh ; }
 .vh-5 { min-height: 5vh ; }
+.vh-1 { min-height: 1vh ; }
 
 .vw-100 { min-width: 100vw ; }
 .vw-75 { min-width: 75vw ; }
@@ -71,6 +76,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 
 /* Spacers */
 .spacer-2 { min-height: 2vh; }
+.spacer-3 { min-height: 3vh; }
 .spacer-4 { min-height: 4vh; }
 .spacer-6 { min-height: 6vh; }
 .spacer-8 { min-height: 8vh; }
@@ -82,6 +88,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .dark-red { background-color: $secondary };
 .dark-grey { background-color: #515151 };
 .light-grey { background-color: #c9c9c9 };
+.blue { background-color: $header; }
 
 /* Font Colors */
 .f-black { color: #1c1c1c };
@@ -90,6 +97,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .f-dark-red { color: $secondary };
 .f-dark-grey { color: #515151 };
 .f-light-grey { color: #c9c9c9 };
+.f-blue { color: $header; }
 
 /* Cursors */
 .cp { cursor: pointer; }
@@ -97,3 +105,33 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 
 /* Images */
 .round { border-radius: 3em; }
+
+/* Hovers */
+.hvr-clickable{
+	transition: 0.2s;
+}
+
+.hvr-clickable:hover{
+	color: $header;
+	transition: 0.2s;
+}
+
+/* Some Buttons */
+.btn-header
+{
+    background-color: $header;
+    border: 1px solid darken($header,10%);
+    border-radius: 0.25em;
+    color: white;
+    transition: 0.2s;
+}
+
+.btn-header:hover
+{
+    background-color: darken($header,5%);
+    border: 1px solid darken($header,15%);
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    transition: 0.2s;
+}

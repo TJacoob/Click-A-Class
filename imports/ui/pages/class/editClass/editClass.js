@@ -20,12 +20,15 @@ Template.editClass.helpers({
 });
 
 Template.editClass.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("/class/show/"+parseInt(FlowRouter.getParam('number')));
+	},
 });
 
 
 AutoForm.addHooks(['editClass'],{
 	onSuccess: function(formType, result) {
-		alert("Class edited successfuly");
+		FlowRouter.go("/class/show/"+parseInt(FlowRouter.getParam('number')));
+		//alert("Class edited successfuly");
 	}
 });

@@ -20,7 +20,7 @@ Template.showClassroom.helpers({
 });
 
 Template.showClassroom.events({
-	'click #associateClassroom': function(){
+	/*'click #associateClassroom': function(){
 		var password = prompt("Insert the password displayed on your raspberry");
 		Meteor.call("associateTeacher", password, function (err, data) {
             if(err){
@@ -29,5 +29,13 @@ Template.showClassroom.events({
                 alert("Associated Successfully with a room");
             }
     	});
+	},*/
+
+	'click #go-back-2': function(){
+		FlowRouter.go("/classroom/show");
+	},
+
+	'click #edit-class': function(){
+		FlowRouter.go("/classroom/edit/"+parseInt(FlowRouter.getParam('number')));
 	},
 });

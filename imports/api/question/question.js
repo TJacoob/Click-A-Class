@@ -37,7 +37,7 @@ QuestionSchema = new SimpleSchema({
 	'answers.$': { type: String },
 	correct: {
 		type: String,
-		allowedValues: [0,1,2],
+		allowedValues: ["ButtonSingleClick","ButtonDoubleClick","ButtonHold"],
 		label: "Correct Answer",
 		autoform: {
 			options: [

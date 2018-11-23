@@ -1,54 +1,87 @@
 <template name="quiz">
-	<div class="row justify-content-center align-items-center vh-10 m-0">
-		<div class="col-11 text-center">
-			<p class="fs-3 fw-4">{{quizTitle}}</p>
-			<hr>
-		</div>
-	</div>
-	<div class="row justify-content-center align-items-start vh-80 m-0">
-		<div class="col-7 text-center">
+	<div class="row justify-content-center align-items-start vh-80">
+		<div class="col-7 text-center p-0">
 			{{#with currentQuiz}}
-				{{#if hasMoreQuestions}}
-					{{#with getQuestion}}
-						<p class="fs-4 fw-6">{{question}}</p>
-						<div class="row justify-content-center align-items-center m-0">
-							<div class="col-4 text-center">
-								<p class="fs-3 fw-4 mb-0">{{single}}</p>
-								<p class="fs-1 fw-4">Um Click</p>
-							</div>
-							<div class="col-4 text-center">
-								<p class="fs-3 fw-4 mb-0">{{double}}</p>
-								<p class="fs-1 fw-4">Dois Clicks</p>
-							</div>
-							<div class="col-4 text-center">
-								<p class="fs-3 fw-4 mb-0">{{hold}}</p>
-								<p class="fs-1 fw-4">Click Longo</p>
-							</div>
-						</div>
-						<button id="next-question" type="button">Next Question</button>
-					{{/with}}
-				{{else}}
-					<p class="fs-4 fw-6">Quiz Finished</p>
-					<p class="fs-3 fw-4">Scoreboard:</p>
-					{{#each scoreboard}}
-						<p class="fs-2">{{incremented @index}}º: {{student}}</p>
-					{{/each}}
-					<button id="finish-quiz" type="button">Finish Quiz</button>
-				{{/if}}
+				<div class="row justify-content-start align-items-center vh-15 m-0">
+					<div class="col-1"></div>
+					<div class="col-7 text-left">
+						<div class="spacer-2"></div>
+						<p class="fs-3 fw-4 mb-1">{{title}}</p>
+						<hr>
+					</div>
+				</div>
+				<div class="row justify-content-center align-items-center vh-15 m-0">
+					<div class="col-10">
+						{{#if hasMoreQuestions}}
+							{{#with getQuestion}}
+								<div class="spacer-6"></div>
+								<p class="fs-4 fw-6 text-left">{{question}}</p>
+								<div class="row justify-content-center align-items-center mx-0 mb-3">
+									<div class="col-3 text-center answerHolder p-2 {{isCorrect 'ButtonSingleClick'}}">
+										<p class="fs-3 fw-6 mb-0">{{single}}</p>
+										<p class="fs-1 fw-4 mb-0">Um Click</p>
+									</div>
+									<div class="col-1"></div>
+									<div class="col-3 text-center answerHolder p-2 {{isCorrect 'ButtonDoubleClick'}}">
+										<p class="fs-3 fw-6 mb-0">{{double}}</p>
+										<p class="fs-1 fw-4 mb-0">Dois Clicks</p>
+									</div>
+									<div class="col-1"></div>
+									<div class="col-3 text-center answerHolder p-2 {{isCorrect 'ButtonHold'}}">
+										<p class="fs-3 fw-6 mb-0">{{hold}}</p>
+										<p class="fs-1 fw-4 mb-0">Click Longo</p>
+									</div>
+								</div>
+								<div class="spacer-4"></div>
+								{{#if showAnswer}}
+									<button class="btn btn-header mt-2" id="next-question">
+										<span class="fs-3 fw-4 p-3">Próxima Questão</span>
+									</button>
+								{{else}}
+									<button class="btn btn-header mt-2" id="show-answer">
+										<span class="fs-3 fw-4 p-3">Mostrar Resposta</span>
+									</button>
+								{{/if}}
+							{{/with}}
+						{{else}}
+							<p class="fs-4 fw-6">Quiz Finished</p>
+							<p class="fs-3 fw-4">Scoreboard:</p>
+							{{#each scoreboard}}
+								<p class="fs-2">{{incremented @index}}º: {{student}}</p>
+							{{/each}}
+							<button class="btn btn-header mt-2" id="finish-quiz">
+								<span class="fs-3 fw-4 p-3">Terminar Questão</span>
+							</button>
+						{{/if}}
+					</div>
+				</div>
 			{{/with}}
 		</div>
-		<div class="col-1"></div>
-		<div class="col-3 text-center">
-			{{#each associated}}
-				<span class="fs-3 fw-4 mb-1 {{guess}}">{{this.student}}</span>
-				<!--
-				<i id="redo-student" class="fas fa-times cp ml-2"></i>
-				-->
-				<br>
-			{{/each}}
+		<div class="col-5 p-0 text-left" style="border-left: 1px solid #dbdbdb">
+			<div class="row justify-content-start align-items-center vh-15 m-0">
+				<div class="col-1"></div>
+				<div class="col-7 text-left">
+					<div class="spacer-2"></div>
+					<p class="fs-3 fw-4 mb-1">Alunos na Sala:</p>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center align-items-start vh-65 m-0">
+				<div class="col-10 p-0">
+					{{#each associated}}
+						<div class="row justify-content-center align-items-center mx-0 my-1">
+							<div class="col-1 text-left">
+								<i class="fas {{guess}}"></i>
+							</div>
+							<div class="col-11 text-left student">
+								<span class="fs-3 fw-4 mb-1">{{this.student}}</span>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+			</div>
 		</div>
 	</div>
-	
 </template>
 
 <!--

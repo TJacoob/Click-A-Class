@@ -16,28 +16,34 @@ import '../../ui/pages/signup/signup.js';
 import '../../ui/pages/dashboard/dashboard.js';
 import '../../ui/pages/not_found/not_found.js';
 import '../../ui/pages/class/addClass/addClass.js';
+import '../../ui/pages/class/allClass/allClass.js';
 import '../../ui/pages/class/editClass/editClass.js';
 import '../../ui/pages/class/showClass/showClass.js';
 import '../../ui/pages/teacher/editTeacher/editTeacher.js';
 import '../../ui/pages/teacher/showTeacher/showTeacher.js';
 import '../../ui/pages/classroom/editClassroom/editClassroom.js';
 import '../../ui/pages/classroom/showClassroom/showClassroom.js';
+import '../../ui/pages/classroom/allClassroom/allClassroom.js';
+import '../../ui/pages/classroom/addClassroom/addClassroom.js';
 import '../../ui/pages/lesson/newLesson/newLesson.js';
 import '../../ui/pages/lesson/showLesson/showLesson.js';
 import '../../ui/pages/lesson/currentLesson/currentLesson.js';
 import '../../ui/pages/navbar/navbar.js';
 import '../../ui/pages/question/addQuestion/addQuestion.js';
+import '../../ui/pages/question/allQuestion/allQuestion.js';
 import '../../ui/pages/question/editQuestion/editQuestion.js';
 import '../../ui/pages/quiz/addQuiz/addQuiz.js';
+import '../../ui/pages/quiz/allQuiz/allQuiz.js';
 import '../../ui/pages/quiz/editQuiz/editQuiz.js';
 import '../../ui/pages/quiz/editQuiz/editQuizQuestions.js';
+
 
 // Set up all routes in the app
 FlowRouter.route('/', {
 	name: 'Index',
 	action() {
 		//BlazeLayout.render('index');
-		BlazeLayout.render('index', {content:"home"});
+		BlazeLayout.render('home');
 	},
 });
 
@@ -45,14 +51,14 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
 	name: 'Login',
 	action() {
-		BlazeLayout.render('index', {content:"login"});
+		BlazeLayout.render("login");
 	},
 });
 
 FlowRouter.route('/signup', {
 	name: 'Signup',
 	action() {
-		BlazeLayout.render('index', {content:"signup"});
+		BlazeLayout.render("signup");
 	},
 });
 
@@ -73,6 +79,13 @@ FlowRouter.route('/dashboard',{
 });
 
 // Class
+FlowRouter.route('/class/show/',{
+	name: 'AllClass',
+	action(){
+		BlazeLayout.render('index', {content:"allClass"});
+	},
+});
+
 FlowRouter.route('/class/show/:number',{
 	name: 'ShowClass',
 	action(){
@@ -111,7 +124,7 @@ FlowRouter.route('/teacher/edit',{
 
 // Classroom
 FlowRouter.route('/classroom/show/:number',{
-	name: 'ShowClass',
+	name: 'ShowClassroom',
 	action(){
 		BlazeLayout.render('index', {content:"showClassroom"});
 	},
@@ -121,6 +134,20 @@ FlowRouter.route('/classroom/edit/:number',{
 	name: 'EditClass',
 	action(){
 		BlazeLayout.render('index', {content:"editClassroom"});
+	},
+});
+
+FlowRouter.route('/classroom/show',{
+	name: 'AllClassroom',
+	action(){
+		BlazeLayout.render('index', {content:"allClassroom"});
+	},
+});
+
+FlowRouter.route('/classroom/add',{
+	name: 'AddClassroom',
+	action(){
+		BlazeLayout.render('index', {content:"addClassroom"});
 	},
 });
 
@@ -161,11 +188,25 @@ FlowRouter.route('/question/edit/:number',{
 	},
 });
 
+FlowRouter.route('/question/all',{
+	name: 'AllQuestion',
+	action(){
+		BlazeLayout.render('index', {content:"allQuestion"});
+	},
+});
+
 // Questions
 FlowRouter.route('/quiz/add',{
 	name: 'AddQuiz',
 	action(){
 		BlazeLayout.render('index', {content:"addQuiz"});
+	},
+});
+
+FlowRouter.route('/quiz/all',{
+	name: 'AllQuiz',
+	action(){
+		BlazeLayout.render('index', {content:"allQuiz"});
 	},
 });
 

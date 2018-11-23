@@ -1,10 +1,37 @@
 <template name="showTeacher">
-	<p>Show Teacher:</p>
-	{{#with teacher}}
-		<p>{{username}}</p>
-		<p>{{name}}</p>
-		<p>{{school}}</p>
-		<p>{{subject}}</p>
-		{{nicknames}}
-	{{/with}}
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-3 text-left">		
+			<span class="fs-2 fw-4 mb-0"> </span>
+		</div>
+		<div class="col-5 text-center">
+			<p class="fs-3 fw-4 mb-0">Ver Perfil</p>
+		</div>
+		<div class="col-3 text-right cp hvr-clickable" id="edit-teacher">
+			<span class="fs-2 fw-4 mb-0">Editar Perfil</span>
+			<i class="fas fa-edit ml-2"></i>
+		</div>
+	</div>
+
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11 p-0">
+			<hr class="m-0">
+		</div>
+	</div>
+
+	<div class="row justify-content-center align-items-start vh-80 m-0">
+		<div class="col-11 text-left p-0">
+			<div class="spacer-4"></div>
+			{{#with teacher}}			
+				<p class="fs-5 fw-6 mb-1">
+					{{name}}
+					<span class="fw-4">({{username}})</span>
+				</p>
+				<p class="fs-3 fw-4 mb-1">{{school}}</p>
+				<div class="spacer-4"></div>
+				<p class="fs-1 fw-4 mb-1">Disciplinas:</p>
+				<p class="fs-3 fw-4 mb-1">{{subject}}</p>
+			{{/with}}
+		</div>
+	</div>
+	
 </template>

@@ -1,0 +1,67 @@
+<template name="allQuestion">
+
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-3 text-left">		
+			<!--
+			<i class="fas fa-chevron-left mr-2"></i>
+			<span class="fs-2 fw-4 mb-0">Ver turma</span>
+			-->
+		</div>
+		<div class="col-5 text-center">
+			<p class="fs-3 fw-4 mb-0">Todas as questões</p>
+		</div>
+		<div class="col-3 text-right cp hvr-clickable" id="add-question">
+			<span class="fs-2 fw-4 mb-0">Criar Questão</span>
+			<i class="fas fa-plus ml-2"></i>
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11 px-0">
+			<hr class="m-0">
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-80 m-0 py-3">
+		<div class="col-8 p-0">
+			<div class="row justify-content-center align-items-start m-0"> 
+				{{#if Template.subscriptionsReady}}
+					<div class="col-11 text-center">
+						<div class="row justify-content-center align-items-center vh-5 m-0">
+							<div class="col-2 text-center">
+								<!-- <i class="fas fa-filter"></i> -->
+								<span class="fs-1 fw-4">Filtrar:</span> 
+							</div>
+							{{#each subjectAvailable}}
+								<div class="col-2 mx-1 subjectOption text-center cp back-{{this}} {{isActiveFilter}}">
+									<i class="{{subjectIcon this}} f-white"></i>
+								</div>
+							{{/each}}
+						</div>
+						<hr>
+						{{#each questionsAvailable}}
+							<div class="row justify-content-center align-items-center questionHolder my-2 cp m-0 vh-5">
+								<div class="col-2 text-center iconHolder back-{{subject}}">
+									<i class="{{subjectIcon this.subject}} f-white"></i>
+								</div>
+								<div class="col-9 text-left">
+									<p class="fs-2 fw-4 mb-0">{{question}}</p>
+								</div>
+								<div class="col-1 text-center hvr-clickable cp">
+									<i class="fas fa-edit" id="edit-question"></i>
+								</div>
+							</div>
+						{{else}}
+							<p class="fs-1 fw-4 text-center">Sem mais perguntas deste tópico</p>
+						{{/each}}
+					</div>
+				{{else}}
+					<div class="col-11 text-center py-3">
+						<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+						<br>
+						<p class="fs-3 fw-4 mt-2 mb-0">A carregar, aguarde</p>
+					</div>		
+				{{/if}}
+			</div>
+		</div>
+	</div>
+
+</template>

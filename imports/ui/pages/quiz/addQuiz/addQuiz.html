@@ -1,13 +1,43 @@
 <template name="addQuiz">
-	<div class="row justify-content-center align-items-center vh-50">
-		<div class="col-12">			
-			{{#autoForm collection=Quiz id="addQuiz" type="method" template="nothing" meteormethod="newQuiz" validation="browser"}}
-				<fieldset>
-					{{> afQuickField name="title" class="form-input" autocomplete="off"}}
-					{{> afQuickField name="desc" class="form-input" autocomplete="off"}}
-				</fieldset>
-				<button type="submit" style="float:right">Submit</button>
-			{{/autoForm}}
+	<div class="row justify-content-center align-items-center vh-9">
+		<div class="col-3 text-left cp hvr-clickable" id="go-back">		
+			<i class="fas fa-chevron-left mr-2"></i>
+			<span class="fs-2 fw-4 mb-0">Voltar Atrás</span>
+		</div>
+		<div class="col-5 text-center">
+			<p class="fs-3 fw-4 mb-0">Criar Questionário</p>
+		</div>
+		<div class="col-3 text-right">
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-1 m-0">
+		<div class="col-11 px-0">
+			<hr class="m-0">
+		</div>
+	</div>
+	<div class="row justify-content-center align-items-start vh-80 m-0 py-3">
+		<div class="col-11 p-0">
+			<div class="row justify-content-center align-items-start m-0"> 
+				{{#if Template.subscriptionsReady}}
+					<div class="col-6">
+						{{#autoForm collection=Quiz id="addQuiz" type="method" template="nothing" meteormethod="newQuiz" validation="browser"}}
+							<fieldset>
+								{{> afQuickField name="title" class="form-input" autocomplete="off"}}
+								{{> afQuickField name="desc" class="form-input" autocomplete="off"}}
+							</fieldset>
+							<button type="submit" class="btn btn-header mt-2" style="float:right" id="add-class">
+								<span class="fs-3 fw-4 p-3">Criar Questionário</span>
+							</button>
+						{{/autoForm}}
+					</div>
+				{{else}}
+					<div class="col-11 text-center py-3">
+						<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+						<br>
+						<p class="fs-3 fw-4 mt-2 mb-0">A carregar, aguarde</p>
+					</div>		
+				{{/if}}
+			</div>
 		</div>
 	</div>
 </template>

@@ -20,12 +20,26 @@ Template.editClassroom.helpers({
 });
 
 Template.editClassroom.events({
-	
+	'click #go-back': function(){
+		//FlowRouter.go("/classroom/show/"+parseInt(FlowRouter.getParam('number')));
+		FlowRouter.go("/classroom/show/");
+	},
+
+	'click #associateClassroom': function(){
+		var password = prompt("Insert the password displayed on your raspberry");
+		Meteor.call("associateTeacher", password, function (err, data) {
+            if(err){
+                console.log("Error: " + err);
+            }else{
+                alert("Associated Successfully with a room");
+            }
+    	});
+	},
 });
 
 
 AutoForm.addHooks(['editClassroom'],{
 	onSuccess: function(formType, result) {
-		alert("Classroom edited successfuly");
+		FlowRouter.go("/classroom/show")
 	}
 });

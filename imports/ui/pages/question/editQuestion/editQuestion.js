@@ -21,12 +21,15 @@ Template.editQuestion.helpers({
 });
 
 Template.editQuestion.events({
-	
+	'click #go-back': function(){
+		FlowRouter.go("/question/all");
+	},
 });
 
 
 AutoForm.addHooks(['editQuestion'],{
 	onSuccess: function(formType, result) {
-		alert("Question edited successfuly");
+		//alert("Question edited successfuly");
+		FlowRouter.go("/question/edit/"+parseInt(FlowRouter.getParam('number')));
 	}
 });

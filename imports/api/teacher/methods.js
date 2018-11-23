@@ -13,6 +13,7 @@ Meteor.methods({
 				"user": userId,
 				//"nicknames":[{"test":"test"},{"test2":"test2"}],
 				"nicknames":[],
+				"classes": [],
 			};
 			Teacher.insert(t);
 			console.log("Associated a new Teacher profile with the user: "+t.user);

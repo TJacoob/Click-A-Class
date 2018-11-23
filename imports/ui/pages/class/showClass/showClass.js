@@ -20,5 +20,10 @@ Template.showClass.helpers({
 });
 
 Template.showClass.events({
-	
+	'click #edit-class': function(){
+		FlowRouter.go("/class/edit/"+parseInt(FlowRouter.getParam('number')));
+	},
+	'click #go-back': function(){
+		FlowRouter.go("/class/show");
+	},
 });

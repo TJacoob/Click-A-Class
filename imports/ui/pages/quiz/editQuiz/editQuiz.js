@@ -25,11 +25,15 @@ Template.editQuiz.events({
 		var number = parseInt(FlowRouter.getParam('number'));
 		FlowRouter.go("/quiz/edit/"+number+"/questions");
 	},
+	'click #go-back': function(){
+		FlowRouter.go("/quiz/all");
+	},
 });
 
 
 AutoForm.addHooks(['editQuiz'],{
 	onSuccess: function(formType, result) {
-		alert("Quiz edited successfuly");
+		var number = parseInt(FlowRouter.getParam('number'));
+		FlowRouter.go("/quiz/edit/"+number+"/questions");
 	}
 });

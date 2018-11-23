@@ -5,6 +5,7 @@ import './quiz/quiz.js';
 import { Teacher } from '/imports/api/teacher/teacher.js';
 import { Lesson } from '/imports/api/lesson/lesson.js';
 import { Class } from '/imports/api/class/class.js';
+import { Classroom } from '/imports/api/classroom/classroom.js';
 import { Click } from '/imports/api/click/click.js';
 import { Quiz } from '/imports/api/quiz/quiz.js';
 
@@ -48,6 +49,9 @@ Template.currentLesson.helpers({
 	className(){
 		return Class.findOne({"number":this.class}).name;
 	},
+	classroomName(){
+		return Classroom.findOne({"number":this.classroom}).name;
+	},
 	isOn(){
 		return this.state == "on";
 	},
@@ -75,16 +79,24 @@ Template.currentLesson.helpers({
 		if ( click != undefined)
 		{
 			setTimeout(function() { Click.remove({"_id":click._id}); }, 2000);
-			return "f-red";
+			return "studentClicked";
 		}
 	},
 	quizes(){
 		return Quiz.find({});
 	},
+	today(){
+		return new Date().toJSON().slice(0,10).replace(/-/g,'/');
+	},
 });
 
 Template.currentLesson.events({
 	'click #start-association ': function(){
+		let clicks = Click.find({});
+		clicks.forEach(function(c)
+		{
+			Click.remove({"_id":c._id});
+		});
 		Lesson.update({"_id":this._id},{"$set":{"state":"association"}});
 	},
 	'click .quiz-option': function(){
@@ -92,6 +104,10 @@ Template.currentLesson.events({
 		Lesson.update({"_id":l._id},{"$set":{"quizCount":0}});
 		Lesson.update({"_id":l._id},{"$set":{"quiz":this.number}});
 		Lesson.update({"_id":l._id},{"$set":{"state":"quiz"}});
+	},
+	'click #finish-lesson': function(){
+		Lesson.update({"_id":this._id},{"$set":{"state":"finished"}});
+		FlowRouter.go("Dashboard")
 	},
 });
 
