@@ -26,6 +26,7 @@ Template.editTeacher.events({
 
 AutoForm.addHooks(['editTeacher'],{
 	onSuccess: function(formType, result) {
-		alert("Teacher edited successfuly");
+		FlowRouter.go("/teacher/show");
+		//alert("Teacher edited successfuly");
 	}
 });

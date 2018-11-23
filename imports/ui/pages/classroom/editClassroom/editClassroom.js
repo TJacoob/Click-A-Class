@@ -20,8 +20,9 @@ Template.editClassroom.helpers({
 });
 
 Template.editClassroom.events({
-	'click #go-back-2': function(){
-		FlowRouter.go("/classroom/show/"+parseInt(FlowRouter.getParam('number')));
+	'click #go-back': function(){
+		//FlowRouter.go("/classroom/show/"+parseInt(FlowRouter.getParam('number')));
+		FlowRouter.go("/classroom/show/");
 	},
 
 	'click #associateClassroom': function(){
@@ -39,6 +40,6 @@ Template.editClassroom.events({
 
 AutoForm.addHooks(['editClassroom'],{
 	onSuccess: function(formType, result) {
-		alert("Classroom edited successfuly");
+		FlowRouter.go("/classroom/show")
 	}
 });

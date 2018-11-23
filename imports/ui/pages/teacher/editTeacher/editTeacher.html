@@ -2,7 +2,7 @@
 	<div class="row justify-content-center align-items-center vh-9">
 		<div class="col-3 text-left cp hvr-clickable" id="go-back-2">		
 			<i class="fas fa-chevron-left mr-2"></i>
-			<span class="fs-2 fw-4 mb-0">Voltar </span>
+			<span class="fs-2 fw-4 mb-0">Cancelar Alterações</span>
 		</div>
 		<div class="col-5 text-center">
 			<p class="fs-3 fw-4 mb-0">Editar Perfil</p>
@@ -13,20 +13,23 @@
 	</div>
 
 	<div class="row justify-content-center align-items-start vh-1 m-0">
-		<div class="col-11">
+		<div class="col-11 p-0">
 			<hr class="m-0">
 		</div>
 	</div>
 
-	<div class="row justify-content-center align-items-center m-0 p-0 vh-50">
-		<div class="col-4 text-left m-0 p-0">
+	<div class="row justify-content-center align-items-center m-0 p-0 vh-80">
+		<div class="col-8 text-left m-0 p-0">
 			{{#autoForm collection=Teacher id="editTeacher" doc=currentTeacher type="method-update" template="nothing" meteormethod="editTeacher" validation="browser"}}
 				<fieldset>
 					{{> afQuickField name="name" label=false placeholder="Nome" class="form-input" autocomplete="off"}}
 					{{> afQuickField name="school" label=false placeholder="Escola" class="form-input" autocomplete="off"}}
 					{{> afQuickField name="subject" label=false placeholder="Disciplina" class="form-input" autocomplete="off"}}
 				</fieldset>
-				<button class="submit_bttn mr-2" type="submit" style="float:right">Submit</button>
+				<div class="spacer-4"></div>
+				<button type="submit" class="btn btn-header mt-2" style="float:right" id="connect-pi">
+                    <span class="fs-3 fw-4 p-3">Guardar Informação</span>
+                </button>
 			{{/autoForm}}
 		</div>
 	</div>

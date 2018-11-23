@@ -1,47 +1,74 @@
 <template name="allClassroom">
 	<div class="row justify-content-center align-items-center vh-9">
-		<div class="col-3 text-left " id="go-back-2">		
-			<div class="spacer-3"></div>
-			<span class="fs-4 fw-4 mb-0">As suas salas de aula</span>
+		<div class="col-3 text-left">		
 		</div>
 		<div class="col-5 text-center">
-			<p class="fs-3 fw-4 mb-0"> </p>
+			<p class="fs-3 fw-4 mb-0">Salas de Aula</p>
 		</div>
 		<div class="col-3 text-right cp hvr-clickable" id="add-classroom">
-			<div class="spacer-3"></div>
+			<span class="fs-2 fw-4 mb-0">Ligar a uma Sala de Aula</span>
 			<i class="fas fa-plus ml-2"></i>
-			<span class="fs-4 fw-4 mb-0">  </span>
-			<span class="fs-4 fw-4 mb-0"> Adicionar sala de aula</span>
 		</div>
 	</div>
-
 	<div class="row justify-content-center align-items-start vh-1 m-0">
-		<div class="col-11">
+		<div class="col-11 px-0">
 			<hr class="m-0">
 		</div>
 	</div>
 
 	<div class="row justify-content-center align-items-start vh-90 m-0">
 		<div class="col-11 p-0 text-left">
-
 			<div class="row justify-content-center align-items-start m-0">
-				{{#each allClassroom}}
-				<div class="col-6 p-0">
-					<div class="row justify-content-center align-items-center m-0 py-2 px-1 mx-2 my-2 classHolder">
-						<div class="col-11">
-							<p class="fs-3 fw-6 flh-1 mb-0">{{raspberrySerial}}</p>
-							<p class="fs-3 fw-6 flh-1 mb-0">{{Access Password}}</p>
-							<p class="fs-3 fw-6 flh-1 mb-0">{{Name}}</p>
-							<p class="fs-1 fw-4 flh-1 mb-0">{{Location}}</p>
-							<p class="fs-3 fw-6 flh-1 mb-0">{{School}}</p>
-						</div>
-						<div class="col-1 text-center px-1">
-							<i class="far fa-eye cp fa-fw hvr-clickable" id="see-class"></i>
-							<i class="fas fa-edit cp fa-fw hvr-clickable" id="edit-class"></i>
+				{{#if Template.subscriptionsReady}}
+					{{#each allClassroom}}
+					<div class="col-6 p-0">
+						<div class="row justify-content-center align-items-center m-0 py-2 px-1 mx-2 my-2 classHolder">
+							<div class="col-11">								
+								{{#if hasInfo}}
+									<p class="fs-2 fw-4 flh-2 mb-0">
+										{{name}}
+										{{#if isConnected}}
+											<i class="fas fa-circle f-green fa-xs ml-2 " title="Ligado"></i>
+										{{else}}
+											<i class="fas fa-circle f-red fa-xs ml-2" title="Desligado"></i>
+										{{/if}}
+									</p>
+									<p class="fs-2 fw-4 flh-2 mb-0">{{location}} - {{school}}</p>
+								{{else}}
+									<p class="fs-1 fw-4 flh-2 mb-0">
+										Número de Série: {{raspberrySerial}}
+										{{#if isConnected}}
+											<i class="fas fa-circle f-green fa-xs ml-2 " title="Ligado"></i>
+										{{else}}
+											<i class="fas fa-circle f-red fa-xs ml-2" title="Desligado"></i>
+										{{/if}}
+									</p>
+									<p class="fs-1 fw-4 flh-2 mb-0">Esta sala ainda não tem informações, clique para editar</p>
+								{{/if}}
+								<!--
+								<p class="fs-3 fw-6 flh-1 mb-0">{{raspberrySerial}}</p>
+								<p class="fs-3 fw-6 flh-1 mb-0">{{password}}</p>
+								<p class="fs-3 fw-6 flh-1 mb-0">{{name}}</p>
+								<p class="fs-1 fw-4 flh-1 mb-0">{{location}}</p>
+								<p class="fs-3 fw-6 flh-1 mb-0">{{school}}</p>
+								-->
+							</div>
+							<div class="col-1 text-center px-1">
+								<!--
+								<i class="far fa-eye cp fa-fw hvr-clickable" id="see-classroom"></i>
+								-->
+								<i class="fas fa-edit cp fa-fw hvr-clickable" id="edit-classroom"></i>
+							</div>
 						</div>
 					</div>
-				</div>
-				{{/each}}
+					{{/each}}
+				{{else}}
+					<div class="col-11 text-center py-3">
+						<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+						<br>
+						<p class="fs-3 fw-4 mt-2 mb-0">A carregar, aguarde</p>
+					</div>		
+				{{/if}}
 			</div>
 		<!--
 		<a class="bttn" id="allClass">Create class</a>

@@ -15,7 +15,10 @@ Template.showTeacher.helpers({
 	},
 	username(){
 		return Meteor.users.findOne({"_id":Meteor.userId()}).username;
-	}
+	},
+	missingInfo(){
+		return ( this.name == undefined || this.school == undefined || this.subject == undefined  );
+	},
 });
 
 Template.showTeacher.events({
