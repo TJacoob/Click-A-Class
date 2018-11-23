@@ -65,14 +65,14 @@ Template.quiz.helpers({
 			//console.log( click.type );
 			//console.log( question.correct );
 			if ( !Template.instance().showAnswer.get() )
-				return 'f-yellow';	
+				return 'fa-circle-notch fa-spin';	
 			else
 			{
 				if ( click.type == question.correct )
 					//console.log("correct Answer");
-					color = 'f-green';
+					color = 'fa-check f-green';
 				else
-					color = 'f-red';
+					color = 'fa-times f-red';
 			}
 			//setTimeout(function() { Click.remove({"_id":click._id}); }, 2000);
 			return color;
