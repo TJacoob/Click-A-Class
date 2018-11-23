@@ -71,7 +71,7 @@ Template.flicAssociation.helpers({
 		if ( click != undefined)
 		{
 			setTimeout(function() { Click.remove({"_id":click._id}); }, 2000);
-			return "f-red";
+			return "studentClicked";
 		}
 	},
 });

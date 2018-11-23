@@ -88,7 +88,7 @@ Template.quiz.helpers({
 	showAnswer(){ return Template.instance().showAnswer.get(); },
 	isCorrect(click){
 		if ( click == this.correct && Template.instance().showAnswer.get() )
-			return 'f-green';
+			return 'answerCorrect';
 	},
 });
 
