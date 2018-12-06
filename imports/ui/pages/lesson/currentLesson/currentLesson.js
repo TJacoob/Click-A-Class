@@ -67,6 +67,9 @@ Template.currentLesson.helpers({
 	isQuiz(){
 		return this.state == "quiz";	
 	},
+	isQuestion(){
+		return this.state == "quick-question";	
+	},
 	// Idle State Helpers
 	associated(){
 		let list = this.association;
@@ -91,6 +94,27 @@ Template.currentLesson.helpers({
 	today(){
 		return new Date().toJSON().slice(0,10).replace(/-/g,'/');
 	},
+	favoriteQuestion(){
+		let t = Teacher.findOne({"user":Meteor.userId()});
+		return Question.find({"favoriteUsers":t._id},{sort:{"votes":-1}});
+	},
+	isFavorite(){
+		let t = Teacher.findOne({"user": Meteor.userId()});
+		if ( this.favoriteUsers.indexOf(t._id) > -1 )
+			return 'fas';
+		else
+			return 'far';
+	},
+	subjectIcon(sub)
+	{
+		if ( sub == 'history') return "fas fa-landmark";
+		if ( sub == 'science') return "fas fa-flask";
+		if ( sub == 'maths') return "fas fa-calculator";
+		if ( sub == 'literature') return "fas fa-book";
+	},
+	quickNumber(){
+		return 1;
+	},
 });
 
 Template.currentLesson.events({
@@ -110,7 +134,21 @@ Template.currentLesson.events({
 	},
 	'click #finish-lesson': function(){
 		Lesson.update({"_id":this._id},{"$set":{"state":"finished"}});
-		FlowRouter.go("Dashboard")
+		FlowRouter.go("Dashboard");
+	},
+	'click #favorite-question': function()
+	{
+		Meteor.call("toggleFavorite", this.number , function (err, data) {
+	        if(err){
+	            //console.log("Error: " + err);
+	        }else{
+	            //console.log("Success, created!");
+	        }
+		});
+	},
+	'click .quick-question': function(){
+		let l = Lesson.findOne({});
+		Lesson.update({"_id":l._id},{"$set":{"state":"quick-question"}});
 	},
 });
 

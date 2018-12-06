@@ -26,7 +26,7 @@ LessonSchema = new SimpleSchema({
 	state: {			// State of class, "on", "off", "quiz", "questions", "break", ...
 		type: String,
 		label: "State",
-		allowedValues: ['on', 'idle', 'quiz', 'finished', 'association'],
+		allowedValues: ['on', 'idle', 'quiz', 'finished', 'association','quick-question'],
 		optional: true,
 	},
 	// Display Only The Classrooms the User has access

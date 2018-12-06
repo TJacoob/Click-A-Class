@@ -53,7 +53,7 @@
 						{{/if}}
 						{{#if isQuestion}}
 							<div class="col-12">
-								{{> question lesson=this.number}}
+								{{> question questionNumber=quickNumber}}
 							</div>
 						{{/if}}
 						{{#if isIdle}}
@@ -90,7 +90,7 @@
 									<div class="col-1"></div>
 									<div class="col-11 text-left">
 										{{#each favoriteQuestion}}
-											<div class="row justify-content-center align-items-center questionHolder my-2 m-0 vh-5">
+											<div class="row justify-content-center align-items-center questionHolder my-2 m-0 vh-5 quick-question cp">
 												<div class="col-2 text-center iconHolder back-{{subject}}">
 													<i class="{{subjectIcon this.subject}} f-white"></i>
 												</div>

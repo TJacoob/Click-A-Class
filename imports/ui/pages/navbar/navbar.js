@@ -43,4 +43,7 @@ Template.navbar.events({
 	'click #quizes': function( event, template ) {
 		FlowRouter.go("AllQuiz");
 	},
+	'click #quizes': function( event, template ) {
+		FlowRouter.go("Logout");
+	},
 });
