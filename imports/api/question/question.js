@@ -46,7 +46,30 @@ QuestionSchema = new SimpleSchema({
 				{label: "C", value: "ButtonHold"},
 			]
 		},
-	}
+	},
+	votes: {
+		type: Number,
+		optional: true,
+	},
+	upvotesUsers: {
+		type: Array,
+		optional: true,
+	},
+	'upvotesUsers.$': { type: String },
+	downvotesUsers: {
+		type: Array,
+		optional: true,
+	},
+	'downvotesUsers.$': { type: String },
+	owner: {
+		type: String,
+		optional: true,
+	},
+	'favoriteUsers.$': { type: String },
+	favoriteUsers: {
+		type: Array,
+		optional: true,
+	},
 	/*
 
 	answerSingle: {

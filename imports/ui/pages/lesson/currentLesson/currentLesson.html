@@ -51,9 +51,14 @@
 								{{> quiz lesson=this.number}}
 							</div>
 						{{/if}}
+						{{#if isQuestion}}
+							<div class="col-12">
+								{{> question lesson=this.number}}
+							</div>
+						{{/if}}
 						{{#if isIdle}}
 							<div class="col-7 p-0 text-left">
-								<div class="row justify-content-start align-items-center vh-15 m-0">
+								<div class="row justify-content-start align-items-center vh-10 m-0">
 									<div class="col-1"></div>
 									<div class="col-7 text-left">
 										<div class="spacer-2"></div>
@@ -61,12 +66,43 @@
 										<hr class="mb-2">
 									</div>
 								</div>
-								<div class="row justify-content-center align-items-start vh-50 m-0">
-									{{#each quizes}}
-										<div class="col-5 m-1 quiz-option cp text-center">
-											<p class="fs-2 fw-4 mb-0">{{title}}</p>
+								<div class="row justify-content-start align-items-start vh-20 m-0">
+									<div class="col-1"></div>
+									<div class="col-11 text-left">
+										<div class="row justify-content-start align-items-start m-0">
+											{{#each quizes}}
+												<div class="col-5 m-2 quiz-option cp text-center">
+													<p class="fs-2 fw-4 mb-0">{{title}}</p>
+												</div>
+											{{/each}}
 										</div>
-									{{/each}}
+									</div>
+								</div>
+								<div class="row justify-content-start align-items-center vh-10 m-0">
+									<div class="col-1"></div>
+									<div class="col-7 text-left">
+										<div class="spacer-2"></div>
+										<p class="fs-3 fw-4 mb-1">Pergunta Rápida</p>
+										<hr class="mb-2">
+									</div>
+								</div>
+								<div class="row justify-content-start align-items-start vh-20 m-0">
+									<div class="col-1"></div>
+									<div class="col-11 text-left">
+										{{#each favoriteQuestion}}
+											<div class="row justify-content-center align-items-center questionHolder my-2 m-0 vh-5">
+												<div class="col-2 text-center iconHolder back-{{subject}}">
+													<i class="{{subjectIcon this.subject}} f-white"></i>
+												</div>
+												<div class="col-8 text-left">
+													<p class="fs-2 fw-4 mb-0">{{question}}</p>
+												</div>
+												<div class="col-2 text-right">
+													<i class="{{isFavorite}} fa-star f-yellow cp ml-2 hvr-favorite" id="favorite-question"></i>
+												</div>
+											</div>
+										{{/each}}
+									</div>
 								</div>
 								<div class="row justify-content-center align-items-start vh-15 m-0">
 									<div class="col-10 text-center">

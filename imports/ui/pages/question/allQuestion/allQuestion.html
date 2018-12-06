@@ -38,16 +38,24 @@
 						</div>
 						<hr>
 						{{#each questionsAvailable}}
-							<div class="row justify-content-center align-items-center questionHolder my-2 cp m-0 vh-5">
+							<div class="row justify-content-center align-items-center questionHolder my-2 m-0 vh-5">
 								<div class="col-2 text-center iconHolder back-{{subject}}">
 									<i class="{{subjectIcon this.subject}} f-white"></i>
 								</div>
-								<div class="col-9 text-left">
+								<div class="col-8 text-left">
 									<p class="fs-2 fw-4 mb-0">{{question}}</p>
 								</div>
+								<div class="col-2 text-right">
+									<i class="fas fs-3 fa-caret-up hvr-upvote {{isUpvoted}} cp" id="upvote-question"></i>
+									<span class="fs-2 fw-4 mb-0 mx-2">{{votes}}</span>
+									<i class="fas fs-3 fa-caret-down hvr-downvote {{isDownvoted}} cp" id="downvote-question"></i>
+									<i class="{{isFavorite}} fa-star f-yellow cp ml-2 hvr-favorite" id="favorite-question"></i>
+								</div>
+								<!--
 								<div class="col-1 text-center hvr-clickable cp">
 									<i class="fas fa-edit" id="edit-question"></i>
 								</div>
+								-->
 							</div>
 						{{else}}
 							<p class="fs-1 fw-4 text-center">Sem mais perguntas deste tópico</p>

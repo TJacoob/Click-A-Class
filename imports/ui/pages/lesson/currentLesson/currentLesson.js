@@ -1,6 +1,7 @@
 import './currentLesson.html';
 import './association/association.js';
 import './quiz/quiz.js';
+import './question/question.js';
 
 import { Teacher } from '/imports/api/teacher/teacher.js';
 import { Lesson } from '/imports/api/lesson/lesson.js';
@@ -8,6 +9,7 @@ import { Class } from '/imports/api/class/class.js';
 import { Classroom } from '/imports/api/classroom/classroom.js';
 import { Click } from '/imports/api/click/click.js';
 import { Quiz } from '/imports/api/quiz/quiz.js';
+import { Question } from '/imports/api/question/question.js';
 
 Template.currentLesson.onRendered(function(){
 	var self = this;
@@ -18,6 +20,7 @@ Template.currentLesson.onRendered(function(){
 		self.subscribe("class.own");
 		self.subscribe("click.all");
 		self.subscribe("quiz.own");
+		self.subscribe("question.all");
 	});
 });
 

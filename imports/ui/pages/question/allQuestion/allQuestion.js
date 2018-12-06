@@ -8,6 +8,7 @@ Template.allQuestion.onRendered(function(){
 	var self = this;
 	self.autorun(function(){
 		self.subscribe('question.all');
+		self.subscribe('teacher.own');
 	});
 });
 
@@ -29,9 +30,9 @@ Template.allQuestion.helpers({
 		let filter = Template.instance().subjectFilter.get();
 		
 		if ( filter != null )
-			return Question.find({"subject":filter});
+			return Question.find({"subject":filter},{sort:{"votes":-1}});
 		else
-			return Question.find({},{sort:{"subject":1}});
+			return Question.find({},{sort:{"votes":-1}});
 	},
 	questionInfo(number)
 	{
@@ -58,7 +59,24 @@ Template.allQuestion.helpers({
 		let filter = Template.instance().subjectFilter.get();
 		if ( filter == subject )
 			return "isActiveFilter";
-	}
+	},
+	isUpvoted(){
+		let t = Teacher.findOne({"user": Meteor.userId()});
+		if ( this.upvotesUsers.indexOf(t._id) > -1 )
+			return 'f-green';
+	},
+	isDownvoted(){
+		let t = Teacher.findOne({"user": Meteor.userId()});
+		if ( this.downvotesUsers.indexOf(t._id) > -1 )
+			return 'f-red';
+	},
+	isFavorite(){
+		let t = Teacher.findOne({"user": Meteor.userId()});
+		if ( this.favoriteUsers.indexOf(t._id) > -1 )
+			return 'fas';
+		else
+			return 'far';
+	},
 });
 
 Template.allQuestion.events({
@@ -78,5 +96,53 @@ Template.allQuestion.events({
 			Template.instance().subjectFilter.set(null);
 		else
 			Template.instance().subjectFilter.set(subject);
+	},
+	'click #upvote-question': function()
+	{
+		let t = Teacher.findOne({"user": Meteor.userId()});
+			if ( this.downvotesUsers.indexOf(t._id) > -1 )
+				Meteor.call("toggleDownvote", this.number , function (err, data) {
+			        if(err){
+			            //console.log("Error: " + err);
+			        }else{
+			            //console.log("Success, created!");
+			        }
+				});
+		Meteor.call("toggleUpvote", this.number , function (err, data) {
+	        if(err){
+	            //console.log("Error: " + err);
+	        }else{
+	            //console.log("Success, created!");
+	        }
+		});
+	},
+	'click #downvote-question': function()
+	{
+		let t = Teacher.findOne({"user": Meteor.userId()});
+			if ( this.upvotesUsers.indexOf(t._id) > -1 )
+				Meteor.call("toggleUpvote", this.number , function (err, data) {
+			        if(err){
+			            //console.log("Error: " + err);
+			        }else{
+			            //console.log("Success, created!");
+			        }
+				});
+		Meteor.call("toggleDownvote", this.number , function (err, data) {
+	        if(err){
+	            //console.log("Error: " + err);
+	        }else{
+	            //console.log("Success, created!");
+	        }
+		});
+	},
+	'click #favorite-question': function()
+	{
+		Meteor.call("toggleFavorite", this.number , function (err, data) {
+	        if(err){
+	            //console.log("Error: " + err);
+	        }else{
+	            //console.log("Success, created!");
+	        }
+		});
 	},
 });
