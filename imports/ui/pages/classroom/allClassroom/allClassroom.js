@@ -12,6 +12,7 @@ Template.allClassroom.onRendered(function(){
 });
 
 Template.allClassroom.onCreated(function(){
+	/*
 	Meteor.call("checkAliveAll", function (err, data) {
         if(err){
             //console.log("Error: " + err);
@@ -19,6 +20,7 @@ Template.allClassroom.onCreated(function(){
         	//console.log("Check Alive");
         }
 	});
+	*/
 });
 
 Template.allClassroom.helpers({
