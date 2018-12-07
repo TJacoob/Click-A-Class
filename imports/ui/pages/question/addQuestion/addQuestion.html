@@ -22,10 +22,14 @@
 					<div class="col-6">
 						{{#autoForm collection=Question id="addQuestion" type="method" template="nothing" meteormethod="newQuestion" validation="browser"}}
 							<fieldset>
-								{{> afQuickField name="subject" class="tags"}}
-								{{> afQuickField name="question" class="form-input" autocomplete="off"}}
+								<p class="fs-2 fw-4 mb-2">Disciplina:</p>
+								{{> afQuickField name="subject" class="tags" label=false}}
+								{{> afQuickField name="question" class="form-input" autocomplete="off" label=false placeholder="Pergunta"}}
+								<hr>
+								<p class="fs-2 fw-4 mb-0">Repostas: (A,B,C)</p>
 								{{> afQuickField name="answers" class="form-input" autocomplete="off"}}
-								{{> afQuickField name="correct" class="form-input" autocomplete="off"}}
+								<p class="fs-3 fw-4 mb-2">Resposta Correta:</p>
+								{{> afQuickField name="correct" class="form-input" autocomplete="off" label=false}}
 							</fieldset>
 							<button type="submit" class="btn btn-header mt-2" style="float:right" id="add-class">
 								<span class="fs-3 fw-4 p-3">Criar Pergunta</span>

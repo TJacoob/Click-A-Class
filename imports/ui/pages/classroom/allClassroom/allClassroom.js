@@ -8,6 +8,16 @@ Template.allClassroom.onRendered(function(){
 	self.autorun(function(){
 		self.subscribe('classroom.own');
 		self.subscribe('raspberries.classroom.own');
+	});	
+});
+
+Template.allClassroom.onCreated(function(){
+	Meteor.call("checkAliveAll", function (err, data) {
+        if(err){
+            //console.log("Error: " + err);
+        }else{
+        	//console.log("Check Alive");
+        }
 	});
 });
 
@@ -24,7 +34,7 @@ Template.allClassroom.helpers({
 	isConnected(){
 		let rasp = Raspberries.findOne({"serial":this.raspberrySerial});
 		return rasp.connected;
-	}
+	},
 });
 
 Template.allClassroom.events({

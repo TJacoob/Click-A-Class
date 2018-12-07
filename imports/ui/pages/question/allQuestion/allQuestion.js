@@ -30,9 +30,9 @@ Template.allQuestion.helpers({
 		let filter = Template.instance().subjectFilter.get();
 		
 		if ( filter != null )
-			return Question.find({"subject":filter},{sort:{"votes":-1}});
+			return Question.find({"subject":filter},{sort:{"votes":-1, "number":1}});
 		else
-			return Question.find({},{sort:{"votes":-1}});
+			return Question.find({},{sort:{"votes":-1, "number":1}});
 	},
 	questionInfo(number)
 	{
