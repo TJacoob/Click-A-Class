@@ -10,6 +10,7 @@ import { Classroom } from '/imports/api/classroom/classroom.js';
 import { Click } from '/imports/api/click/click.js';
 import { Quiz } from '/imports/api/quiz/quiz.js';
 import { Question } from '/imports/api/question/question.js';
+import { Student } from '/imports/api/student/student.js';
 
 Template.currentLesson.onRendered(function(){
 	var self = this;
@@ -21,11 +22,12 @@ Template.currentLesson.onRendered(function(){
 		self.subscribe("click.all");
 		self.subscribe("quiz.own");
 		self.subscribe("question.all");
+		self.subscribe("student.all.class.current");
 	});
 });
 
 Template.currentLesson.onCreated(function(){
-	// QUAL É O QUIZ A DECORRER PRECISA DE SER UMA CENA DE SESSÃO TAMBEM, E A PERGUNTA EM QUE VAI TAMBEM
+	this.quickNumber = new ReactiveVar(0);
 });
 
 Template.currentLesson.helpers({
@@ -113,7 +115,11 @@ Template.currentLesson.helpers({
 		if ( sub == 'literature') return "fas fa-book";
 	},
 	quickNumber(){
-		return 1;
+		return Template.instance().quickNumber.get();
+	},
+	studentName(number){
+		let s = Student.findOne({"number":parseInt(number)});
+		return s.name;
 	},
 });
 
@@ -147,8 +153,10 @@ Template.currentLesson.events({
 		});
 	},
 	'click .quick-question': function(){
+		//console.log(this);
 		let l = Lesson.findOne({});
 		Lesson.update({"_id":l._id},{"$set":{"state":"quick-question"}});
+		Template.instance().quickNumber.set(this.number);
 	},
 });
 

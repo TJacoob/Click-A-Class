@@ -97,6 +97,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .f-dark-red { color: $secondary };
 .f-dark-grey { color: #515151 };
 .f-light-grey { color: #c9c9c9 };
+.f-grey { color: #4c4c4c };
 .f-blue { color: $header; };
 .f-green { color: #1d8420 };
 
@@ -140,6 +141,25 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 {
     background-color: darken($header,5%);
     border: 1px solid darken($header,15%);
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    transition: 0.2s;
+}
+
+.btn-finish
+{
+    background-color: $primary;
+    border: 1px solid darken($primary,10%);
+    border-radius: 0.25em;
+    color: white;
+    transition: 0.2s;
+}
+
+.btn-finish:hover
+{
+    background-color: darken($primary,5%);
+    border: 1px solid darken($primary,15%);
     -webkit-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
     -moz-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
     box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);

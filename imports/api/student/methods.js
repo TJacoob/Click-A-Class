@@ -5,8 +5,5 @@ import { Student } from './student.js';
 
 Meteor.methods({
 
-	newStudent: function(){		
-
-	},
 
 });

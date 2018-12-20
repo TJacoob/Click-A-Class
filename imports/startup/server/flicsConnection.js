@@ -9,7 +9,7 @@ Meteor.methods({
 
 	startDaemon: function(){		
 		var fliclib = require("/imports/startup/server/fliclibNodeJs.js");
-		var FlicClient = fliclib.FlicClient;
+		var FlicClient = fliclib.FlicClient;	
 		var FlicConnectionChannel = fliclib.FlicConnectionChannel;
 		var FlicScanner = fliclib.FlicScanner;
 
@@ -17,9 +17,15 @@ Meteor.methods({
 		var client;
 
 		if ( rasp != undefined )
+		{
 			client = new FlicClient(rasp.ipAddress, 5551);
+			console.log("Here");
+		}
 		else
+		{
 			client = new FlicClient("0.0.0.0", 5551);
+			console.log("tHere");
+		}
 
 		function listenToButton(bdAddr) {
 			var cc = new FlicConnectionChannel(bdAddr);

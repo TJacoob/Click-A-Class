@@ -23,6 +23,9 @@ Template.editClass.events({
 	'click #go-back': function(){
 		FlowRouter.go("/class/show/"+parseInt(FlowRouter.getParam('number')));
 	},
+	'click #add-students': function(){
+		FlowRouter.go("/class/addstudent/"+parseInt(FlowRouter.getParam('number')));
+	},
 });
 
 

@@ -10,24 +10,34 @@
 						<hr>
 					</div>
 				</div>
-				<div class="row justify-content-center align-items-center vh-15 m-0">
+				<div class="row justify-content-center align-items-center m-0">
 					<div class="col-10">
 						{{#if hasMoreQuestions}}
 							{{#with getQuestion}}
-								<div class="spacer-6"></div>
 								<p class="fs-4 fw-6 text-left">{{question}}</p>
 								<div class="row justify-content-center align-items-center mx-0 mb-3">
-									<div class="col-3 text-center answerHolder p-2 {{isCorrect 'ButtonSingleClick'}}">
+									<div class="col-1 text-left p-0">
+										<p class="fs-4 fw-6 mb-0">A:</p>
+									</div>
+									<div class="col-11 text-center answerHolder p-2 {{isCorrect 'ButtonSingleClick'}}">
 										<p class="fs-3 fw-6 mb-0">{{single}}</p>
 										<p class="fs-1 fw-4 mb-0">Um Click</p>
 									</div>
-									<div class="col-1"></div>
-									<div class="col-3 text-center answerHolder p-2 {{isCorrect 'ButtonDoubleClick'}}">
+								</div>
+								<div class="row justify-content-center align-items-center mx-0 mb-3">
+									<div class="col-1 text-left p-0">
+										<p class="fs-4 fw-6 mb-0">B:</p>
+									</div>
+									<div class="col-11 text-center answerHolder p-2 {{isCorrect 'ButtonDoubleClick'}}">
 										<p class="fs-3 fw-6 mb-0">{{double}}</p>
 										<p class="fs-1 fw-4 mb-0">Dois Clicks</p>
 									</div>
-									<div class="col-1"></div>
-									<div class="col-3 text-center answerHolder p-2 {{isCorrect 'ButtonHold'}}">
+								</div>
+								<div class="row justify-content-center align-items-center mx-0 mb-3">
+									<div class="col-1 text-left p-0">
+										<p class="fs-4 fw-6 mb-0">C:</p>
+									</div>
+									<div class="col-11 text-center answerHolder p-2 {{isCorrect 'ButtonHold'}}">
 										<p class="fs-3 fw-6 mb-0">{{hold}}</p>
 										<p class="fs-1 fw-4 mb-0">Click Longo</p>
 									</div>
@@ -47,7 +57,7 @@
 							<p class="fs-4 fw-6">Quiz Finished</p>
 							<p class="fs-3 fw-4">Scoreboard:</p>
 							{{#each scoreboard}}
-								<p class="fs-2">{{incremented @index}}º: {{student}}</p>
+								<p class="fs-2">{{incremented @index}}º: {{studentName student}}</p>
 							{{/each}}
 							<button class="btn btn-header mt-2" id="finish-quiz">
 								<span class="fs-3 fw-4 p-3">Terminar Questão</span>
@@ -70,11 +80,11 @@
 				<div class="col-10 p-0">
 					{{#each associated}}
 						<div class="row justify-content-center align-items-center mx-0 my-1">
-							<div class="col-1 text-left">
+							<div class="col-2 text-left">
 								<i class="fas {{guess}}"></i>
 							</div>
-							<div class="col-11 text-left student">
-								<span class="fs-3 fw-4 mb-1">{{this.student}}</span>
+							<div class="col-10 text-left student p-0">
+								<span class="fs-3 fw-4 mb-1">{{studentName this.student}}</span>
 							</div>
 						</div>
 					{{/each}}

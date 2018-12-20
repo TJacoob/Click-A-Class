@@ -16,3 +16,9 @@ Meteor.publish('class.own.single', function (number) {
 	if ( t.classes.indexOf(number) > -1 )
 		return Class.find({"number":number});
 });
+
+Meteor.publish('class.own.current', function (number) {
+	let t = Teacher.findOne({"user":this.userId});
+	if ( t.classes.indexOf(number) > -1 )
+		return Class.find({"number":number});
+});

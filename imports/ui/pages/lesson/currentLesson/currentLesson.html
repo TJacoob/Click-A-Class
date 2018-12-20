@@ -57,7 +57,7 @@
 							</div>
 						{{/if}}
 						{{#if isIdle}}
-							<div class="col-7 p-0 text-left">
+							<div class="col-8 p-0 text-left">
 								<div class="row justify-content-start align-items-center vh-10 m-0">
 									<div class="col-1"></div>
 									<div class="col-7 text-left">
@@ -66,7 +66,7 @@
 										<hr class="mb-2">
 									</div>
 								</div>
-								<div class="row justify-content-start align-items-start vh-20 m-0">
+								<div class="row justify-content-start align-items-start m-0">
 									<div class="col-1"></div>
 									<div class="col-11 text-left">
 										<div class="row justify-content-start align-items-start m-0">
@@ -88,7 +88,7 @@
 								</div>
 								<div class="row justify-content-start align-items-start vh-20 m-0">
 									<div class="col-1"></div>
-									<div class="col-11 text-left">
+									<div class="col-10 text-left">
 										{{#each favoriteQuestion}}
 											<div class="row justify-content-center align-items-center questionHolder my-2 m-0 vh-5 quick-question cp">
 												<div class="col-2 text-center iconHolder back-{{subject}}">
@@ -98,22 +98,28 @@
 													<p class="fs-2 fw-4 mb-0">{{question}}</p>
 												</div>
 												<div class="col-2 text-right">
-													<i class="{{isFavorite}} fa-star f-yellow cp ml-2 hvr-favorite" id="favorite-question"></i>
+													<i class="{{isFavorite}} fa-star f-yellow cp ml-2 hvr-favorite"></i>
 												</div>
 											</div>
 										{{/each}}
 									</div>
+									<div class="col-1"></div>
 								</div>
 								<div class="row justify-content-center align-items-start vh-15 m-0">
 									<div class="col-10 text-center">
 										<hr>
-										<button class="btn btn-header" id="finish-lesson">
+										<button class="btn btn-header mr-3" id="start-association">
+											<span class="fs-3 fw-4 p-3">Refazer Emparelhamento</span>
+										</button>
+										<button class="btn btn-finish ml-3" id="finish-lesson">
 											<span class="fs-3 fw-4 p-3">Terminar Aula</span>
 										</button>
+										
 									</div>
+
 								</div>								
 							</div>
-							<div class="col-5 p-0 text-left" style="border-left: 1px solid #dbdbdb">
+							<div class="col-4 p-0 text-left" style="border-left: 1px solid #dbdbdb">
 								<div class="row justify-content-start align-items-center vh-15 m-0">
 									<div class="col-1"></div>
 									<div class="col-7 text-left">
@@ -130,7 +136,7 @@
 													<i class="far fa-hand-pointer fa-lg studentDoubt {{isClicked}}"></i>
 												</div>
 												<div class="col-11 text-left f-black">
-													<span class="fs-3 fw-4 mb-1 studentDoubt {{isClicked}}">{{this.student}}</span>
+													<span class="fs-3 fw-4 mb-1 studentDoubt {{isClicked}}">{{studentName this.student}}</span>
 												</div>
 											</div>
 										{{/each}}

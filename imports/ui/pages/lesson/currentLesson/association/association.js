@@ -4,6 +4,7 @@ import { Teacher } from '/imports/api/teacher/teacher.js';
 import { Lesson } from '/imports/api/lesson/lesson.js';
 import { Class } from '/imports/api/class/class.js';
 import { Click } from '/imports/api/click/click.js';
+import { Student } from '/imports/api/student/student.js';
 
 // Flic Association
 Template.flicAssociation.onCreated(function(){
@@ -18,11 +19,14 @@ Template.flicAssociation.helpers({
 		list.forEach(function(student){
 			if ( student.mac == null )
 				empty.push(student.student);
-		})
+		});
+		//let s = Student.findOne({"number":parseInt(empty[0])});
+		//return s.name;
 		return empty[0];
 	},
 	waitingClick(){
 		let student = String(this);
+		console.log(student);
 		let c = Template.instance().waitingClick.get();
 		let click = Click.findOne({});
 		let macUsed = false;
@@ -64,6 +68,7 @@ Template.flicAssociation.helpers({
 			if ( student.mac != null )
 				associated.push(student);
 		})
+		console.log(associated);
 		return associated;
 	},
 	isClicked(){
@@ -73,6 +78,10 @@ Template.flicAssociation.helpers({
 			setTimeout(function() { Click.remove({"_id":click._id}); }, 2000);
 			return "studentClicked";
 		}
+	},
+	studentName(number){
+		let s = Student.findOne({"number":parseInt(number)});
+		return s.name;
 	},
 });
 

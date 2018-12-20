@@ -16,6 +16,7 @@ import '../../ui/pages/signup/signup.js';
 import '../../ui/pages/dashboard/dashboard.js';
 import '../../ui/pages/not_found/not_found.js';
 import '../../ui/pages/class/addClass/addClass.js';
+import '../../ui/pages/class/addClass/addStudent.js';
 import '../../ui/pages/class/allClass/allClass.js';
 import '../../ui/pages/class/editClass/editClass.js';
 import '../../ui/pages/class/showClass/showClass.js';
@@ -97,6 +98,13 @@ FlowRouter.route('/class/edit/:number',{
 	name: 'EditClass',
 	action(){
 		BlazeLayout.render('index', {content:"editClass"});
+	},
+});
+
+FlowRouter.route('/class/addstudent/:number',{
+	name: 'AddStudent',
+	action(){
+		BlazeLayout.render('index', {content:"addStudent"});
 	},
 });
 

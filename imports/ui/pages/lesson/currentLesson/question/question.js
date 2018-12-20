@@ -6,6 +6,7 @@ import { Class } from '/imports/api/class/class.js';
 import { Click } from '/imports/api/click/click.js';
 import { Quiz } from '/imports/api/quiz/quiz.js';
 import { Question } from '/imports/api/question/question.js';
+import { Student } from '/imports/api/student/student.js';
 
 Template.question.onRendered(function(){
 	var self = this;
@@ -23,6 +24,7 @@ Template.question.onCreated(function(){
 
 Template.question.helpers({
 	getQuestion(){
+		console.log(Template.instance().questionNumber.get());
 		return Question.findOne({"number":Template.instance().questionNumber.get()});
 	},
 	single(){ return this.answers[0]; },
@@ -68,11 +70,19 @@ Template.question.helpers({
 		if ( click == this.correct && Template.instance().showAnswer.get() )
 			return 'answerCorrect';
 	},
+	studentName(number){
+		let s = Student.findOne({"number":parseInt(number)});
+		return s.name;
+	},
 });
 
 Template.question.events({
 	'click #finish-question': function(){
 		let l = Lesson.findOne();
+		let allClicks = Click.find({}); 	// Hammered - Remove All Clicks
+		allClicks.forEach(function(c){
+			Click.remove({"_id":c._id});
+		})
 		Lesson.update({"_id":l._id},{"$set":{"state":"idle"}});
 	},
 	'click #show-answer':function(){

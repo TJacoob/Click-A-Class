@@ -2,7 +2,7 @@
 	<div class="row justify-content-center align-items-center vh-80">
 		<div class="col-6 text-center p-0">
 			{{#with emptyAssociation}}
-				<p class="fs-6 fw-6 mb-0">{{this}}</p>
+				<p class="fs-6 fw-6 mb-0">{{studentName this}}</p>
 				{{#if waitingClick}}
 					<p class="fs-3 fw-4">À espera de um click!</p>
 					<button class="btn btn-header mt-2" id="mark-absent">
@@ -33,7 +33,7 @@
 								<i class="fas fa-times"></i>
 							</div>
 							<div class="col-11 text-left student {{isClicked}}">
-								<span class="fs-3 fw-4 mb-1">{{this.student}}</span>
+								<span class="fs-3 fw-4 mb-1">{{studentName this.student}}</span>
 							</div>
 						</div>
 					{{/each}}

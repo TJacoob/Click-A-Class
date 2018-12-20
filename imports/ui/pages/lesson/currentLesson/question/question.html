@@ -58,11 +58,11 @@
 				<div class="col-10 p-0">
 					{{#each associated}}
 						<div class="row justify-content-center align-items-center mx-0 my-1">
-							<div class="col-1 text-left">
+							<div class="col-2 text-left p-0">
 								<i class="fas {{guess}}"></i>
 							</div>
-							<div class="col-11 text-left student">
-								<span class="fs-3 fw-4 mb-1">{{this.student}}</span>
+							<div class="col-10 text-left student p-0">
+								<span class="fs-3 fw-4 mb-1">{{studentName this.student}}</span>
 							</div>
 						</div>
 					{{/each}}

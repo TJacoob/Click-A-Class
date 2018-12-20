@@ -30,7 +30,8 @@ Template.addClass.events({
 
 
 AutoForm.addHooks(['addClass'],{
-	onSuccess: function(formType, result) {
-		FlowRouter.go("/class/show/");
-	}
+	onSuccess: function(operation, result, template) {
+		//console.log(result);
+      	FlowRouter.go("/class/addstudent/"+result.number);
+    },
 });

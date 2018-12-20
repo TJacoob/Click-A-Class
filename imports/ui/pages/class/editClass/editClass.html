@@ -7,8 +7,9 @@
 		<div class="col-5 text-center">
 			<p class="fs-3 fw-4 mb-0">Editar Turma</p>
 		</div>
-		<div class="col-3 text-right cp">
-			
+		<div class="col-3 text-right cp hvr-clickable" id="add-students">			
+			<span class="fs-2 fw-4 mb-0">Editar Alunos</span>
+			<i class="fas fa-user-friends ml-2"></i>
 		</div>
 	</div>
 	<div class="row justify-content-center align-items-start vh-1 m-0">
@@ -22,10 +23,12 @@
 				{{#autoForm collection=Class id="editClass" doc=currentClass type="method-update" template="nothing" meteormethod="editClass" validation="browser"}}
 					<fieldset>
 						{{> afQuickField name="name" class="form-input" autocomplete="off" label=false placeholder="Nome"}}
-						{{> afQuickField name="notes" class="form-input" autocomplete="off" label=false placeholder="Descrição"}}
+						{{> afQuickField name="notes" class="form-input" autocomplete="off" label=false placeholder="Descrição"}}						
+						<!--
 						<hr>
 						<p class="fs-1 fw-4 mb-0">Alunos:</p>
 						{{> afQuickField name="students" class="form-input-alt" autocomplete="off" label=false}}
+						-->
 						<button type="submit" class="btn btn-header mt-2" style="float:right" id="add-class">
 							<span class="fs-3 fw-4 p-3">Guardar Alterações</span>
 						</button>

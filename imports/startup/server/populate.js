@@ -34,7 +34,7 @@ if ( Teacher.find().count() == 0)
 		if(!err) console.log("Created Teacher"); else console.log(err); });
 	var t1 = {
 		"name": "John Doe",
-		"school": "IST Primary",
+		"school": "Interaction Design Primary School",
 	};
 }
 

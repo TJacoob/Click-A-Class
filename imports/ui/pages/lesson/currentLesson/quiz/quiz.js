@@ -6,6 +6,7 @@ import { Class } from '/imports/api/class/class.js';
 import { Click } from '/imports/api/click/click.js';
 import { Quiz } from '/imports/api/quiz/quiz.js';
 import { Question } from '/imports/api/question/question.js';
+import { Student } from '/imports/api/student/student.js';
 
 Template.quiz.onRendered(function(){
 	var self = this;
@@ -18,6 +19,7 @@ Template.quiz.onCreated(function(){
 	//this.waitingClick = new ReactiveVar(true);
 	this.lessonNumber = new ReactiveVar(this.data.lesson);
 	this.showAnswer = new ReactiveVar(false);
+	this.answerLock = new ReactiveVar();
 });
 
 
@@ -59,7 +61,8 @@ Template.quiz.helpers({
 		let question = Question.findOne({"number":quiz.questions[lesson.quizCount]});
 		let click = Click.findOne({"mac":this.mac});
 		let color = "";
-		if ( click != undefined)
+		let answerLock = Template.instance().answerLock.get();
+		if ( click != undefined )
 		{
 			// Check if Click type is correct answer
 			//console.log( click.type );
@@ -68,6 +71,8 @@ Template.quiz.helpers({
 				return 'fa-circle-notch fa-spin';	
 			else
 			{
+				if ( click.time > answerLock )
+					return '';
 				if ( click.type == question.correct )
 					//console.log("correct Answer");
 					color = 'fa-check f-green';
@@ -90,6 +95,10 @@ Template.quiz.helpers({
 		if ( click == this.correct && Template.instance().showAnswer.get() )
 			return 'answerCorrect';
 	},
+	studentName(number){
+		let s = Student.findOne({"number":parseInt(number)});
+		return s.name;
+	},
 });
 
 Template.quiz.events({
@@ -101,6 +110,7 @@ Template.quiz.events({
 		let lesson = Lesson.findOne({"number":Template.instance().lessonNumber.get()});
 		let quiz = Quiz.findOne({"number":lesson.quiz});
 		let question = Question.findOne({"number":quiz.questions[lesson.quizCount]});
+		let answerLock = Template.instance().answerLock.get();
 		// Assign Score
 		let association = lesson.association;
 		association.forEach(function(a,index){
@@ -108,7 +118,7 @@ Template.quiz.events({
 			let allClicks = Click.find({"mac":a.mac});
 			if ( click != undefined)
 			{
-				if ( click['type'] == question.correct )
+				if ( (click['type'] == question.correct) && (click.time < answerLock) )
 					a.score += 1;
 				association[index] = a;
 				// Clear Clicks
@@ -118,12 +128,14 @@ Template.quiz.events({
 			}
 		})
 		Lesson.update({"_id":lesson._id},{"$set":{"association":association}});
-		// Reset Show Answer
+		// Reset Show Answer & Answer Lock
 		Template.instance().showAnswer.set(false);
+		Template.instance().answerLock.set(null);
 		// Move to next Question
 		Lesson.update({"_id":lesson._id},{"$set":{"quizCount":lesson.quizCount+1}});
 	},
 	'click #show-answer':function(){
 		Template.instance().showAnswer.set(true);
+		Template.instance().answerLock.set(new Date());
 	},
 });

@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 SimpleSchema.extendOptions(['autoform']);
+import { Student } from '/imports/api/student/student.js';
 
 export const Class = new Mongo.Collection( 'class' );
 
@@ -15,9 +16,10 @@ ClassSchema = new SimpleSchema({
 	},
 	students: {
 		type: Array,
-		minCount:1,
+		optional: true,
+		//minCount:1,
 	},
-	'students.$': { type: String, autoform:{placeholder:"Nome do aluno"} },
+	'students.$': { type: Number },
 	notes: {
 		type: String,
 		optional:true,
