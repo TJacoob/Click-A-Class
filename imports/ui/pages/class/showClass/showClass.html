@@ -17,38 +17,52 @@
 			<hr class="m-0">
 		</div>
 	</div>
-	<div class="row justify-content-center align-items-start vh-80 m-0 py-3">
-		{{#if Template.subscriptionsReady}}		
-			{{#with currentClass}}
-			<div class="col-5 p-0 text-left">				
-				<p class="fs-5 fw-6">
-					<span class="fw-4">(#{{number}}) </span>
-					{{name}}
-				</p>
-				<p class="fs-3 fw-4">{{notes}}</p>				
-				<!--
-				<a class="bttn" id="allClass">Create class</a>
-				-->
+	{{#if Template.subscriptionsReady}}
+		{{#with currentClass}}
+			<div class="row justify-content-center align-items-center vh-15">
+				<div class="col-11">
+					<p class="fs-3 fw-6 mb-1">{{name}}</p>
+					<p class="fs-2 fw-4 mb-0">{{notes}}</p>
+				</div>
 			</div>
-			<div class="col-1"></div>
-			<div class="col-5 p-0 text-right">				
-				<p class="fs-5 fw-4">Lista de Alunos</p>
+			<div class="row justify-content-center align-items-start vh-65">
 				{{#each students}}
-					<p class="fs-3 fw-4 mb-1">{{this}}
-						<span class="fs-1">(#{{@index}})</span>
-					</p>
+					<div class="col-3 classHolder mx-3">
+						{{#with studentInfo this}}
+							<div class="row justify-content-center align-items-start py-2 px-3">
+								<div class="col-12 p-0">
+									<p class="fs-2 fw-6 mb-0">
+										<span class="fw-4 mr-2 f-grey">#{{number}}</span>
+										{{name}}
+									</p>
+									<hr class="my-1">
+								</div>
+								<div class="col-12 p-0">
+									<p class="fs-1 fw-4 mb-0">Tópico Favorito:
+										<i class="ml-1 {{subjectIcon favorite}}"></i>
+									</p>
+								</div>
+								<div class="col-12 p-0">
+									<p class="fs-1 fw-4 mb-0">Tópico Detestado:
+										<i class="ml-1 {{subjectIcon hated}}"></i>
+									</p>
+								</div>
+								<div class="col-12 p-0">
+									<p class="fs-1 fw-4 mb-0">Taxa de Acerto: {{acerto}}%</p>
+								</div>
+							</div>
+						{{/with}}
+					</div>
 				{{/each}}
-				<!--
-				<a class="bttn" id="allClass">Create class</a>
-				-->
 			</div>
-			{{/with}}
-		{{else}}
-			<div class="col-12 text-center py-3">
+		{{/with}}
+	{{else}}
+		<div class="row justify-content-center align-items-center vh-90">
+			<div class="col-11 text-center py-3">
 				<i class="fas fa-circle-notch fa-4x fa-spin"></i>
 				<br>
 				<p class="fs-3 fw-4 mt-2 mb-0">A carregar, aguarde</p>
 			</div>
-		{{/if}}
-	</div>
+		</div>
+	{{/if}}
 </template>

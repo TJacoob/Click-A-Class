@@ -48,6 +48,8 @@ Meteor.methods({
 				"number": parseInt(c.students.length + 1),
 				"name": doc.name,
 				"class": doc.class,
+				"rightAnswer": [],
+				"wrongAnswer": [],
 			};
 			Student.insert(s);
 			Class.update({"_id":c._id},{ $push: { "students": s.number }});

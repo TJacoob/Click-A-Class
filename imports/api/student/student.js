@@ -4,6 +4,12 @@ SimpleSchema.extendOptions(['autoform']);
 
 export const Student = new Mongo.Collection( 'student' );
 
+Student.allow({
+  insert() { return false; },
+  update() { return true; },
+  remove() { return false; },
+});
+
 StudentSchema = new SimpleSchema({
 	name: { 
 		type: String,
@@ -27,6 +33,16 @@ StudentSchema = new SimpleSchema({
 		},
 		optional: true,
 	},
+	rightAnswer: {
+		type: Array,
+		optional: true,
+	},
+	'rightAnswer.$': { type: Number },
+	wrongAnswer: {
+		type: Array,
+		optional: true,
+	},
+	'wrongAnswer.$': { type: Number },
 });
 
 Student.attachSchema( StudentSchema ); 

@@ -119,7 +119,17 @@ Template.quiz.events({
 			if ( click != undefined)
 			{
 				if ( (click['type'] == question.correct) && (click.time < answerLock) )
+				{
 					a.score += 1;
+					let s = Student.findOne({"number":parseInt(a.student)});
+					Student.update({"_id":s._id},{ $push: { "rightAnswer": question.number }});
+					//console.log(a);
+				}
+				if ( (click['type'] != question.correct) && (click.time < answerLock) )
+				{
+					let s = Student.findOne({"number":parseInt(a.student)});
+					Student.update({"_id":s._id},{ $push: { "wrongAnswer": question.number }});
+				}
 				association[index] = a;
 				// Clear Clicks
 				allClicks.forEach(function(c){
