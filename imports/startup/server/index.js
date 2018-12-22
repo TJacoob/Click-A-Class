@@ -1,7 +1,14 @@
 // Import server startup through a single index entry point
 
-import './fixtures.js';
 import './register-api.js';
 import './flicsConnection.js';
+import './populate.js';
 //import './api.js';
-import './apiv2.js';
+
+Meteor.call("startDaemon", function (err, data) {
+    if(err){
+        console.log("Error: " + err);
+    }else{
+        console.log("Started Daemons");
+    }
+});

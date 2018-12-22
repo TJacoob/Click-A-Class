@@ -21,12 +21,10 @@ RaspberriesSchema = new SimpleSchema({
 		type: Boolean,
 		label: "Connected",
 	},
-	accessCode:{
-		type: String,
-		label: "Access Code",
-	},
 	favorite: {
 		type: Boolean,
 		label: "Favorite",
 	}
 });
+
+Raspberries.attachSchema( RaspberriesSchema ); 

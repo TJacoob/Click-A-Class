@@ -1,0 +1,44 @@
+<template name="flicAssociation">
+	<div class="row justify-content-center align-items-center vh-80">
+		<div class="col-6 text-center p-0">
+			{{#with emptyAssociation}}
+				<p class="fs-6 fw-6 mb-0">{{studentName this}}</p>
+				{{#if waitingClick}}
+					<p class="fs-3 fw-4">À espera de um click!</p>
+					<button class="btn btn-header mt-2" id="mark-absent">
+						<span class="fs-3 fw-4 p-3">Marcar como ausente</span>
+					</button>
+				{{/if}}
+			{{else}}
+				<p class="fs-3 fw-4">Todos os alunos estão configurados!</p>
+				<button class="btn btn-header mt-2" id="start-class">
+					<span class="fs-3 fw-4 p-3">Iniciar Aula</span>
+				</button>
+			{{/with}}
+		</div>
+		<div class="col-6 p-0 text-left" style="border-left: 1px solid #dbdbdb">
+			<div class="row justify-content-start align-items-center vh-15 m-0">
+				<div class="col-1"></div>
+				<div class="col-7 text-left">
+					<div class="spacer-2"></div>
+					<p class="fs-3 fw-4 mb-1">Alunos na Sala:</p>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center align-items-start vh-65 m-0">
+				<div class="col-10 p-0">
+					{{#each associated}}
+						<div class="row justify-content-center align-items-center mx-0 my-1">
+							<div class="col-1 text-left cp hvr-clickable" id="redo-student">
+								<i class="fas fa-times"></i>
+							</div>
+							<div class="col-11 text-left student {{isClicked}}">
+								<span class="fs-3 fw-4 mb-1">{{studentName this.student}}</span>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

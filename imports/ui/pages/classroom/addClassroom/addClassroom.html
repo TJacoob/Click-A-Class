@@ -1,0 +1,39 @@
+<template name="addClassroom">
+
+        <div class="row justify-content-center align-items-center vh-9">
+            <div class="col-3 text-left cp hvr-clickable" id="go-back">		
+                <i class="fas fa-chevron-left mr-2"></i>
+                <span class="fs-2 fw-4 mb-0">Voltar Atrás</span>
+            </div>
+            <div class="col-5 text-center">
+                <p class="fs-3 fw-4 mb-0">Ligar a um Sala de Aula</p>
+            </div>
+            <div class="col-3 text-center">
+            </div>
+        </div>
+    
+        <div class="row justify-content-center align-items-start vh-1 m-0">
+            <div class="col-11 p-0">
+                <hr class="m-0">
+            </div>
+        </div>
+    
+        <div class="row justify-content-center align-items-start m-0 p-0 vh-80">
+            <div class="col-6 text-center m-0 p-0">
+                <div class="spacer-8"></div>
+                <form id="connect-pi">
+                    <p class="fs-3 fw-4 flh-2 mb-1">
+                        Insira aqui o código escrito no seu RaspberryPi que tem na sua sala de aula
+                    </p>
+                    <input type="text" class="text-center" name="connectionCode" autocomplete="off">
+                    <p class="fs-1 fw-4 flh-2 mb-0 mt-2 f-red" style="display: none" id="error-code">Código de Erro</p>
+                    <div class="spacer-4"></div>
+                    <button type="submit" class="btn btn-header mt-2" style="float:right" id="connect-pi">
+                        <span class="fs-3 fw-4 p-3">Fazer Ligação</span>
+                    </button>
+                </form>
+                
+    
+            </div>
+        </div>
+</template>

@@ -1,0 +1,211 @@
+<template name="currentLesson">
+	<div class="row justify-content-center align-items-start vh-90">
+		<div class="col-12 text-center">
+			{{#if Template.subscriptionsReady}}
+				{{#with currentLesson}}
+					<div class="row justify-content-center align-items-center vh-10 m-0" style="border-bottom: 1px solid #dbdbdb">
+						<div class="col-3 text-center p-0">
+				 			<p class="fs-2 fw-4 mb-0">
+				 				<i class="fas fa-user-tie mr-2 fa-lg"></i>
+				 				{{teacherName}}
+				 			</p>		
+				 		</div>
+				 		<div class="col-2 text-center p-0">
+				 			<p class="fs-2 fw-4 mb-0">
+				 				<i class="fas fa-graduation-cap mr-2 fa-lg"></i>
+				 				{{className}}
+				 			</p>		
+				 		</div>
+				 		<div class="col-4 text-center p-0">
+				 			<p class="fs-2 fw-4 mb-0">
+				 				<i class="fas fa-door-open mr-2 fa-lg"></i>
+				 				{{classroomName}}
+				 			</p>		
+				 		</div>
+				 		<div class="col-3 text-center p-0">
+				 			<p class="fs-2 fw-4 mb-0">
+				 				<i class="far fa-calendar-alt mr-2 fa-lg"></i>
+				 				{{today}}
+				 			</p>		
+				 		</div>
+					</div>
+					<div class="row justify-content-center align-items-start vh-80 m-0">
+						{{#if isOn}}
+							<div class="col-10 text-center">
+								<div class="spacer-6"></div>
+								<p class="fs-2 fw-4 mb-2">Antes de começar a aula, faça o emparelhamento de cada aluno a um Flic.</p>
+								<p class="fs-2 fw-4 mb-0">Depois de iniciar, basta cada aluno clicar no seu flic quando o seu nome estiver no ecrã.</p>
+								<div class="spacer-6"></div>
+								<button class="btn btn-header mt-2" id="start-association">
+									<span class="fs-3 fw-4 p-3">Iniciar Emparelhamento</span>
+								</button>
+							</div>
+						{{/if}}
+						{{#if isAssociation}}
+							<div class="col-12">
+								{{> flicAssociation class=classObject lesson=this.number}}
+							</div>
+						{{/if}}
+						{{#if isQuiz}}
+							<div class="col-12">
+								{{> quiz lesson=this.number}}
+							</div>
+						{{/if}}
+						{{#if isQuestion}}
+							<div class="col-12">
+								{{> question questionNumber=quickNumber}}
+							</div>
+						{{/if}}
+						{{#if isIdle}}
+							<div class="col-8 p-0 text-left">
+								<div class="row justify-content-start align-items-center vh-10 m-0">
+									<div class="col-1"></div>
+									<div class="col-7 text-left">
+										<div class="spacer-2"></div>
+										<p class="fs-3 fw-4 mb-1">Começar um Questionário:</p>
+										<hr class="mb-2">
+									</div>
+								</div>
+								<div class="row justify-content-start align-items-start m-0">
+									<div class="col-1"></div>
+									<div class="col-11 text-left">
+										<div class="row justify-content-start align-items-start m-0">
+											{{#each quizes}}
+												<div class="col-5 m-2 quiz-option cp text-center">
+													<p class="fs-2 fw-4 mb-0">{{title}}</p>
+												</div>
+											{{/each}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-start align-items-center vh-10 m-0">
+									<div class="col-1"></div>
+									<div class="col-7 text-left">
+										<div class="spacer-2"></div>
+										<p class="fs-3 fw-4 mb-1">Pergunta Rápida</p>
+										<hr class="mb-2">
+									</div>
+								</div>
+								<div class="row justify-content-start align-items-start vh-20 m-0">
+									<div class="col-1"></div>
+									<div class="col-10 text-left">
+										{{#each favoriteQuestion}}
+											<div class="row justify-content-center align-items-center questionHolder my-2 m-0 vh-5 quick-question cp">
+												<div class="col-2 text-center iconHolder back-{{subject}}">
+													<i class="{{subjectIcon this.subject}} f-white"></i>
+												</div>
+												<div class="col-8 text-left">
+													<p class="fs-2 fw-4 mb-0">{{question}}</p>
+												</div>
+												<div class="col-2 text-right">
+													<i class="{{isFavorite}} fa-star f-yellow cp ml-2 hvr-favorite"></i>
+												</div>
+											</div>
+										{{/each}}
+									</div>
+									<div class="col-1"></div>
+								</div>
+								<div class="row justify-content-center align-items-start vh-15 m-0">
+									<div class="col-10 text-center">
+										<hr>
+										<button class="btn btn-header mr-3" id="start-association">
+											<span class="fs-3 fw-4 p-3">Refazer Emparelhamento</span>
+										</button>
+										<button class="btn btn-finish ml-3" id="finish-lesson">
+											<span class="fs-3 fw-4 p-3">Terminar Aula</span>
+										</button>
+										
+									</div>
+
+								</div>								
+							</div>
+							<div class="col-4 p-0 text-left" style="border-left: 1px solid #dbdbdb">
+								<div class="row justify-content-start align-items-center vh-15 m-0">
+									<div class="col-1"></div>
+									<div class="col-7 text-left">
+										<div class="spacer-2"></div>
+										<p class="fs-3 fw-4 mb-1">Alunos na Sala:</p>
+										<hr class="mb-2">
+									</div>
+								</div>
+								<div class="row justify-content-center align-items-start vh-65 m-0">
+									<div class="col-10">
+										{{#each associated}}
+											<div class="row justify-content-center align-items-center mx-0 my-2">
+												<div class="col-1 text-left pl-0 f-numb">
+													<i class="far fa-hand-pointer fa-lg studentDoubt {{isClicked}}"></i>
+												</div>
+												<div class="col-11 text-left f-black">
+													<span class="fs-3 fw-4 mb-1 studentDoubt {{isClicked}}">{{studentName this.student}}</span>
+												</div>
+											</div>
+										{{/each}}
+									</div>
+								</div>
+							</div>
+						{{/if}}
+					</div>
+					<!--
+					<div class="row justify-content-center align-items-center vh-10">
+						<div class="col-3 text-center">
+							<p class="fs-3 fw-4 mb-0">{{teacherName}}</p>
+						</div>
+						<div class="col-3 text-center">
+							<p class="fs-3 fw-4 mb-0">{{className}}</p>
+						</div>
+						<div class="col-3 text-center">
+							<p class="fs-3 fw-4 mb-0">{{classroom}}</p>
+						</div>
+					</div>
+					{{#if isOn}}
+						<button class="btn btn-header mt-2" id="start-association">
+							<span class="fs-3 fw-4 p-3">Iniciar Emparelhamento</span>
+						</button>
+					{{/if}}
+					{{#if isAssociation}}
+						{{> flicAssociation class=classObject lesson=this.number}}
+					{{/if}}
+					{{#if isQuiz}}
+						{{> quiz lesson=this.number}}
+					{{/if}}
+					{{#if isIdle}}
+				-->
+						<!-- Idle State aka Main Page -->
+						<!--
+						<div class="row justify-content-center align-items-start vh-80">
+							<div class="col-5">
+								<div class="row justify-content-center align-items-center vh-10">
+									<div class="col-12 text-left">
+										<p class="fs-3 fw-6 mb-0">Começar um quiz:</p>
+										<p class="fs-1 fw-4">(clique para iniciar)</p>
+										<div class="row justify-content-center align-items-center">
+											{{#each quizes}}
+												<div class="col-5 m-1 quiz-option cp text-center">
+													<p class="fs-2 fw-4 mb-0">{{title}}</p>
+												</div>
+											{{/each}}
+										</div>
+									</div>
+								</div>
+								<hr>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-5">
+								<p class="fs-4 fw-4 mb-1">Students Present:</p>
+								{{#each associated}}
+									<span class="fs-3 fw-4 mb-1 {{isClicked}}">{{this.student}}</span>
+									<br>
+								{{/each}}
+							</div>
+						</div>
+						
+					{{/if}}					
+				-->
+				{{/with}}
+			{{else}}
+				<i class="fas fa-circle-notch fa-4x fa-spin"></i>
+			{{/if}}
+		</div>
+	</div>
+</template>
+

@@ -1,0 +1,55 @@
+$history: #dd6e23;
+$maths: #a81f1f;
+$science: #186b1a;
+$literature: #234e8e;
+
+.back-history{ background-color: $history; }
+.back-maths{ background-color: $maths; }
+.back-science{ background-color: $science; }
+.back-literature{ background-color: $literature; }
+
+.questionHolder {
+	background-color: #F3F3F3;
+	border: 1px solid #999999;
+	border-radius: 0.5em;
+	transition: 0.2s;
+}
+
+.questionHolder:hover {
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+	box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+	transition: 0.2s;
+}
+
+.iconHolder
+{
+	height: 5vh;
+	display:table-cell;
+	border-top-left-radius: 0.5em;
+	border-bottom-left-radius: 0.5em;
+	padding-top: 0.5vh;
+	padding-bottom: 0.5vh;
+	//border-right: 1px solid #999999;
+}
+
+.subjectOption
+{
+	//background-color: #F3F3F3;
+	border: 1px solid #999999;
+	border-radius: 0.5em;
+	transition: 0.2s;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+}
+
+.subjectOption:hover {
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+	box-shadow: 2px 2px 2px 0px rgba(28,28,28,0.3);
+	transition: 0.2s;
+}
+
+.isActiveFilter {
+	transform: translate(0, -0.2em);
+}

@@ -1,0 +1,125 @@
+$color: #1abc9c;
+
+h1, input::-webkit-input-placeholder, button {
+  	font-family: 'roboto', sans-serif;
+	transition: all 0.3s ease-in-out; 
+}
+
+h1 {
+	//height: 100px;
+	//width: 100%;
+	font-size: 18px;
+	background: darken($header, 4%);
+	color: white;
+	line-height: 150%;
+	border-radius: 3px 3px 0 0;
+	box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
+}
+
+.at-form {
+	//box-sizing: border-box;
+	//width: 260px;
+	//margin: 100px auto 0;
+	box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	border-radius: 3px;
+	h1 {
+		box-sizing: border-box;
+		padding: 20px;
+	}
+}
+
+.at-input{
+	margin: 0.5em 0 1em 0;
+}
+
+
+input {
+	width: 100%;
+	//display: block;
+	border: none;
+	padding: 1em 0 0.4em 0;
+	border-bottom: solid 1px $header;
+	transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 96%, $header 4%);
+	background-position: -100% 0;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	color: darken($color, 20%);
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		background-position: 0 0;
+	&::-webkit-input-placeholder {
+		color: $color;
+		font-size: 11px;
+		transform: translateY(-20px);
+		visibility: visible !important;
+		}
+	}
+}
+
+#at-btn {
+	border: none;
+	background: $color;
+	cursor: pointer;
+	border-radius: 3px;
+	padding: 6px;
+	width: 60%;
+	margin: 1em 0 !important;
+	color: white;
+	//margin-left: 25px;
+	box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+	&:hover { 
+		transform: translateY(-3px);
+		box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+	}
+}
+
+.follow {
+	width: 42px;
+	height: 42px;
+	border-radius: 50px;
+	background: #03A9F4;
+	display: inline-block;
+	margin: 50px calc(50% - 21px);
+	white-space: nowrap;
+	padding: 13px;
+	box-sizing: border-box;
+	color: white;
+	transition: all 0.2s ease;
+	font-family: Roboto, sans-serif;
+	text-decoration: none;
+	box-shadow: 0 5px 6px 0 rgba(0,0,0,0.2);
+	i {
+		margin-right: 20px;
+		transition: margin-right 0.2s ease;
+	}
+	&:hover {
+		width: 134px;
+		transform: translateX(-50px);
+		i {
+	  		margin-right: 10px;
+		}
+	}
+}
+
+.at-title { display: none; }
+//.at-signup-link { display: none; }
+//.at-field-email { display: none; }
+
+.at-error {
+	width: 100%;
+	background-color: rgba(181, 27, 27, 0.8);
+	color: white;
+	border-radius: 0.2em;
+	border: 3px solid darken(red,20%);
+	margin-bottom: 1em;
+}
+.at-error > p {
+	margin-bottom: 0;
+	padding: 0.5em 0;
+}
